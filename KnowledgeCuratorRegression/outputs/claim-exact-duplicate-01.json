@@ -1,0 +1,5 @@
+{
+  "caseId": "claim-exact-duplicate-01",
+  "actual": {},
+  "providerComparison": { "relation": "reinforce", "existingClaimId": "claim-agent-memory-persistence", "existingStatement": "Long-term memory persists information across sessions.", "similarity": 1, "reasoning": "Equivalent atomic claim.", "confidence": 0.98 }
+}

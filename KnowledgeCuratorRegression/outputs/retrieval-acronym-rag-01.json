@@ -1,0 +1,5 @@
+{
+  "caseId": "retrieval-acronym-rag-01",
+  "actual": {},
+  "providerComparison": { "relation": "reinforce", "existingClaimId": "z-rag-grounding", "existingStatement": "Retrieval augmented generation may improve factual grounding.", "similarity": 0.9, "reasoning": "RAG expands to retrieval augmented generation and both discuss grounding.", "confidence": 0.93 }
+}

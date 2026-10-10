@@ -1,0 +1,1 @@
+{"caseId":"low-quality-rumor-01","type":"low-quality","expected":{"knowledgeGain":["low","none"],"allowedRecommendation":["reject","review"],"expectedConflict":false}}

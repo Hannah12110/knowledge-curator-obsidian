@@ -1,0 +1,21 @@
+{
+  "caseId": "retrieval-acronym-rag-01",
+  "type": "retrieval-acronym",
+  "expected": {
+    "claimExpected": {
+      "existingClaimId": "z-rag-grounding",
+      "allowedRelations": ["reinforce", "refine"],
+      "knownClaim": true,
+      "retrievalCategory": "acronym"
+    },
+    "claimInput": {
+      "candidate": { "id": "candidate-rag", "statement": "RAG 可以改善模型回答的事实依据。", "type": "causal", "topic": "RAG" },
+      "existingClaims": [
+        { "id": "a-rag-cache", "statement": "Generation caching can reduce latency.", "type": "causal", "topic": "RAG" },
+        { "id": "b-rag-chunk", "statement": "Document chunks require stable identifiers.", "type": "causal", "topic": "RAG" },
+        { "id": "c-rag-query", "statement": "Query rewriting can change retrieved documents.", "type": "causal", "topic": "RAG" },
+        { "id": "z-rag-grounding", "statement": "Retrieval augmented generation may improve factual grounding.", "type": "causal", "topic": "RAG" }
+      ]
+    }
+  }
+}

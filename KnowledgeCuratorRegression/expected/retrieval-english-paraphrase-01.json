@@ -1,0 +1,21 @@
+{
+  "caseId": "retrieval-english-paraphrase-01",
+  "type": "retrieval-english-paraphrase",
+  "expected": {
+    "claimExpected": {
+      "existingClaimId": "claim-eval-repeatable",
+      "allowedRelations": ["reinforce", "refine"],
+      "knownClaim": true,
+      "retrievalCategory": "general"
+    },
+    "claimInput": {
+      "candidate": { "id": "candidate-eval-repeatable", "statement": "Agent evaluations should be repeatable under controlled benchmark conditions.", "type": "method", "topic": "Agent Evaluation" },
+      "existingClaims": [
+        { "id": "claim-eval-repeatable", "statement": "Reproducible agent assessment requires fixed benchmark conditions.", "type": "method", "topic": "Agent Evaluation" },
+        { "id": "claim-eval-online", "statement": "Online evaluation observes production traffic.", "type": "method", "topic": "Agent Evaluation" },
+        { "id": "claim-eval-rubric", "statement": "Rubrics make qualitative judgments explicit.", "type": "method", "topic": "Agent Evaluation" },
+        { "id": "claim-eval-sampling", "statement": "Sampling reduces evaluation cost.", "type": "method", "topic": "Agent Evaluation" }
+      ]
+    }
+  }
+}

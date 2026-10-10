@@ -1,0 +1,21 @@
+{
+  "caseId": "retrieval-terminology-alias-01",
+  "type": "retrieval-terminology-alias",
+  "expected": {
+    "claimExpected": {
+      "existingClaimId": "z-benchmark-repeatable",
+      "allowedRelations": ["reinforce", "refine"],
+      "knownClaim": true,
+      "retrievalCategory": "bilingual"
+    },
+    "claimInput": {
+      "candidate": { "id": "candidate-benchmark", "statement": "可复现的 Agent 评测需要固定基准测试条件。", "type": "method", "topic": "Agent 评测" },
+      "existingClaims": [
+        { "id": "a-eval-cost", "statement": "Evaluation sampling can reduce cost.", "type": "method", "topic": "Agent Evaluation" },
+        { "id": "b-eval-human", "statement": "Human review can calibrate a judge.", "type": "method", "topic": "Agent Evaluation" },
+        { "id": "c-eval-data", "statement": "Evaluation datasets need version control.", "type": "method", "topic": "Agent Evaluation" },
+        { "id": "z-benchmark-repeatable", "statement": "Repeatable agent evaluation requires fixed benchmark conditions.", "type": "method", "topic": "Agent Evaluation" }
+      ]
+    }
+  }
+}

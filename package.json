@@ -1,0 +1,47 @@
+{
+  "name": "knowledge-curator-for-obsidian",
+  "version": "0.1.0",
+  "description": "Knowledge Curator for Obsidian",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "preflight:local-files": "bash scripts/check-local-files.sh",
+    "build": "bash scripts/check-local-files.sh && node node_modules/typescript/bin/tsc -noEmit -skipLibCheck && node esbuild.config.mjs production && node scripts/verify-plugin.mjs",
+    "typecheck": "bash scripts/run-with-local-preflight.sh node node_modules/typescript/bin/tsc -noEmit -skipLibCheck",
+    "test": "bash scripts/run-with-local-preflight.sh node scripts/run-tests.mjs",
+    "regression": "KC_PREFLIGHT_EXTRA_PATHS=KnowledgeCuratorRegression bash scripts/run-with-local-preflight.sh node scripts/run-regression.mjs",
+    "regression:update-baseline": "node scripts/run-regression.mjs --update-baseline",
+    "verify:retrieval": "node scripts/report-retrieval.mjs",
+    "benchmark:claim-retrieval": "node scripts/benchmark-claim-retrieval.mjs",
+    "benchmark:comparison": "node scripts/benchmark-comparison.mjs",
+    "benchmark:freshness": "node scripts/benchmark-freshness.mjs",
+    "benchmark:claim-graph": "bash scripts/run-with-local-preflight.sh node scripts/benchmark-claim-graph.mjs",
+    "benchmark:vault": "bash scripts/run-with-local-preflight.sh node scripts/benchmark-vault.mjs",
+    "validate:real-claim-graph": "node scripts/build-real-claim-graph.mjs",
+    "generate:claim-graph-evaluation": "node scripts/generate-claim-graph-evaluation.mjs",
+    "review:claim-graph": "bash scripts/run-review-claim-graph.sh",
+    "evaluate:claim-graph": "bash scripts/run-with-local-preflight.sh node scripts/evaluate-claim-graph.mjs",
+    "analyze:claim-graph-relations": "bash scripts/run-with-local-preflight.sh node scripts/analyze-claim-graph-relation-errors.mjs",
+    "analyze:relation-v3-errors": "bash scripts/run-with-local-preflight.sh node scripts/analyze-relation-v3-candidate-errors.mjs",
+    "calibrate:claim-graph-relations": "bash scripts/run-with-local-preflight.sh node scripts/calibrate-claim-graph-relations.mjs",
+    "calibrate:claim-graph-relations-v6": "bash scripts/run-with-local-preflight.sh node scripts/calibrate-claim-graph-relations-v6.mjs",
+    "experiment:claim-graph-model-choice": "bash scripts/run-with-local-preflight.sh node scripts/model-choice-claim-graph-relations.mjs",
+    "verify:final-closeout": "bash scripts/run-with-local-preflight.sh node scripts/verify-final-closeout.mjs",
+    "verify:freshness:provider": "node scripts/verify-freshness-provider.mjs",
+    "deploy": "npm run build && node scripts/deploy.mjs",
+    "dev:install": "npm run deploy"
+  },
+  "keywords": [
+    "obsidian",
+    "knowledge-management"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "builtin-modules": "^4.0.0",
+    "esbuild": "^0.24.2",
+    "obsidian": "^1.7.2",
+    "tslib": "^2.8.1",
+    "typescript": "^5.7.2"
+  }
+}

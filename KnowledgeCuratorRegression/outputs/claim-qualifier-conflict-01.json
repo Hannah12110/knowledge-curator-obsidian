@@ -1,0 +1,5 @@
+{
+  "caseId": "claim-qualifier-conflict-01",
+  "actual": {},
+  "providerComparison": { "relation": "reinforce", "existingClaimId": "claim-rag-qualified-accuracy", "existingStatement": "RAG may improve factual accuracy when retrieval quality is high.", "similarity": 0.9, "reasoning": "Provider overlooked qualifier difference.", "confidence": 0.8 }
+}

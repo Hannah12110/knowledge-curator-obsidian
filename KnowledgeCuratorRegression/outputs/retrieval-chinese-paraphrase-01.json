@@ -1,0 +1,5 @@
+{
+  "caseId": "retrieval-chinese-paraphrase-01",
+  "actual": {},
+  "providerComparison": { "relation": "reinforce", "existingClaimId": "claim-chinese-memory", "existingStatement": "Agent 长期记忆能够跨 Session 持久保存信息。", "similarity": 0.91, "reasoning": "Both claims describe cross-session persistent agent memory.", "confidence": 0.94 }
+}

@@ -1,0 +1,5 @@
+{
+  "caseId": "claim-false-new-prevention-01",
+  "actual": {},
+  "providerComparison": { "relation": "reinforce", "existingClaimId": "claim-agent-memory-persistence", "existingStatement": "Long-term memory persists information across sessions.", "similarity": 0.86, "reasoning": "Same persistence claim despite different wording.", "confidence": 0.91 }
+}

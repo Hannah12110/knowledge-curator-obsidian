@@ -1,0 +1,19 @@
+{
+  "version": "claim-graph-relations-v4-held-out-v1",
+  "cases": [
+    { "id": "v4-qualifier-blocks-duplicate", "left": "该模式通常降低延迟。", "right": "该模式必然降低延迟。", "relation": "contradicts", "direction": "not_applicable" },
+    { "id": "v4-number-blocks-duplicate", "left": "窗口容量为 64K。", "right": "窗口容量为 128K。", "relation": "contradicts", "direction": "not_applicable" },
+    { "id": "v4-time-detail-refines", "left": "接口支持流式输出。", "right": "自 v3 起接口支持流式输出。", "relation": "refines", "direction": "b_to_a" },
+    { "id": "v4-mechanism-detail-refines", "left": "系统恢复失败任务。", "right": "系统通过幂等重放恢复失败任务。", "relation": "refines", "direction": "b_to_a" },
+    { "id": "v4-scenario-detail-refines", "left": "代理允许人工接管。", "right": "在高风险支付场景中代理允许人工接管。", "relation": "refines", "direction": "b_to_a" },
+    { "id": "v4-condition-detail-refines", "left": "缓存会刷新。", "right": "哈希变化时缓存会刷新。", "relation": "refines", "direction": "b_to_a" },
+    { "id": "v4-implementation-detail-refines", "left": "队列限制并发。", "right": "队列通过两个 worker 限制并发。", "relation": "refines", "direction": "b_to_a" },
+    { "id": "v4-evidence-a-supports-b", "left": "故障统计显示无校验写入错误更多。", "right": "写入前应校验输入。", "relation": "supports", "direction": "a_to_b" },
+    { "id": "v4-evidence-b-supports-a", "left": "高风险写入应二次确认。", "right": "事故记录表明误触会造成不可逆写入。", "relation": "supports", "direction": "b_to_a" },
+    { "id": "v4-detail-a-refines-b", "left": "审计记录包含操作者和变更前后值。", "right": "审计记录关键变更。", "relation": "refines", "direction": "a_to_b" },
+    { "id": "v4-dependent-a-to-prerequisite-b", "left": "发布流程需要先通过签名验证。", "right": "构建产物已经完成签名验证。", "relation": "depends_on", "direction": "a_to_b" },
+    { "id": "v4-dependent-b-to-prerequisite-a", "left": "系统已取得访问令牌。", "right": "远程同步必须先取得访问令牌。", "relation": "depends_on", "direction": "b_to_a" },
+    { "id": "v4-parallel-same-topic-unrelated", "left": "协议定义握手消息。", "right": "协议维护者每季度发布路线图。", "relation": "unrelated", "direction": "not_applicable" },
+    { "id": "v4-exact-bilingual-duplicate", "left": "短期记忆保留当前任务信息。", "right": "Short-term memory retains information for the current task.", "relation": "duplicate", "direction": "not_applicable" }
+  ]
+}

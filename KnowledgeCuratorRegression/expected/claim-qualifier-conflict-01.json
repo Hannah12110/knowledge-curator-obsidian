@@ -1,0 +1,19 @@
+{
+  "caseId": "claim-qualifier-conflict-01",
+  "type": "claim-qualifier-conflict",
+  "expected": {
+    "claimExpected": {
+      "existingClaimId": "claim-rag-qualified-accuracy",
+      "allowedRelations": ["challenge"],
+      "knownClaim": true
+    },
+    "claimInput": {
+      "candidate": { "id": "candidate-qualifier", "statement": "RAG always improves factual accuracy.", "type": "fact", "topic": "RAG", "qualifiers": ["always"] },
+      "existingClaims": [
+        { "id": "claim-rag-qualified-accuracy", "statement": "RAG may improve factual accuracy when retrieval quality is high.", "type": "fact", "topic": "RAG", "qualifiers": ["may", "when retrieval quality is high"] },
+        { "id": "claim-agent-memory-persistence", "statement": "Long-term memory persists information across sessions.", "type": "fact", "topic": "Agent Memory" },
+        { "id": "claim-evaluation-scope", "statement": "Offline and online evaluation answer different questions.", "type": "fact", "topic": "Evaluation" }
+      ]
+    }
+  }
+}

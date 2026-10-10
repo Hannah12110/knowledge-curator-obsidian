@@ -1,0 +1,21 @@
+{
+  "caseId": "retrieval-chinese-paraphrase-01",
+  "type": "retrieval-chinese-paraphrase",
+  "expected": {
+    "claimExpected": {
+      "existingClaimId": "claim-chinese-memory",
+      "allowedRelations": ["reinforce", "refine"],
+      "knownClaim": true,
+      "retrievalCategory": "general"
+    },
+    "claimInput": {
+      "candidate": { "id": "candidate-chinese-memory", "statement": "智能体的长时记忆会保存跨轮次会话的信息。", "type": "fact", "topic": "智能体记忆" },
+      "existingClaims": [
+        { "id": "claim-chinese-memory", "statement": "Agent 长期记忆能够跨 Session 持久保存信息。", "type": "fact", "topic": "Agent Memory" },
+        { "id": "claim-memory-access", "statement": "记忆访问需要遵循最小权限。", "type": "fact", "topic": "智能体记忆" },
+        { "id": "claim-memory-cost", "statement": "记忆检索会增加推理成本。", "type": "fact", "topic": "智能体记忆" },
+        { "id": "claim-memory-summary", "statement": "对话摘要可以减少上下文长度。", "type": "fact", "topic": "智能体记忆" }
+      ]
+    }
+  }
+}

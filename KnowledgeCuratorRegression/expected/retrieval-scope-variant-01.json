@@ -1,0 +1,21 @@
+{
+  "caseId": "retrieval-scope-variant-01",
+  "type": "retrieval-scope-variant",
+  "expected": {
+    "claimExpected": {
+      "existingClaimId": "claim-eval-online-offline",
+      "allowedRelations": ["refine", "reinforce"],
+      "knownClaim": true,
+      "retrievalCategory": "general"
+    },
+    "claimInput": {
+      "candidate": { "id": "candidate-eval-scope", "statement": "Offline benchmarks measure reproducibility, whereas online evaluation measures production behavior.", "type": "definition", "topic": "Agent Evaluation", "scope": ["offline", "online"] },
+      "existingClaims": [
+        { "id": "claim-eval-online-offline", "statement": "Online and offline evaluation answer different operational questions.", "type": "definition", "topic": "Agent Evaluation", "scope": ["online", "offline"] },
+        { "id": "claim-eval-rubric", "statement": "A rubric defines scoring criteria.", "type": "definition", "topic": "Agent Evaluation" },
+        { "id": "claim-eval-sample", "statement": "A test set contains representative samples.", "type": "definition", "topic": "Agent Evaluation" },
+        { "id": "claim-eval-judge", "statement": "An evaluator assigns scores to outputs.", "type": "definition", "topic": "Agent Evaluation" }
+      ]
+    }
+  }
+}

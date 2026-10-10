@@ -1,0 +1,5 @@
+{
+  "caseId": "retrieval-numerical-conflict-01",
+  "actual": {},
+  "providerComparison": { "relation": "reinforce", "existingClaimId": "claim-model-a-80", "existingStatement": "Model A reaches an 80% pass rate on Benchmark X.", "similarity": 0.86, "reasoning": "Provider output intentionally ignores the number conflict; deterministic safety must correct it.", "confidence": 0.8 }
+}

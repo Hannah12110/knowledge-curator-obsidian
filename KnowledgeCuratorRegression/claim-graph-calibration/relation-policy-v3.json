@@ -1,0 +1,25 @@
+{
+  "version": "claim-graph-relations-v3-held-out-v1",
+  "cases": [
+    { "id": "topic-neighbor-unrelated", "left": "MCP 规范定义客户端能力协商。", "right": "MCP 社区每月举行线上会议。", "relation": "unrelated", "direction": "not_applicable" },
+    { "id": "parallel-metrics-unrelated", "left": "系统峰值吞吐量为每秒 400 请求。", "right": "系统冷启动时间为 1.8 秒。", "relation": "unrelated", "direction": "not_applicable" },
+    { "id": "evidence-supports-policy", "left": "生产日志显示无重试请求的失败率更高。", "right": "关键请求应配置有限重试。", "relation": "supports", "direction": "a_to_b" },
+    { "id": "failure-supports-principle", "left": "随机测试遗漏了多数权限边界故障。", "right": "安全评测应主动增加边界案例。", "relation": "supports", "direction": "a_to_b" },
+    { "id": "mechanism-refines-abstraction", "left": "任务调度器负责故障恢复。", "right": "任务调度器通过幂等检查和指数退避恢复失败任务。", "relation": "refines", "direction": "b_to_a" },
+    { "id": "component-list-refines", "left": "观测系统记录执行状态。", "right": "观测系统记录 trace、tool result、retry state 和 error code。", "relation": "refines", "direction": "b_to_a" },
+    { "id": "numeric-detail-refines", "left": "缓存具有容量上限。", "right": "缓存最多保存 5000 条比较结果。", "relation": "refines", "direction": "b_to_a" },
+    { "id": "qualifier-asymmetry", "left": "检索可以提高答案依据。", "right": "检索在所有情况下都能提高答案依据。", "relation": "contradicts", "direction": "not_applicable" },
+    { "id": "temporal-asymmetry", "left": "该接口支持批量请求。", "right": "截至 2024 年该接口支持批量请求。", "relation": "refines", "direction": "b_to_a" },
+    { "id": "epistemic-asymmetry", "left": "证据尚不足以确认方案甲优于方案乙。", "right": "方案甲的优势尚未得到证实。", "relation": "supports", "direction": "a_to_b" },
+    { "id": "same-words-different-scope", "left": "研究环境中的代理允许人工接管。", "right": "无人值守生产环境中的代理允许人工接管。", "relation": "unrelated", "direction": "not_applicable" },
+    { "id": "same-scope-contradiction", "left": "API v2 支持流式响应。", "right": "API v2 不支持流式响应。", "relation": "contradicts", "direction": "not_applicable" },
+    { "id": "different-scope-not-contradiction", "left": "API v1 不支持流式响应。", "right": "API v2 支持流式响应。", "relation": "unrelated", "direction": "not_applicable" },
+    { "id": "real-prerequisite", "left": "执行加密备份前必须先生成有效密钥。", "right": "系统已生成有效加密密钥。", "relation": "depends_on", "direction": "a_to_b" },
+    { "id": "topical-dependency-unrelated", "left": "密钥服务轮换访问密钥。", "right": "备份服务压缩历史文件。", "relation": "unrelated", "direction": "not_applicable" },
+    { "id": "refines-a-to-b", "left": "审计日志包含操作者、时间和变更前后值。", "right": "审计日志记录关键变更。", "relation": "refines", "direction": "a_to_b" },
+    { "id": "refines-b-to-a", "left": "记忆系统保存跨会话信息。", "right": "记忆系统将用户偏好和任务状态持久化到外部存储。", "relation": "refines", "direction": "b_to_a" },
+    { "id": "supports-a-to-b", "left": "事故复盘发现缺少输入校验导致了批量错误。", "right": "写入前应执行输入校验。", "relation": "supports", "direction": "a_to_b" },
+    { "id": "supports-b-to-a", "left": "高风险操作需要二次确认。", "right": "误触统计显示未确认操作更容易造成不可逆修改。", "relation": "supports", "direction": "b_to_a" },
+    { "id": "true-semantic-duplicate", "left": "长期记忆保存跨会话信息。", "right": "Long-term memory retains information across sessions.", "relation": "duplicate", "direction": "not_applicable" }
+  ]
+}

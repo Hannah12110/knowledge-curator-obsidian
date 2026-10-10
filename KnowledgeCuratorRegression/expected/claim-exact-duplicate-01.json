@@ -1,0 +1,19 @@
+{
+  "caseId": "claim-exact-duplicate-01",
+  "type": "claim-exact-duplicate",
+  "expected": {
+    "claimExpected": {
+      "existingClaimId": "claim-agent-memory-persistence",
+      "allowedRelations": ["reinforce"],
+      "knownClaim": true
+    },
+    "claimInput": {
+      "candidate": { "id": "candidate-exact", "statement": "Long-term memory persists information across sessions.", "type": "fact", "topic": "Agent Memory" },
+      "existingClaims": [
+        { "id": "claim-agent-memory-persistence", "statement": "Long-term memory persists information across sessions.", "type": "fact", "topic": "Agent Memory" },
+        { "id": "claim-agent-memory-taxonomy", "statement": "Agent memory has multiple classification dimensions.", "type": "definition", "topic": "Agent Memory" },
+        { "id": "claim-rag-qualified-accuracy", "statement": "RAG may improve factual accuracy when retrieval quality is high.", "type": "fact", "topic": "RAG" }
+      ]
+    }
+  }
+}

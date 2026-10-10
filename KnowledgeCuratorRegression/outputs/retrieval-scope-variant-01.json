@@ -1,0 +1,5 @@
+{
+  "caseId": "retrieval-scope-variant-01",
+  "actual": {},
+  "providerComparison": { "relation": "refine", "existingClaimId": "claim-eval-online-offline", "existingStatement": "Online and offline evaluation answer different operational questions.", "similarity": 0.86, "reasoning": "The candidate specifies what each evaluation scope measures.", "confidence": 0.9 }
+}

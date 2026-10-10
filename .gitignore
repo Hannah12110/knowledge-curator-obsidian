@@ -1,0 +1,48 @@
+node_modules/
+main.js
+*.map
+.DS_Store
+
+# Local credentials and machine-specific configuration.
+.env
+.env.*
+!.env.local.example
+*.pem
+*.key
+*credentials*.json
+*secrets*.json
+
+# Obsidian machine-local state and all derived stores, wherever a test Vault lives.
+.obsidian/workspace*.json
+.obsidian/cache/
+**/.knowledge-agent/
+data.json
+**/.obsidian/plugins/knowledge-curator/data.json
+
+# Real-Vault validation data stays local. Only explicitly reviewed public docs are allowlisted.
+KnowledgeCuratorValidation/calibration/
+KnowledgeCuratorValidation/datasets/graph-quality/
+KnowledgeCuratorValidation/snapshot/
+KnowledgeCuratorValidation/snapshots/
+KnowledgeCuratorValidation/reports/*
+!KnowledgeCuratorValidation/reports/.gitkeep
+!KnowledgeCuratorValidation/reports/phase7-final-release-decision.md
+!KnowledgeCuratorValidation/reports/final-closeout-verification.md
+!KnowledgeCuratorValidation/reports/portfolio-summary.md
+!KnowledgeCuratorValidation/reports/interview-story.md
+!KnowledgeCuratorValidation/reports/demo-script-v0.1.0.md
+!KnowledgeCuratorValidation/reports/architecture-summary-v0.1.0.md
+
+# Generated local reports, benchmarks and logs.
+regression-report.json
+regression-report.md
+comparison-benchmark.json
+freshness-benchmark.json
+claim-retrieval-benchmark.json
+claim-retrieval-benchmark.md
+agent-memory-claim-audit.md
+harness-claim-audit.md
+claim-comparison-calibration-report.md
+*.log
+tmp/
+.tmp/

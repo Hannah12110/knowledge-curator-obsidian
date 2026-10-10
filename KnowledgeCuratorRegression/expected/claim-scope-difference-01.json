@@ -1,0 +1,19 @@
+{
+  "caseId": "claim-scope-difference-01",
+  "type": "claim-scope-difference",
+  "expected": {
+    "claimExpected": {
+      "existingClaimId": "claim-evaluation-scope",
+      "allowedRelations": ["refine", "reinforce"],
+      "knownClaim": true
+    },
+    "claimInput": {
+      "candidate": { "id": "candidate-scope", "statement": "Offline benchmarks measure controlled task performance; online evaluation is required to measure production behavior.", "type": "method", "topic": "Agent Evaluation", "scope": ["offline", "online"] },
+      "existingClaims": [
+        { "id": "claim-evaluation-scope", "statement": "Offline benchmarks measure controlled task performance, while online evaluation measures production behavior.", "type": "method", "topic": "Agent Evaluation", "scope": ["offline", "online"] },
+        { "id": "claim-benchmark-pass-rate", "statement": "Benchmark pass rate is 80% under Model A on Dataset Alpha.", "type": "quantitative", "topic": "Agent Evaluation" },
+        { "id": "claim-agent-memory-persistence", "statement": "Long-term memory persists information across sessions.", "type": "fact", "topic": "Agent Memory" }
+      ]
+    }
+  }
+}

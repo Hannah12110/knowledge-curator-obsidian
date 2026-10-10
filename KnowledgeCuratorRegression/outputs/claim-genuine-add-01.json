@@ -1,0 +1,5 @@
+{
+  "caseId": "claim-genuine-add-01",
+  "actual": {},
+  "providerComparison": { "relation": "add", "reasoning": "No retrieved claim covers dynamic expiration policy.", "confidence": 0.9 }
+}

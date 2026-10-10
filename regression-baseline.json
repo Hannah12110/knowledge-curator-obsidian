@@ -1,0 +1,237 @@
+{
+  "createdAt": "2026-09-26T08:46:39.538Z",
+  "totalCases": 80,
+  "passed": 80,
+  "metrics": {
+    "relatedWikiTop1": {
+      "label": "Related Wiki Top1 Accuracy",
+      "value": 1,
+      "sampleSize": 9
+    },
+    "relatedWikiTop3": {
+      "label": "Related Wiki Top3 Recall",
+      "value": 1,
+      "sampleSize": 9
+    },
+    "recommendation": {
+      "label": "Recommendation Agreement",
+      "value": 1,
+      "sampleSize": 10
+    },
+    "knowledgeGain": {
+      "label": "Knowledge Gain Agreement",
+      "value": 1,
+      "sampleSize": 10
+    },
+    "conflictPrecision": {
+      "label": "Conflict Precision",
+      "value": 1,
+      "sampleSize": 10,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+    },
+    "conflictRecall": {
+      "label": "Conflict Recall",
+      "value": 1,
+      "sampleSize": 10,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+    },
+    "targetWiki": {
+      "label": "Target Wiki Accuracy",
+      "value": 1,
+      "sampleSize": 5
+    },
+    "prStructure": {
+      "label": "PR Structural Pass Rate",
+      "value": 1,
+      "sampleSize": 5
+    },
+    "verification": {
+      "label": "Verification Agreement",
+      "value": 1,
+      "sampleSize": 2
+    },
+    "claimRetrievalTop1": {
+      "label": "Claim Retrieval Top1 Accuracy",
+      "value": 1,
+      "sampleSize": 17
+    },
+    "claimRetrievalTop3": {
+      "label": "Claim Retrieval Top3 Recall",
+      "value": 1,
+      "sampleSize": 17
+    },
+    "claimRetrievalTop1V1": {
+      "label": "Claim Retrieval v1 Top1 Accuracy",
+      "value": 0.8823529411764706,
+      "sampleSize": 17
+    },
+    "claimRetrievalTop3V1": {
+      "label": "Claim Retrieval v1 Top3 Recall",
+      "value": 0.9411764705882353,
+      "sampleSize": 17
+    },
+    "relationAgreement": {
+      "label": "Relation Agreement",
+      "value": 1,
+      "sampleSize": 18
+    },
+    "falseNewRate": {
+      "label": "False New Rate",
+      "value": 0,
+      "sampleSize": 17,
+      "falseNew": 0
+    },
+    "bilingualRetrieval": {
+      "label": "Bilingual Retrieval Recall",
+      "value": 1,
+      "sampleSize": 2
+    },
+    "acronymRetrieval": {
+      "label": "Acronym Retrieval Recall",
+      "value": 1,
+      "sampleSize": 1
+    },
+    "conflictRetrieval": {
+      "label": "Conflict Retrieval Recall",
+      "value": 1,
+      "sampleSize": 3
+    },
+    "falseAddRetrievalMissV1": {
+      "label": "False ADD Retrieval Miss v1",
+      "value": 0.058823529411764705,
+      "sampleSize": 17,
+      "misses": 1
+    },
+    "falseAddRetrievalMiss": {
+      "label": "False ADD Retrieval Miss v2",
+      "value": 0,
+      "sampleSize": 17,
+      "misses": 0
+    },
+    "coverageAgreement": {
+      "label": "Coverage Agreement",
+      "value": 1,
+      "sampleSize": 50
+    },
+    "comparisonRelationV1": {
+      "label": "Comparison v1 Relation Agreement",
+      "value": 0.74,
+      "sampleSize": 50
+    },
+    "comparisonRelation": {
+      "label": "Comparison v2 Relation Agreement",
+      "value": 1,
+      "sampleSize": 50
+    },
+    "falseAddComparisonV1": {
+      "label": "False ADD Comparison Error v1",
+      "value": 0.75,
+      "sampleSize": 16,
+      "errors": 12
+    },
+    "falseAddComparison": {
+      "label": "False ADD Comparison Error v2",
+      "value": 0,
+      "sampleSize": 16,
+      "errors": 0
+    },
+    "falseReinforceV1": {
+      "label": "False REINFORCE Rate v1",
+      "value": 0,
+      "sampleSize": 28,
+      "errors": 0
+    },
+    "falseReinforce": {
+      "label": "False REINFORCE Rate v2",
+      "value": 0,
+      "sampleSize": 28,
+      "errors": 0
+    }
+  },
+  "caseResults": {
+    "claim-exact-duplicate-01": true,
+    "claim-false-new-prevention-01": true,
+    "claim-genuine-add-01": true,
+    "claim-numerical-conflict-01": true,
+    "claim-paraphrase-duplicate-01": true,
+    "claim-qualifier-conflict-01": true,
+    "claim-refine-01": true,
+    "claim-scope-difference-01": true,
+    "evaluation-conflict-unresolved-01": true,
+    "evaluation-duplicate-01": true,
+    "harness-partial-01": true,
+    "low-quality-rumor-01": true,
+    "memory-conflict-refine-01": true,
+    "memory-duplicate-01": true,
+    "memory-partial-01": true,
+    "observability-new-01": true,
+    "provider-invalid-json-01": true,
+    "retrieval-acronym-rag-01": true,
+    "retrieval-bilingual-memory-01": true,
+    "retrieval-chinese-paraphrase-01": true,
+    "retrieval-english-paraphrase-01": true,
+    "retrieval-hyphen-variant-01": true,
+    "retrieval-negation-conflict-01": true,
+    "retrieval-numerical-conflict-01": true,
+    "retrieval-qualifier-conflict-01": true,
+    "retrieval-scope-variant-01": true,
+    "retrieval-terminology-alias-01": true,
+    "search-timeout-01": true,
+    "target-selection-01": true,
+    "tool-permission-new-01": true,
+    "comparison-equivalent-01": true,
+    "comparison-paraphrase-01": true,
+    "comparison-existing-broader-01": true,
+    "comparison-candidate-broader-01": true,
+    "comparison-multi-full-01": true,
+    "comparison-multi-partial-01": true,
+    "comparison-qualifier-conflict-01": true,
+    "comparison-negation-conflict-01": true,
+    "comparison-numerical-conflict-01": true,
+    "comparison-scope-difference-01": true,
+    "comparison-concrete-example-01": true,
+    "comparison-genuine-add-01": true,
+    "harness-fixed-01": true,
+    "harness-fixed-02": true,
+    "harness-fixed-03": true,
+    "harness-fixed-06": true,
+    "harness-fixed-08": true,
+    "harness-fixed-10": true,
+    "harness-fixed-11": true,
+    "harness-fixed-12": true,
+    "harness-fixed-13": true,
+    "harness-fixed-14": true,
+    "harness-fixed-17": true,
+    "harness-fixed-19": true,
+    "harness-fixed-20": true,
+    "harness-fixed-21": true,
+    "harness-fixed-23": true,
+    "harness-fixed-24": true,
+    "harness-fixed-25": true,
+    "harness-fixed-26": true,
+    "harness-fixed-27": true,
+    "harness-fixed-28": true,
+    "agent-memory-fixed-01": true,
+    "agent-memory-fixed-02": true,
+    "agent-memory-fixed-03": true,
+    "agent-memory-fixed-04": true,
+    "agent-memory-fixed-05": true,
+    "agent-memory-fixed-06": true,
+    "agent-memory-fixed-07": true,
+    "agent-memory-fixed-08": true,
+    "agent-memory-fixed-09": true,
+    "agent-memory-fixed-10": true,
+    "agent-memory-fixed-11": true,
+    "agent-memory-fixed-12": true,
+    "agent-memory-fixed-13": true,
+    "agent-memory-fixed-14": true,
+    "agent-memory-fixed-15": true,
+    "agent-memory-fixed-16": true,
+    "agent-memory-fixed-17": true,
+    "agent-memory-fixed-18": true
+  }
+}

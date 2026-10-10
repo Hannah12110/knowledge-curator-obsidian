@@ -1,0 +1,5 @@
+{
+  "caseId": "retrieval-qualifier-conflict-01",
+  "actual": {},
+  "providerComparison": { "relation": "reinforce", "existingClaimId": "claim-rag-may", "existingStatement": "RAG may improve factual accuracy when retrieval quality is high.", "similarity": 0.88, "reasoning": "Provider output intentionally ignores the qualifier conflict; deterministic safety must correct it.", "confidence": 0.8 }
+}

@@ -1,0 +1,21 @@
+{
+  "caseId": "retrieval-bilingual-memory-01",
+  "type": "retrieval-bilingual",
+  "expected": {
+    "claimExpected": {
+      "existingClaimId": "z-memory-persistence",
+      "allowedRelations": ["reinforce", "refine"],
+      "knownClaim": true,
+      "retrievalCategory": "bilingual"
+    },
+    "claimInput": {
+      "candidate": { "id": "candidate-bilingual-memory", "statement": "Long-term memory persists information beyond a single session.", "type": "fact", "topic": "Agent Memory" },
+      "existingClaims": [
+        { "id": "a-memory-tools", "statement": "智能体记忆可以记录工具调用结果。", "type": "fact", "topic": "Agent Memory" },
+        { "id": "b-memory-summary", "statement": "智能体记忆可以保存对话摘要。", "type": "fact", "topic": "Agent Memory" },
+        { "id": "c-memory-policy", "statement": "智能体记忆需要设置访问权限。", "type": "fact", "topic": "Agent Memory" },
+        { "id": "z-memory-persistence", "statement": "长期记忆通常需要跨 Session 持久化。", "type": "fact", "topic": "Agent Memory" }
+      ]
+    }
+  }
+}

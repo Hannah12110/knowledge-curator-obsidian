@@ -1,0 +1,1500 @@
+{
+  "description": "Frozen Phase 5.1 Agent Memory ADD candidates with Retrieval v2 Top 5 and human audit labels.",
+  "cases": [
+    {
+      "caseId": "agent-memory-fixed-01",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_eabbdefcd6496ef459075048",
+        "statement": "大模型本质上是一个无状态的函数，单次交互结束后不会保留内部状态。",
+        "type": "definition",
+        "topic": "Agent Memory",
+        "scope": [
+          "large language models"
+        ],
+        "confidence": 0.95
+      },
+      "existingClaims": [
+        {
+          "id": "claim_16387a5b5133e3fee0ccf487",
+          "statement": "episodic/semantic 描述记忆内容类型。",
+          "type": "fact",
+          "score": 0.158
+        },
+        {
+          "id": "claim_c1770b3eaad2642e883761c2",
+          "statement": "Agent Memory 的标准分类方式是 episodic memory 和 semantic memory。",
+          "type": "fact",
+          "score": 0.158
+        },
+        {
+          "id": "claim_d81e9e69206524c9e3a4db6d",
+          "statement": "RAG 解决的是“去哪里找信息”，而 Memory 解决的是“当前什么是真的以及它该如何影响后续行为”。",
+          "type": "fact",
+          "score": 0.158
+        },
+        {
+          "id": "claim_7fe7f3600cf7ac9a868bc575",
+          "statement": "Self-Evolving Agent 的 Memory 采用短期会话记忆、长期情景记忆、语义知识记忆三层架构。",
+          "type": "fact",
+          "score": 0.14575
+        },
+        {
+          "id": "claim_8c8015e3033a130219295df1",
+          "statement": "episodic memory 与 semantic memory 是当前 Agent 系统统一采用的唯一主流分类方式。",
+          "type": "fact",
+          "score": 0.127
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "大模型本质上是一个无状态的函数，单次交互结束后不会保留内部状态。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "大模型本质上是一个无状态的函数，单次交互结束后不会保留内部状态。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.83
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD",
+        "humanLabel": "True ADD"
+      }
+    },
+    {
+      "caseId": "agent-memory-fixed-02",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_ba97a3707c71881a65ca0a4a",
+        "statement": "中期记忆指今天、昨天或手头未完成事项这类信息，不需要长期保留但需跨新对话延续。",
+        "type": "definition",
+        "topic": "Mid-term Memory",
+        "scope": [
+          "agent memory"
+        ],
+        "confidence": 0.9
+      },
+      "existingClaims": [
+        {
+          "id": "claim_7fe7f3600cf7ac9a868bc575",
+          "statement": "Self-Evolving Agent 的 Memory 采用短期会话记忆、长期情景记忆、语义知识记忆三层架构。",
+          "type": "fact",
+          "score": 0.134012
+        },
+        {
+          "id": "claim_16387a5b5133e3fee0ccf487",
+          "statement": "episodic/semantic 描述记忆内容类型。",
+          "type": "fact",
+          "score": 0.097884
+        },
+        {
+          "id": "claim_4752fb373274fd9ca2d5a4ee",
+          "statement": "短期会话记忆基于当前对话窗口，保留最近 10-20 轮交互记录。",
+          "type": "fact",
+          "score": 0.097612
+        },
+        {
+          "id": "claim_d81e9e69206524c9e3a4db6d",
+          "statement": "RAG 解决的是“去哪里找信息”，而 Memory 解决的是“当前什么是真的以及它该如何影响后续行为”。",
+          "type": "fact",
+          "score": 0.096741
+        },
+        {
+          "id": "claim_c1770b3eaad2642e883761c2",
+          "statement": "Agent Memory 的标准分类方式是 episodic memory 和 semantic memory。",
+          "type": "fact",
+          "score": 0.093067
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "中期记忆指今天、昨天或手头未完成事项这类信息，不需要长期保留但需跨新对话延续。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "中期记忆指今天、昨天或手头未完成事项这类信息，不需要长期保留但需跨新对话延续。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "The correct broader Claim exists outside this frozen Top K, so comparison cannot recover it.",
+        "confidence": 0.83
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": true,
+        "taxonomy": "Retrieval Miss",
+        "humanLabel": "False ADD — Retrieval Miss"
+      }
+    },
+    {
+      "caseId": "agent-memory-fixed-03",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_7140e348b1cd0741dcde246d",
+        "statement": "长期记忆决定对话关闭后信息能否被保留，并可在下次对话中用于重新识别用户。",
+        "type": "definition",
+        "topic": "Long-term Memory",
+        "scope": [
+          "agent memory"
+        ],
+        "confidence": 0.9
+      },
+      "existingClaims": [
+        {
+          "id": "claim_a3806f873062ac9ca267e8f2",
+          "statement": "写入长期记忆前应通过稳定性、复用性、敏感性三道判断门。",
+          "type": "fact",
+          "score": 0.499616
+        },
+        {
+          "id": "claim_fcdd2a4aca73fa80956e6396",
+          "statement": "有来源主张当前 Agent Memory 的主流工程实现统一采用 short-term memory 与 long-term memory 两层结构。",
+          "type": "fact",
+          "score": 0.259367
+        },
+        {
+          "id": "claim_7fe7f3600cf7ac9a868bc575",
+          "statement": "Self-Evolving Agent 的 Memory 采用短期会话记忆、长期情景记忆、语义知识记忆三层架构。",
+          "type": "fact",
+          "score": 0.134038
+        },
+        {
+          "id": "claim_16387a5b5133e3fee0ccf487",
+          "statement": "episodic/semantic 描述记忆内容类型。",
+          "type": "fact",
+          "score": 0.097905
+        },
+        {
+          "id": "claim_4752fb373274fd9ca2d5a4ee",
+          "statement": "短期会话记忆基于当前对话窗口，保留最近 10-20 轮交互记录。",
+          "type": "fact",
+          "score": 0.097652
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "长期记忆决定对话关闭后信息能否被保留，并可在下次对话中用于重新识别用户。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "长期记忆决定对话关闭后信息能否被保留，并可在下次对话中用于重新识别用户。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.83
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD",
+        "humanLabel": "True ADD"
+      }
+    },
+    {
+      "caseId": "agent-memory-fixed-04",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_474420dc8024069378ae0028",
+        "statement": "Memory 决定 Agent 本次任务与上一次任务之间是否有关联，而非单次任务能否完成。",
+        "type": "causal",
+        "topic": "Agent Memory",
+        "scope": [
+          "autonomous agents"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_c1770b3eaad2642e883761c2",
+          "statement": "Agent Memory 的标准分类方式是 episodic memory 和 semantic memory。",
+          "type": "fact",
+          "score": 0.276385
+        },
+        {
+          "id": "claim_8c8015e3033a130219295df1",
+          "statement": "episodic memory 与 semantic memory 是当前 Agent 系统统一采用的唯一主流分类方式。",
+          "type": "fact",
+          "score": 0.276292
+        },
+        {
+          "id": "claim_7fe7f3600cf7ac9a868bc575",
+          "statement": "Self-Evolving Agent 的 Memory 采用短期会话记忆、长期情景记忆、语义知识记忆三层架构。",
+          "type": "fact",
+          "score": 0.249628
+        },
+        {
+          "id": "claim_fcdd2a4aca73fa80956e6396",
+          "statement": "有来源主张当前 Agent Memory 的主流工程实现统一采用 short-term memory 与 long-term memory 两层结构。",
+          "type": "fact",
+          "score": 0.246426
+        },
+        {
+          "id": "claim_4cc3c11243cddcf6fde296ad",
+          "statement": "short-term/long-term 与 episodic/semantic 属于不同维度，不能相互取代。",
+          "type": "fact",
+          "score": 0.158
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "Memory 决定 Agent 本次任务与上一次任务之间是否有关联，而非单次任务能否完成。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "Memory 决定 Agent 本次任务与上一次任务之间是否有关联，而非单次任务能否完成。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.83
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD",
+        "humanLabel": "True ADD"
+      }
+    },
+    {
+      "caseId": "agent-memory-fixed-05",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_4c24425e4d57e67986a08f19",
+        "statement": "没有 Memory 的 Agent 每次任务都从零开始，有 Memory 才可能成为越用越懂用户的搭档。",
+        "type": "causal",
+        "topic": "Agent Memory",
+        "scope": [
+          "autonomous agents"
+        ],
+        "qualifiers": [
+          "可能"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_8c8015e3033a130219295df1",
+          "statement": "episodic memory 与 semantic memory 是当前 Agent 系统统一采用的唯一主流分类方式。",
+          "type": "fact",
+          "score": 0.326934
+        },
+        {
+          "id": "claim_c1770b3eaad2642e883761c2",
+          "statement": "Agent Memory 的标准分类方式是 episodic memory 和 semantic memory。",
+          "type": "fact",
+          "score": 0.303331
+        },
+        {
+          "id": "claim_7fe7f3600cf7ac9a868bc575",
+          "statement": "Self-Evolving Agent 的 Memory 采用短期会话记忆、长期情景记忆、语义知识记忆三层架构。",
+          "type": "fact",
+          "score": 0.273724
+        },
+        {
+          "id": "claim_fcdd2a4aca73fa80956e6396",
+          "statement": "有来源主张当前 Agent Memory 的主流工程实现统一采用 short-term memory 与 long-term memory 两层结构。",
+          "type": "fact",
+          "score": 0.273151
+        },
+        {
+          "id": "claim_4cc3c11243cddcf6fde296ad",
+          "statement": "short-term/long-term 与 episodic/semantic 属于不同维度，不能相互取代。",
+          "type": "fact",
+          "score": 0.152
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "没有 Memory 的 Agent 每次任务都从零开始，有 Memory 才可能成为越用越懂用户的搭档。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "没有 Memory 的 Agent 每次任务都从零开始，有 Memory 才可能成为越用越懂用户的搭档。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.83
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD",
+        "humanLabel": "True ADD"
+      }
+    },
+    {
+      "caseId": "agent-memory-fixed-06",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_24a15755fe20154a9a39c46c",
+        "statement": "2026年5月 GitHub Copilot 上线了跟随用户的个人偏好记忆，可跨项目、跨仓库保留提交信息风格、PR 组织方式和沟通语气偏好。",
+        "type": "quantitative",
+        "topic": "GitHub Copilot Memory",
+        "scope": [
+          "GitHub Copilot"
+        ],
+        "qualifiers": [
+          "2026年5月"
+        ],
+        "confidence": 0.9
+      },
+      "existingClaims": [
+        {
+          "id": "claim_4752fb373274fd9ca2d5a4ee",
+          "statement": "短期会话记忆基于当前对话窗口，保留最近 10-20 轮交互记录。",
+          "type": "fact",
+          "score": 0.153871
+        },
+        {
+          "id": "claim_1a456b07246a2b324ee2283d",
+          "statement": "Google DeepMind 2025 年 6 月研究表明，采用三层记忆架构的 Agent 在跨月任务延续场景中准确率从 34% 提升至 78%。",
+          "type": "fact",
+          "score": 0.151577
+        },
+        {
+          "id": "claim_e6d15798fbbd948af5bb3d5b",
+          "statement": "采用三层记忆架构的 Agent 平均召回延迟低于 200ms。",
+          "type": "fact",
+          "score": 0.132129
+        },
+        {
+          "id": "claim_29f601379e4aad4749f59a37",
+          "statement": "2026 年已有超过 2000 个官方和社区 MCP Server。",
+          "type": "fact",
+          "score": 0.120702
+        },
+        {
+          "id": "claim_7fe7f3600cf7ac9a868bc575",
+          "statement": "Self-Evolving Agent 的 Memory 采用短期会话记忆、长期情景记忆、语义知识记忆三层架构。",
+          "type": "fact",
+          "score": 0.093047
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "2026年5月 GitHub Copilot 上线了跟随用户的个人偏好记忆，可跨项目、跨仓库保留提交信息风格、PR 组织方式和沟通语气偏好。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "2026年5月 GitHub Copilot 上线了跟随用户的个人偏好记忆，可跨项目、跨仓库保留提交信息风格、PR 组织方式和沟通语气偏好。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.83
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD",
+        "humanLabel": "True ADD"
+      }
+    },
+    {
+      "caseId": "agent-memory-fixed-07",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_202a289e7855b13d79056814",
+        "statement": "Anthropic 上线了 Reflect 功能，用于展示 Claude 帮用户做过的所有事情的用量看板。",
+        "type": "fact",
+        "topic": "Anthropic Reflect",
+        "scope": [
+          "Claude"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_97d64a8dbfda4b879bf05e09",
+          "statement": "MCP 由 Anthropic 在 2024 年 11 月首次开源发布，统一了 Agent 与外部工具交互的标准。",
+          "type": "fact",
+          "score": 0.093211
+        },
+        {
+          "id": "claim_63075c252d5dc74fe54a080d",
+          "statement": "A2A 协议由 Google、Microsoft、OpenAI、Anthropic 等 16 家企业联合制定，2025 年 3 月正式发布规范。",
+          "type": "fact",
+          "score": 0.092333
+        },
+        {
+          "id": "claim_d708df7d117e0abadf0def90",
+          "statement": "公开 benchmark 衡量的是模型能力上限，业务评测衡量的是上线边界，两者不能互相替代。",
+          "type": "fact",
+          "score": 0.092133
+        },
+        {
+          "id": "claim_e6630ca34b0aa202de0594e0",
+          "statement": "Context Engineering 适用于多轮、依赖外部知识的场景。",
+          "type": "fact",
+          "score": 0.07905
+        },
+        {
+          "id": "claim_da57985d59dc6363a7e599ba",
+          "statement": "Prompt Engineering 适用于短链路、单次生成场景。",
+          "type": "fact",
+          "score": 0.078804
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "Anthropic 上线了 Reflect 功能，用于展示 Claude 帮用户做过的所有事情的用量看板。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "Anthropic 上线了 Reflect 功能，用于展示 Claude 帮用户做过的所有事情的用量看板。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.83
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD",
+        "humanLabel": "True ADD"
+      }
+    },
+    {
+      "caseId": "agent-memory-fixed-08",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_8bb714ebc9e935a35361934a",
+        "statement": "Windsurf 的自动记忆功能未设收集标准，导致单个项目积累17条自动生成记忆，十几个项目合计超过100条隐藏记忆。",
+        "type": "quantitative",
+        "topic": "Windsurf Memory Failure",
+        "scope": [
+          "Windsurf"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_1a456b07246a2b324ee2283d",
+          "statement": "Google DeepMind 2025 年 6 月研究表明，采用三层记忆架构的 Agent 在跨月任务延续场景中准确率从 34% 提升至 78%。",
+          "type": "fact",
+          "score": 0.151739
+        },
+        {
+          "id": "claim_4752fb373274fd9ca2d5a4ee",
+          "statement": "短期会话记忆基于当前对话窗口，保留最近 10-20 轮交互记录。",
+          "type": "fact",
+          "score": 0.150662
+        },
+        {
+          "id": "claim_e6d15798fbbd948af5bb3d5b",
+          "statement": "采用三层记忆架构的 Agent 平均召回延迟低于 200ms。",
+          "type": "fact",
+          "score": 0.132084
+        },
+        {
+          "id": "claim_4cd07efb2bdaa341932c87e9",
+          "statement": "回归测评的期望通过率必须为 100%。",
+          "type": "fact",
+          "score": 0.127999
+        },
+        {
+          "id": "claim_f2327093b28939c834ed210b",
+          "statement": "Anthropic 2026 年 1 月透露，内部使用 Reflection 机制对 Claude Code Agent 持续优化，6 个月内自动生成 1200+ 个 Prompt 优化版本，代码审查任务平均准确率从 71% 提升至 89%。",
+          "type": "fact",
+          "score": 0.10584
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "Windsurf 的自动记忆功能未设收集标准，导致单个项目积累17条自动生成记忆，十几个项目合计超过100条隐藏记忆。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "Windsurf 的自动记忆功能未设收集标准，导致单个项目积累17条自动生成记忆，十几个项目合计超过100条隐藏记忆。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.83
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD",
+        "humanLabel": "True ADD"
+      }
+    },
+    {
+      "caseId": "agent-memory-fixed-09",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_a52877760235adf2c52d1223",
+        "statement": "显式收集指用户明确要求系统记住某条信息，隐式收集指系统从对话中自动提炼信息。",
+        "type": "definition",
+        "topic": "Explicit vs Implicit Memory",
+        "scope": [
+          "memory collection"
+        ],
+        "confidence": 0.95
+      },
+      "existingClaims": [
+        {
+          "id": "claim_7fe7f3600cf7ac9a868bc575",
+          "statement": "Self-Evolving Agent 的 Memory 采用短期会话记忆、长期情景记忆、语义知识记忆三层架构。",
+          "type": "fact",
+          "score": 0.124625
+        },
+        {
+          "id": "claim_d81e9e69206524c9e3a4db6d",
+          "statement": "RAG 解决的是“去哪里找信息”，而 Memory 解决的是“当前什么是真的以及它该如何影响后续行为”。",
+          "type": "fact",
+          "score": 0.095918
+        },
+        {
+          "id": "claim_eadc28aa74e390061dfa4bf3",
+          "statement": "Benchmark 不是随机抽样，而是系统失败历史的记忆。",
+          "type": "fact",
+          "score": 0.094515
+        },
+        {
+          "id": "claim_9b7dd359f5b6cbecec4e632a",
+          "statement": "Benchmark 不是一次性测试集，而是系统失败历史的记忆。",
+          "type": "fact",
+          "score": 0.093427
+        },
+        {
+          "id": "claim_c1770b3eaad2642e883761c2",
+          "statement": "Agent Memory 的标准分类方式是 episodic memory 和 semantic memory。",
+          "type": "fact",
+          "score": 0.09225
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "显式收集指用户明确要求系统记住某条信息，隐式收集指系统从对话中自动提炼信息。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "显式收集指用户明确要求系统记住某条信息，隐式收集指系统从对话中自动提炼信息。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "The correct broader Claim exists outside this frozen Top K, so comparison cannot recover it.",
+        "confidence": 0.83
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": true,
+        "taxonomy": "Retrieval Miss",
+        "humanLabel": "False ADD — Retrieval Miss"
+      }
+    },
+    {
+      "caseId": "agent-memory-fixed-10",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_5729cf6484c08c2b7f8b1c13",
+        "statement": "当信号明确且反复出现时适合隐式收集，当信号需要推断且猜错代价高时不应隐式收集。",
+        "type": "method",
+        "topic": "Implicit Collection Criteria",
+        "scope": [
+          "memory collection"
+        ],
+        "qualifiers": [
+          "适合",
+          "不应"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_e90ebb09efef6b8e64a38cca",
+          "statement": "显式收集记忆优先于隐式推断。",
+          "type": "fact",
+          "score": 0.10762
+        },
+        {
+          "id": "claim_9e699efd7e99414a8fa141cd",
+          "statement": "新事实与旧事实冲突时不能只再插一条，而要更新有效期或建立替代关系。",
+          "type": "fact",
+          "score": 0.090629
+        },
+        {
+          "id": "claim_01ad346ab8ca852cb110d36d",
+          "statement": "Cline 的 MemoryBank 在项目内放按用途分类的 Markdown（项目背景、架构规律、当前进度），无需向量库或知识图谱，靠提示词驱动读取。",
+          "type": "fact",
+          "score": 0.088
+        },
+        {
+          "id": "claim_694bfae1f2c4457024a481f5",
+          "statement": "中期任务状态（最近几天在推进什么、卡在哪里、下一步）不应写入长期用户画像，也不应只靠检索全部聊天记录恢复。",
+          "type": "fact",
+          "score": 0.084425
+        },
+        {
+          "id": "claim_86d9a147b92f8f3d983c20a5",
+          "statement": "敏感信息默认不推断、不长期保存。",
+          "type": "fact",
+          "score": 0.078268
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "partial",
+        "coreAspects": [
+          "隐式收集适用条件",
+          "高代价推断边界"
+        ],
+        "coveredBy": [
+          "claim_e90ebb09efef6b8e64a38cca"
+        ],
+        "coveredAspects": [
+          "隐式收集需要明确信号"
+        ],
+        "uncoveredAspects": [
+          "反复出现与猜错代价边界"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [
+          {
+            "claimId": "claim_e90ebb09efef6b8e64a38cca",
+            "relation": "candidate_broader",
+            "coveredAspects": [
+              "隐式收集需要明确信号"
+            ],
+            "conflictingAspects": [],
+            "reasoning": "Existing policy covers the core condition; Candidate adds explicit operational boundaries."
+          }
+        ],
+        "reasoning": "Existing memory collection policies cover the core rule; Candidate adds operational boundaries.",
+        "confidence": 0.86
+      },
+      "expected": {
+        "allowedRelations": [
+          "refine"
+        ],
+        "allowedCoverage": [
+          "partial"
+        ],
+        "mustNotBe": [
+          "add"
+        ],
+        "knownClaim": true,
+        "excludeFromGate": false,
+        "taxonomy": "C3 Multi-Claim Coverage Missed",
+        "humanLabel": "False ADD — Comparison Error"
+      }
+    },
+    {
+      "caseId": "agent-memory-fixed-11",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_35b456cae6cd906daa7e293b",
+        "statement": "Claude 同时支持显式记忆写入和每24小时后台自动总结对话生成用户摘要的隐式收集。",
+        "type": "fact",
+        "topic": "Claude Memory Collection",
+        "scope": [
+          "Claude"
+        ],
+        "qualifiers": [
+          "每24小时"
+        ],
+        "confidence": 0.9
+      },
+      "existingClaims": [
+        {
+          "id": "claim_4752fb373274fd9ca2d5a4ee",
+          "statement": "短期会话记忆基于当前对话窗口，保留最近 10-20 轮交互记录。",
+          "type": "fact",
+          "score": 0.113966
+        },
+        {
+          "id": "claim_1a456b07246a2b324ee2283d",
+          "statement": "Google DeepMind 2025 年 6 月研究表明，采用三层记忆架构的 Agent 在跨月任务延续场景中准确率从 34% 提升至 78%。",
+          "type": "fact",
+          "score": 0.109998
+        },
+        {
+          "id": "claim_8c8015e3033a130219295df1",
+          "statement": "episodic memory 与 semantic memory 是当前 Agent 系统统一采用的唯一主流分类方式。",
+          "type": "fact",
+          "score": 0.102067
+        },
+        {
+          "id": "claim_e6d15798fbbd948af5bb3d5b",
+          "statement": "采用三层记忆架构的 Agent 平均召回延迟低于 200ms。",
+          "type": "fact",
+          "score": 0.09219
+        },
+        {
+          "id": "claim_7fe7f3600cf7ac9a868bc575",
+          "statement": "Self-Evolving Agent 的 Memory 采用短期会话记忆、长期情景记忆、语义知识记忆三层架构。",
+          "type": "fact",
+          "score": 0.09105
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "Claude 同时支持显式记忆写入和每24小时后台自动总结对话生成用户摘要的隐式收集。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "Claude 同时支持显式记忆写入和每24小时后台自动总结对话生成用户摘要的隐式收集。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.83
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD",
+        "humanLabel": "True ADD"
+      }
+    },
+    {
+      "caseId": "agent-memory-fixed-12",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_9811b65eb328be6606dc191b",
+        "statement": "Character.AI 早期手动记忆功能允许用户填写不超过400字的信息让角色记住。",
+        "type": "quantitative",
+        "topic": "Character.AI Memory",
+        "scope": [
+          "Character.AI"
+        ],
+        "qualifiers": [
+          "早期"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_4752fb373274fd9ca2d5a4ee",
+          "statement": "短期会话记忆基于当前对话窗口，保留最近 10-20 轮交互记录。",
+          "type": "fact",
+          "score": 0.15082
+        },
+        {
+          "id": "claim_1a456b07246a2b324ee2283d",
+          "statement": "Google DeepMind 2025 年 6 月研究表明，采用三层记忆架构的 Agent 在跨月任务延续场景中准确率从 34% 提升至 78%。",
+          "type": "fact",
+          "score": 0.150387
+        },
+        {
+          "id": "claim_e6d15798fbbd948af5bb3d5b",
+          "statement": "采用三层记忆架构的 Agent 平均召回延迟低于 200ms。",
+          "type": "fact",
+          "score": 0.132274
+        },
+        {
+          "id": "claim_29f601379e4aad4749f59a37",
+          "statement": "2026 年已有超过 2000 个官方和社区 MCP Server。",
+          "type": "fact",
+          "score": 0.099918
+        },
+        {
+          "id": "claim_7fe7f3600cf7ac9a868bc575",
+          "statement": "Self-Evolving Agent 的 Memory 采用短期会话记忆、长期情景记忆、语义知识记忆三层架构。",
+          "type": "fact",
+          "score": 0.091116
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "Character.AI 早期手动记忆功能允许用户填写不超过400字的信息让角色记住。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "Character.AI 早期手动记忆功能允许用户填写不超过400字的信息让角色记住。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.83
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD",
+        "humanLabel": "True ADD"
+      }
+    },
+    {
+      "caseId": "agent-memory-fixed-13",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_5e81f3198c80ffb0ea268c44",
+        "statement": "Simon Willison 报告 ChatGPT 从其历史对话中推断出所在地 Half Moon Bay，并在生成图像中意外体现。",
+        "type": "experiential",
+        "topic": "Implicit Memory Risk",
+        "scope": [
+          "ChatGPT"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_4752fb373274fd9ca2d5a4ee",
+          "statement": "短期会话记忆基于当前对话窗口，保留最近 10-20 轮交互记录。",
+          "type": "fact",
+          "score": 0.089967
+        },
+        {
+          "id": "claim_1a456b07246a2b324ee2283d",
+          "statement": "Google DeepMind 2025 年 6 月研究表明，采用三层记忆架构的 Agent 在跨月任务延续场景中准确率从 34% 提升至 78%。",
+          "type": "fact",
+          "score": 0.086667
+        },
+        {
+          "id": "claim_7fe7f3600cf7ac9a868bc575",
+          "statement": "Self-Evolving Agent 的 Memory 采用短期会话记忆、长期情景记忆、语义知识记忆三层架构。",
+          "type": "fact",
+          "score": 0.086667
+        },
+        {
+          "id": "claim_e6d15798fbbd948af5bb3d5b",
+          "statement": "采用三层记忆架构的 Agent 平均召回延迟低于 200ms。",
+          "type": "fact",
+          "score": 0.086667
+        },
+        {
+          "id": "claim_4cc3c11243cddcf6fde296ad",
+          "statement": "short-term/long-term 与 episodic/semantic 属于不同维度，不能相互取代。",
+          "type": "fact",
+          "score": 0.067859
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "Simon Willison 报告 ChatGPT 从其历史对话中推断出所在地 Half Moon Bay，并在生成图像中意外体现。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "Simon Willison 报告 ChatGPT 从其历史对话中推断出所在地 Half Moon Bay，并在生成图像中意外体现。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.83
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD",
+        "humanLabel": "True ADD"
+      }
+    },
+    {
+      "caseId": "agent-memory-fixed-14",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_be0f1f64cde243bb6b40849f",
+        "statement": "ChatGPT 有 Saved Memories 和 Reference Chat History，但没有专门管理近期事项的中期记忆层。",
+        "type": "fact",
+        "topic": "ChatGPT Memory Architecture",
+        "scope": [
+          "ChatGPT"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_8c8015e3033a130219295df1",
+          "statement": "episodic memory 与 semantic memory 是当前 Agent 系统统一采用的唯一主流分类方式。",
+          "type": "fact",
+          "score": 0.133585
+        },
+        {
+          "id": "claim_7fe7f3600cf7ac9a868bc575",
+          "statement": "Self-Evolving Agent 的 Memory 采用短期会话记忆、长期情景记忆、语义知识记忆三层架构。",
+          "type": "fact",
+          "score": 0.120676
+        },
+        {
+          "id": "claim_a9ebf2ccdf9e11be7376e1af",
+          "statement": "该分类冲突保持 unresolved 状态。",
+          "type": "fact",
+          "score": 0.110788
+        },
+        {
+          "id": "claim_e6d15798fbbd948af5bb3d5b",
+          "statement": "采用三层记忆架构的 Agent 平均召回延迟低于 200ms。",
+          "type": "fact",
+          "score": 0.108894
+        },
+        {
+          "id": "claim_4752fb373274fd9ca2d5a4ee",
+          "statement": "短期会话记忆基于当前对话窗口，保留最近 10-20 轮交互记录。",
+          "type": "fact",
+          "score": 0.108454
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "ChatGPT 有 Saved Memories 和 Reference Chat History，但没有专门管理近期事项的中期记忆层。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "ChatGPT 有 Saved Memories 和 Reference Chat History，但没有专门管理近期事项的中期记忆层。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.83
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD",
+        "humanLabel": "True ADD"
+      }
+    },
+    {
+      "caseId": "agent-memory-fixed-15",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_c6095e5cfd767f8cffbf6ae3",
+        "statement": "Cursor 的自动 Memories 功能上线约一年半后被官方下线，改为让用户导出并手动转为版本控制的 Rules 文件。",
+        "type": "quantitative",
+        "topic": "Cursor Memory",
+        "scope": [
+          "Cursor"
+        ],
+        "qualifiers": [
+          "约一年半"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_1a456b07246a2b324ee2283d",
+          "statement": "Google DeepMind 2025 年 6 月研究表明，采用三层记忆架构的 Agent 在跨月任务延续场景中准确率从 34% 提升至 78%。",
+          "type": "fact",
+          "score": 0.132136
+        },
+        {
+          "id": "claim_4752fb373274fd9ca2d5a4ee",
+          "statement": "短期会话记忆基于当前对话窗口，保留最近 10-20 轮交互记录。",
+          "type": "fact",
+          "score": 0.132136
+        },
+        {
+          "id": "claim_e6d15798fbbd948af5bb3d5b",
+          "statement": "采用三层记忆架构的 Agent 平均召回延迟低于 200ms。",
+          "type": "fact",
+          "score": 0.132136
+        },
+        {
+          "id": "claim_63853d62214c73d15cf6d675",
+          "statement": "Claude Code 使用两份分工文件：CLAUDE.md 由人编写、每次完整加载且无长度限制；MEMORY.md 由 AI 自动积累，仅开头约 200 行或 25KB 作为常驻索引。",
+          "type": "fact",
+          "score": 0.101757
+        },
+        {
+          "id": "claim_7fe7f3600cf7ac9a868bc575",
+          "statement": "Self-Evolving Agent 的 Memory 采用短期会话记忆、长期情景记忆、语义知识记忆三层架构。",
+          "type": "fact",
+          "score": 0.101421
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "Cursor 的自动 Memories 功能上线约一年半后被官方下线，改为让用户导出并手动转为版本控制的 Rules 文件。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "Cursor 的自动 Memories 功能上线约一年半后被官方下线，改为让用户导出并手动转为版本控制的 Rules 文件。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.83
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD",
+        "humanLabel": "True ADD"
+      }
+    },
+    {
+      "caseId": "agent-memory-fixed-16",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_64211aafc0c00af617880f3c",
+        "statement": "Mem0 将提炼出的事实同时存为向量和实体关系图，并给每条记忆打时间戳。",
+        "type": "method",
+        "topic": "Mem0 Storage",
+        "scope": [
+          "Mem0"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_454011cd02e371ff4ba5ee54",
+          "statement": "记忆完整度与记忆运用意愿应分别评估，系统可以拥有一条记忆但在无关场景中不引用、不主动暴露。",
+          "type": "fact",
+          "score": 0.100337
+        },
+        {
+          "id": "claim_6c9812bbb6d2b9e4743c1d26",
+          "statement": "记忆的重要性与时间衰减需要分开处理，低频不等于无价值。",
+          "type": "fact",
+          "score": 0.097565
+        },
+        {
+          "id": "claim_9e699efd7e99414a8fa141cd",
+          "statement": "新事实与旧事实冲突时不能只再插一条，而要更新有效期或建立替代关系。",
+          "type": "fact",
+          "score": 0.09534
+        },
+        {
+          "id": "claim_a882ab30e4cb7be39213ea1f",
+          "statement": "用户应能查看系统记住了什么及来源、修改删除或暂停记忆、理解某条记忆为何影响本轮结果、控制哪些类别可自动收集、让过期事实失效或重新确认。",
+          "type": "fact",
+          "score": 0.087723
+        },
+        {
+          "id": "claim_0c0cdcb7f63f02110ee91b94",
+          "statement": "记忆条目建议包含 content、memory_type、source、valid_from、valid_to、confidence、importance、last_accessed、supersedes 字段。",
+          "type": "fact",
+          "score": 0.082007
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "Mem0 将提炼出的事实同时存为向量和实体关系图，并给每条记忆打时间戳。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "Mem0 将提炼出的事实同时存为向量和实体关系图，并给每条记忆打时间戳。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.83
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD",
+        "humanLabel": "True ADD"
+      }
+    },
+    {
+      "caseId": "agent-memory-fixed-17",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_cbd1a168ddc7d277375516a3",
+        "statement": "Mem0 和 Zep 在 LoCoMo 基准上公开争论得分：Zep 宣称84%，Mem0 分析后称其真实得分应为58.44%。",
+        "type": "quantitative",
+        "topic": "Memory Benchmark Dispute",
+        "scope": [
+          "LoCoMo benchmark"
+        ],
+        "confidence": 0.8
+      },
+      "existingClaims": [
+        {
+          "id": "claim_1a456b07246a2b324ee2283d",
+          "statement": "Google DeepMind 2025 年 6 月研究表明，采用三层记忆架构的 Agent 在跨月任务延续场景中准确率从 34% 提升至 78%。",
+          "type": "fact",
+          "score": 0.144125
+        },
+        {
+          "id": "claim_4752fb373274fd9ca2d5a4ee",
+          "statement": "短期会话记忆基于当前对话窗口，保留最近 10-20 轮交互记录。",
+          "type": "fact",
+          "score": 0.144125
+        },
+        {
+          "id": "claim_e6d15798fbbd948af5bb3d5b",
+          "statement": "采用三层记忆架构的 Agent 平均召回延迟低于 200ms。",
+          "type": "fact",
+          "score": 0.124625
+        },
+        {
+          "id": "claim_9b7dd359f5b6cbecec4e632a",
+          "statement": "Benchmark 不是一次性测试集，而是系统失败历史的记忆。",
+          "type": "fact",
+          "score": 0.118
+        },
+        {
+          "id": "claim_eadc28aa74e390061dfa4bf3",
+          "statement": "Benchmark 不是随机抽样，而是系统失败历史的记忆。",
+          "type": "fact",
+          "score": 0.118
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "Mem0 和 Zep 在 LoCoMo 基准上公开争论得分：Zep 宣称84%，Mem0 分析后称其真实得分应为58.44%。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "Mem0 和 Zep 在 LoCoMo 基准上公开争论得分：Zep 宣称84%，Mem0 分析后称其真实得分应为58.44%。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.83
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD",
+        "humanLabel": "True ADD"
+      }
+    },
+    {
+      "caseId": "agent-memory-fixed-18",
+      "category": "agent-memory-fixed",
+      "candidate": {
+        "id": "candidate_43ca5c1012eb8598e167682b",
+        "statement": "GitHub Copilot 的记忆功能包含28天自动过期机制，超过该时间未被重新验证的记忆会自动失效。",
+        "type": "quantitative",
+        "topic": "GitHub Copilot Memory Expiry",
+        "scope": [
+          "GitHub Copilot"
+        ],
+        "qualifiers": [
+          "28天"
+        ],
+        "confidence": 0.9
+      },
+      "existingClaims": [
+        {
+          "id": "claim_4752fb373274fd9ca2d5a4ee",
+          "statement": "短期会话记忆基于当前对话窗口，保留最近 10-20 轮交互记录。",
+          "type": "fact",
+          "score": 0.148709
+        },
+        {
+          "id": "claim_1a456b07246a2b324ee2283d",
+          "statement": "Google DeepMind 2025 年 6 月研究表明，采用三层记忆架构的 Agent 在跨月任务延续场景中准确率从 34% 提升至 78%。",
+          "type": "fact",
+          "score": 0.147956
+        },
+        {
+          "id": "claim_e6d15798fbbd948af5bb3d5b",
+          "statement": "采用三层记忆架构的 Agent 平均召回延迟低于 200ms。",
+          "type": "fact",
+          "score": 0.130148
+        },
+        {
+          "id": "claim_29f601379e4aad4749f59a37",
+          "statement": "2026 年已有超过 2000 个官方和社区 MCP Server。",
+          "type": "fact",
+          "score": 0.099812
+        },
+        {
+          "id": "claim_7fe7f3600cf7ac9a868bc575",
+          "statement": "Self-Evolving Agent 的 Memory 采用短期会话记忆、长期情景记忆、语义知识记忆三层架构。",
+          "type": "fact",
+          "score": 0.089009
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "GitHub Copilot 的记忆功能包含28天自动过期机制，超过该时间未被重新验证的记忆会自动失效。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "GitHub Copilot 的记忆功能包含28天自动过期机制，超过该时间未被重新验证的记忆会自动失效。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "The correct broader Claim exists outside this frozen Top K, so comparison cannot recover it.",
+        "confidence": 0.83
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": true,
+        "taxonomy": "Retrieval Miss",
+        "humanLabel": "False ADD — Retrieval Miss"
+      }
+    }
+  ]
+}

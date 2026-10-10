@@ -1,0 +1,36 @@
+{
+  "riskCases": [
+    {"caseId":"fresh-risk-stable-definition","statement":"RAG 是 Retrieval-Augmented Generation。","type":"definition","expectedRisk":["low"],"requiredFactors":["stable_definition"],"highExpected":false},
+    {"caseId":"fresh-risk-model-capability","statement":"GPT-5 当前上下文窗口为 128K tokens。","type":"fact","expectedRisk":["high","critical"],"requiredFactors":["versioned_product","quantitative","current_state"],"highExpected":true},
+    {"caseId":"fresh-risk-api","statement":"当前 API endpoint 支持 response_format 参数。","type":"fact","expectedRisk":["high","critical"],"requiredFactors":["api_behavior","current_state"],"highExpected":true},
+    {"caseId":"fresh-risk-pricing","statement":"当前价格为 $2 / 1M tokens。","type":"quantitative","expectedRisk":["critical"],"requiredFactors":["pricing"],"highExpected":true},
+    {"caseId":"fresh-risk-benchmark","statement":"Model A 当前在 Benchmark X 排名第一。","type":"quantitative","expectedRisk":["critical"],"requiredFactors":["benchmark"],"highExpected":true},
+    {"caseId":"fresh-risk-current","statement":"目前 Product X 已开放使用。","type":"fact","expectedRisk":["medium","high","critical"],"requiredFactors":["current_state"],"highExpected":true},
+    {"caseId":"fresh-risk-historical","statement":"2024 年 GPT-4 上下文窗口为 128K tokens。","type":"quantitative","expectedRisk":["medium","high","critical"],"requiredFactors":["historical_scope"],"highExpected":true},
+    {"caseId":"fresh-risk-version-scope","statement":"在 v1 版本中 API 不支持批量调用。","type":"fact","expectedRisk":["medium","high"],"requiredFactors":["historical_scope"],"highExpected":true},
+    {"caseId":"fresh-risk-quantitative","statement":"该评测成功率为 82%。","type":"quantitative","expectedRisk":["high","critical"],"requiredFactors":["quantitative"],"highExpected":true},
+    {"caseId":"fresh-risk-method","statement":"错误分析应先建立可复现的分类标准。","type":"method","expectedRisk":["low"],"requiredFactors":[],"highExpected":false},
+    {"caseId":"fresh-risk-conflict","statement":"Agent Memory 通常分为两类。","type":"fact","status":"disputed","expectedRisk":["medium","high"],"requiredFactors":["previous_conflict"],"highExpected":true},
+    {"caseId":"fresh-risk-unresolved","statement":"某方法可能是当前最佳实践。","type":"opinion","previousResolution":"disputed","expectedRisk":["high","critical"],"requiredFactors":["previous_conflict"],"highExpected":true},
+    {"caseId":"fresh-risk-availability","statement":"当前 Product X 向所有用户开放。","type":"fact","expectedRisk":["high","critical"],"requiredFactors":["current_state"],"highExpected":true},
+    {"caseId":"fresh-risk-library-version","statement":"SDK v2 当前支持异步批处理。","type":"fact","expectedRisk":["high","critical"],"requiredFactors":["api_behavior","versioned_product"],"highExpected":true},
+    {"caseId":"fresh-risk-context-window","statement":"Claude 4 当前 context window 为 200K。","type":"quantitative","expectedRisk":["critical"],"requiredFactors":["current_state","quantitative"],"highExpected":true},
+    {"caseId":"fresh-risk-latency","statement":"Model X API latency 为 350ms。","type":"quantitative","expectedRisk":["high","critical"],"requiredFactors":["quantitative"],"highExpected":true},
+    {"caseId":"fresh-risk-market","statement":"目前企业 Agent 市场增长最快。","type":"predictive","expectedRisk":["high","critical"],"requiredFactors":["current_state"],"highExpected":true},
+    {"caseId":"fresh-risk-taxonomy","statement":"情景记忆与语义记忆描述内容类型维度。","type":"definition","expectedRisk":["low"],"requiredFactors":[],"highExpected":false},
+    {"caseId":"fresh-risk-old-stable","statement":"上下文用于描述系统当前可见的信息。","type":"definition","expectedRisk":["low","medium"],"requiredFactors":[],"highExpected":false},
+    {"caseId":"fresh-risk-new-volatile","statement":"最新 GPT-5 API 当前支持 Feature X。","type":"fact","expectedRisk":["critical"],"requiredFactors":["api_behavior","current_state"],"highExpected":true}
+  ],
+  "verificationCases": [
+    {"caseId":"fresh-verify-valid-1","resolution":"still_valid","expected":["still_valid"],"tier":0,"historical":false},
+    {"caseId":"fresh-verify-valid-2","resolution":"still_valid","expected":["still_valid","needs_refinement"],"tier":1,"historical":true},
+    {"caseId":"fresh-verify-refine-1","resolution":"needs_refinement","expected":["needs_refinement"],"tier":0,"historical":false},
+    {"caseId":"fresh-verify-refine-2","resolution":"needs_refinement","expected":["needs_refinement"],"tier":1,"historical":true},
+    {"caseId":"fresh-verify-stale-1","resolution":"stale","expected":["stale"],"tier":0,"historical":false},
+    {"caseId":"fresh-verify-stale-2","resolution":"stale","expected":["stale"],"tier":1,"historical":false},
+    {"caseId":"fresh-verify-disputed-1","resolution":"disputed","expected":["disputed"],"tier":0,"historical":false},
+    {"caseId":"fresh-verify-disputed-2","resolution":"disputed","expected":["disputed","insufficient_evidence"],"tier":2,"historical":false},
+    {"caseId":"fresh-verify-insufficient-1","resolution":"insufficient_evidence","expected":["insufficient_evidence"],"tier":3,"historical":false},
+    {"caseId":"fresh-verify-insufficient-2","resolution":"insufficient_evidence","expected":["insufficient_evidence"],"tier":4,"historical":false}
+  ]
+}

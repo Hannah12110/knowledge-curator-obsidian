@@ -1,0 +1,15 @@
+{
+  "version": "claim-graph-relations-v2",
+  "cases": [
+    { "id": "same-topic-unrelated", "left": "A2A 由多家公司共同制定。", "right": "A2A 定义多种消息类型。", "relation": "unrelated", "direction": "not_applicable" },
+    { "id": "support-vs-refine", "left": "随机 Benchmark 边界样本太少。", "right": "Benchmark 应持续吸收系统失败历史。", "relation": "supports", "direction": "a_to_b" },
+    { "id": "qualifier-prevents-duplicate", "left": "episodic memory 是一种分类方式。", "right": "episodic memory 是当前唯一主流分类方式。", "relation": "refines", "direction": "b_to_a" },
+    { "id": "implementation-refines-abstraction", "left": "Skill 是动态 system prompt 扩展。", "right": "Skill 列表在发现阶段被注入 system prompt。", "relation": "refines", "direction": "b_to_a" },
+    { "id": "evidence-supports-conclusion", "left": "灰度失败样本经常暴露线上边界。", "right": "Benchmark 应纳入灰度失败样本。", "relation": "supports", "direction": "a_to_b" },
+    { "id": "direction-reverse", "left": "Harness 管理上下文。", "right": "Harness 通过压缩与窗口裁剪管理上下文。", "relation": "refines", "direction": "b_to_a" },
+    { "id": "taxonomy-dimension", "left": "短期与长期描述持续时间。", "right": "情景与语义描述内容类型。", "relation": "unrelated", "direction": "not_applicable" },
+    { "id": "parallel-metric-unrelated", "left": "模型准确率为 80%。", "right": "模型延迟为 200ms。", "relation": "unrelated", "direction": "not_applicable" },
+    { "id": "strong-wording-refines", "left": "RAG 可以改善事实依据。", "right": "RAG 始终改善事实准确率。", "relation": "contradicts", "direction": "not_applicable" },
+    { "id": "numeric-detail-refines", "left": "模型上下文窗口较大。", "right": "模型上下文窗口为 128K。", "relation": "refines", "direction": "b_to_a" }
+  ]
+}

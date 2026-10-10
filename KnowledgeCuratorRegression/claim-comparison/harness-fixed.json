@@ -1,0 +1,2112 @@
+{
+  "description": "Frozen Phase 5.1 Harness ADD candidates with the same Retrieval v2 Top 5. Candidate extraction is not rerun.",
+  "cases": [
+    {
+      "caseId": "harness-fixed-01",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_639066330447dbec6b0c6cc4",
+        "statement": "AI 工程领域过去两年经历了从 Prompt Engineering 到 Context Engineering 再到 Harness Engineering 的三次重心迁移。",
+        "type": "fact",
+        "topic": "AI 工程演进",
+        "scope": [
+          "AI 工程领域"
+        ],
+        "qualifiers": [
+          "过去两年"
+        ],
+        "confidence": 0.9
+      },
+      "existingClaims": [
+        {
+          "id": "claim_da57985d59dc6363a7e599ba",
+          "statement": "Prompt Engineering 适用于短链路、单次生成场景。",
+          "type": "fact",
+          "topic": "工程层次边界",
+          "scope": [
+            "Prompt Engineering"
+          ],
+          "qualifiers": [
+            "only"
+          ],
+          "score": 0.269773
+        },
+        {
+          "id": "claim_e6630ca34b0aa202de0594e0",
+          "statement": "Context Engineering 适用于多轮、依赖外部知识的场景。",
+          "type": "fact",
+          "topic": "工程层次边界",
+          "scope": [
+            "Context Engineering"
+          ],
+          "score": 0.15007
+        },
+        {
+          "id": "claim_8fcda23410b63aa1d9219ddf",
+          "statement": "Harness Engineering 适用于长链路、可执行、低容错任务。",
+          "type": "fact",
+          "topic": "工程层次边界",
+          "scope": [
+            "Harness Engineering"
+          ],
+          "score": 0.147739
+        },
+        {
+          "id": "claim_c2bbe6b7c7ae93e33fa92e32",
+          "statement": "Prompt 是 Context 的一部分，Context 是 Harness 的一部分，三者是由内向外的包含关系而非替代关系。",
+          "type": "definition",
+          "topic": "工程层次边界",
+          "scope": [
+            "Prompt/Context/Harness"
+          ],
+          "score": 0.13518
+        },
+        {
+          "id": "claim_3fad0b0b49cf256e8fae9551",
+          "statement": "工作记忆的常见载体是 Context Window，主要风险是容量有限、早期信息被挤出。",
+          "type": "fact",
+          "topic": "四类记忆",
+          "scope": [
+            "working memory"
+          ],
+          "score": 0.089285
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "AI 工程领域过去两年经历了从 Prompt Engineering 到 Context Engineering 再到 Harness Engineering 的三次重心迁移。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "AI 工程领域过去两年经历了从 Prompt Engineering 到 Context Engineering 再到 Harness Engineering 的三次重心迁移。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.65
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": true,
+        "taxonomy": "Unclear"
+      }
+    },
+    {
+      "caseId": "harness-fixed-02",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_5756f5dc243ad70c45180193",
+        "statement": "Prompt Engineering 的核心思想是模型不是不会，而是没有把问题讲清楚。",
+        "type": "definition",
+        "topic": "Prompt Engineering",
+        "scope": [
+          "Prompt Engineering"
+        ],
+        "confidence": 0.9
+      },
+      "existingClaims": [
+        {
+          "id": "claim_da57985d59dc6363a7e599ba",
+          "statement": "Prompt Engineering 适用于短链路、单次生成场景。",
+          "type": "fact",
+          "topic": "工程层次边界",
+          "scope": [
+            "Prompt Engineering"
+          ],
+          "qualifiers": [
+            "only"
+          ],
+          "score": 0.286472
+        },
+        {
+          "id": "claim_59e363b92d4f847b2d860d1d",
+          "statement": "Agent 等于 Model 加 Harness，模型提供推理能力，Harness 把概率能力放进可执行、可观测、可校验、可恢复的工程环境。",
+          "type": "definition",
+          "topic": "Harness Engineering",
+          "scope": [
+            "Agent 架构"
+          ],
+          "score": 0.125348
+        },
+        {
+          "id": "claim_58f3dd85d745f5e9ce9861c7",
+          "statement": "MCP 的核心规范包括 Resources、Tools、Prompts 三大原语。",
+          "type": "definition",
+          "topic": "MCP",
+          "scope": [
+            "MCP 协议"
+          ],
+          "score": 0.115177
+        },
+        {
+          "id": "claim_7f2e69287800347419836a6f",
+          "statement": "Skill 应用本质上是动态 system prompt 扩展。",
+          "type": "definition",
+          "topic": "Skill 应用阶段",
+          "score": 0.112801
+        },
+        {
+          "id": "claim_c2bbe6b7c7ae93e33fa92e32",
+          "statement": "Prompt 是 Context 的一部分，Context 是 Harness 的一部分，三者是由内向外的包含关系而非替代关系。",
+          "type": "definition",
+          "topic": "工程层次边界",
+          "scope": [
+            "Prompt/Context/Harness"
+          ],
+          "score": 0.105766
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "Prompt Engineering 的核心思想是模型不是不会，而是没有把问题讲清楚。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "Prompt Engineering 的核心思想是模型不是不会，而是没有把问题讲清楚。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.85
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD"
+      }
+    },
+    {
+      "caseId": "harness-fixed-03",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_3355af3299de2669b6e2616b",
+        "statement": "Prompt Engineering 的本质是塑造局部概率空间，而非下命令。",
+        "type": "definition",
+        "topic": "Prompt Engineering",
+        "scope": [
+          "Prompt Engineering"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_da57985d59dc6363a7e599ba",
+          "statement": "Prompt Engineering 适用于短链路、单次生成场景。",
+          "type": "fact",
+          "topic": "工程层次边界",
+          "scope": [
+            "Prompt Engineering"
+          ],
+          "qualifiers": [
+            "only"
+          ],
+          "score": 0.272875
+        },
+        {
+          "id": "claim_59e363b92d4f847b2d860d1d",
+          "statement": "Agent 等于 Model 加 Harness，模型提供推理能力，Harness 把概率能力放进可执行、可观测、可校验、可恢复的工程环境。",
+          "type": "definition",
+          "topic": "Harness Engineering",
+          "scope": [
+            "Agent 架构"
+          ],
+          "score": 0.108844
+        },
+        {
+          "id": "claim_7f2e69287800347419836a6f",
+          "statement": "Skill 应用本质上是动态 system prompt 扩展。",
+          "type": "definition",
+          "topic": "Skill 应用阶段",
+          "score": 0.107702
+        },
+        {
+          "id": "claim_3d899ecfa634c76d422f4ab4",
+          "statement": "同一个模型在不同产品中表现差异巨大，通常不是 Prompt 的小差异，而是系统是否持续回答上下文、工具、编排、状态、校验、恢复六个问题。",
+          "type": "causal",
+          "topic": "Harness Engineering",
+          "scope": [
+            "多产品对比"
+          ],
+          "qualifiers": [
+            "通常"
+          ],
+          "score": 0.104066
+        },
+        {
+          "id": "claim_1f0030c43af54a833378a09f",
+          "statement": "Harness 工作流是规则驱动的概率程序，输出由 Prompt、Rules、Skills、Model 共同决定，任何一项微调都可能引起行为变化。",
+          "type": "definition",
+          "topic": "Harness 评测",
+          "scope": [
+            "Harness 工作流"
+          ],
+          "qualifiers": [
+            "可能"
+          ],
+          "score": 0.103038
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "Prompt Engineering 的本质是塑造局部概率空间，而非下命令。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "Prompt Engineering 的本质是塑造局部概率空间，而非下命令。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.85
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD"
+      }
+    },
+    {
+      "caseId": "harness-fixed-06",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_5e475782cffc1a25c23ce0e7",
+        "statement": "Prompt Engineering 解决的是表达问题，而不是信息问题。",
+        "type": "definition",
+        "topic": "Prompt Engineering",
+        "scope": [
+          "Prompt Engineering"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_da57985d59dc6363a7e599ba",
+          "statement": "Prompt Engineering 适用于短链路、单次生成场景。",
+          "type": "fact",
+          "topic": "工程层次边界",
+          "scope": [
+            "Prompt Engineering"
+          ],
+          "qualifiers": [
+            "only"
+          ],
+          "score": 0.293718
+        },
+        {
+          "id": "claim_59e363b92d4f847b2d860d1d",
+          "statement": "Agent 等于 Model 加 Harness，模型提供推理能力，Harness 把概率能力放进可执行、可观测、可校验、可恢复的工程环境。",
+          "type": "definition",
+          "topic": "Harness Engineering",
+          "scope": [
+            "Agent 架构"
+          ],
+          "score": 0.118917
+        },
+        {
+          "id": "claim_7f2e69287800347419836a6f",
+          "statement": "Skill 应用本质上是动态 system prompt 扩展。",
+          "type": "definition",
+          "topic": "Skill 应用阶段",
+          "score": 0.113785
+        },
+        {
+          "id": "claim_d81e9e69206524c9e3a4db6d",
+          "statement": "RAG 解决的是“去哪里找信息”，而 Memory 解决的是“当前什么是真的以及它该如何影响后续行为”。",
+          "type": "definition",
+          "topic": "Agent Memory 定位",
+          "scope": [
+            "agent memory"
+          ],
+          "score": 0.113573
+        },
+        {
+          "id": "claim_c2bbe6b7c7ae93e33fa92e32",
+          "statement": "Prompt 是 Context 的一部分，Context 是 Harness 的一部分，三者是由内向外的包含关系而非替代关系。",
+          "type": "definition",
+          "topic": "工程层次边界",
+          "scope": [
+            "Prompt/Context/Harness"
+          ],
+          "score": 0.111118
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "Prompt Engineering 解决的是表达问题，而不是信息问题。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "Prompt Engineering 解决的是表达问题，而不是信息问题。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.85
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD"
+      }
+    },
+    {
+      "caseId": "harness-fixed-08",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_ffb57af31955108891354576",
+        "statement": "在工程意义上，Context 是所有会影响模型当前决策的信息总和。",
+        "type": "definition",
+        "topic": "Context Engineering",
+        "scope": [
+          "工程意义"
+        ],
+        "confidence": 0.9
+      },
+      "existingClaims": [
+        {
+          "id": "claim_59e363b92d4f847b2d860d1d",
+          "statement": "Agent 等于 Model 加 Harness，模型提供推理能力，Harness 把概率能力放进可执行、可观测、可校验、可恢复的工程环境。",
+          "type": "definition",
+          "topic": "Harness Engineering",
+          "scope": [
+            "Agent 架构"
+          ],
+          "score": 0.112062
+        },
+        {
+          "id": "claim_90dbdce6399e47480d8d1f92",
+          "statement": "Skill 不扩展模型的参数知识，而是扩展模型的上下文约束，用自然语言重塑当前决策空间。",
+          "type": "definition",
+          "topic": "Skill 应用阶段",
+          "score": 0.104488
+        },
+        {
+          "id": "claim_3d899ecfa634c76d422f4ab4",
+          "statement": "同一个模型在不同产品中表现差异巨大，通常不是 Prompt 的小差异，而是系统是否持续回答上下文、工具、编排、状态、校验、恢复六个问题。",
+          "type": "causal",
+          "topic": "Harness Engineering",
+          "scope": [
+            "多产品对比"
+          ],
+          "qualifiers": [
+            "通常"
+          ],
+          "score": 0.09193
+        },
+        {
+          "id": "claim_d81e9e69206524c9e3a4db6d",
+          "statement": "RAG 解决的是“去哪里找信息”，而 Memory 解决的是“当前什么是真的以及它该如何影响后续行为”。",
+          "type": "definition",
+          "topic": "Agent Memory 定位",
+          "scope": [
+            "agent memory"
+          ],
+          "score": 0.085774
+        },
+        {
+          "id": "claim_79e079a3fe5028f77826eaba",
+          "statement": "一条合格的多轮样本应包含用户目标、Agent 任务目标、当前对话阶段、期望行为、禁止行为、涉及工具、风险标签、人工判断、判断依据和来源等元信息。",
+          "type": "definition",
+          "topic": "样本元信息",
+          "scope": [
+            "多轮样本"
+          ],
+          "score": 0.082053
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "在工程意义上，Context 是所有会影响模型当前决策的信息总和。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "在工程意义上，Context 是所有会影响模型当前决策的信息总和。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.85
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD"
+      }
+    },
+    {
+      "caseId": "harness-fixed-10",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_95687cf18669a36c9880ce42",
+        "statement": "RAG 的基本做法是先从外部知识库检索相关内容，再注入当前上下文让模型基于这些信息生成。",
+        "type": "method",
+        "topic": "RAG",
+        "scope": [
+          "RAG"
+        ],
+        "confidence": 0.9
+      },
+      "existingClaims": [
+        {
+          "id": "claim_b81c85c5b5b6818257c08e7e",
+          "statement": "2026 年主流 RAG 架构采用重排序加混合检索组合，整体召回准确率比纯向量检索提升 30-40%。",
+          "type": "quantitative",
+          "topic": "RAG",
+          "scope": [
+            "2026 主流 RAG 架构"
+          ],
+          "score": 0.564088
+        },
+        {
+          "id": "claim_d81e9e69206524c9e3a4db6d",
+          "statement": "RAG 解决的是“去哪里找信息”，而 Memory 解决的是“当前什么是真的以及它该如何影响后续行为”。",
+          "type": "definition",
+          "topic": "Agent Memory 定位",
+          "scope": [
+            "agent memory"
+          ],
+          "score": 0.456755
+        },
+        {
+          "id": "claim_a419ff99a1954a035012b70a",
+          "statement": "失败时应先问缺少哪项结构能力（上下文、工具、反馈、门禁还是恢复路径），而不是劝模型更努力。",
+          "type": "method",
+          "topic": "团队落地原则",
+          "scope": [
+            "AI Coding 落地"
+          ],
+          "score": 0.100935
+        },
+        {
+          "id": "claim_46701f19358bfc05270d98cb",
+          "statement": "在注入阶段，Skill 的指令层内容被追加到当前对话上下文。",
+          "type": "method",
+          "topic": "Skill 应用阶段",
+          "scope": [
+            "Stage 4"
+          ],
+          "score": 0.097755
+        },
+        {
+          "id": "claim_dc4cfc13ef9bb1b9022234b6",
+          "statement": "在执行阶段，模型在被扩展的上下文约束下生成回复和工具调用。",
+          "type": "method",
+          "topic": "Skill 应用阶段",
+          "scope": [
+            "Stage 5"
+          ],
+          "score": 0.095622
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "RAG 的基本做法是先从外部知识库检索相关内容，再注入当前上下文让模型基于这些信息生成。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "RAG 的基本做法是先从外部知识库检索相关内容，再注入当前上下文让模型基于这些信息生成。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.85
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD"
+      }
+    },
+    {
+      "caseId": "harness-fixed-11",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_6f52c38fc19ac52705a0d00a",
+        "statement": "Agent Skills 的核心机制是渐进式披露，只在需要时暴露与当前任务最相关的那部分信息。",
+        "type": "definition",
+        "topic": "Agent Skills",
+        "scope": [
+          "Agent Skills"
+        ],
+        "qualifiers": [
+          "只在需要的时候"
+        ],
+        "confidence": 0.9
+      },
+      "existingClaims": [
+        {
+          "id": "claim_c5c26d990ff7ffbc95631cc4",
+          "statement": "根据 Agent Skills '26 研讨会，写好 Skill 需要回答三个核心问题。",
+          "type": "fact",
+          "topic": "Skill 设计核心问题",
+          "scope": [
+            "Agent Skills '26 研讨会"
+          ],
+          "score": 0.27434
+        },
+        {
+          "id": "claim_2e29c970efd8c65ce8102b47",
+          "statement": "Skill 是当前 Agent 范式中最实用的知识载体形态。",
+          "type": "opinion",
+          "topic": "Agent Skill",
+          "score": 0.152464
+        },
+        {
+          "id": "claim_8dea7d9255724dbe54a15996",
+          "statement": "SKILL.md 的声明层由 frontmatter 元信息构成，描述 Skill 是什么、何时读取、是否由 agent 创建。",
+          "type": "definition",
+          "topic": "Skill 四层构成",
+          "score": 0.128029
+        },
+        {
+          "id": "claim_36d5705c660707c0f91384ae",
+          "statement": "Skill 解决的核心矛盾是领域专家知识的转移问题。",
+          "type": "definition",
+          "topic": "Skill 本质价值",
+          "score": 0.126297
+        },
+        {
+          "id": "claim_de0c41533a438c93cf01264e",
+          "statement": "Skill 处于形式化程度足够让模型理解与灵活程度足够让模型推理的交叉点。",
+          "type": "opinion",
+          "topic": "Agent Skill",
+          "score": 0.126146
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "Agent Skills 的核心机制是渐进式披露，只在需要时暴露与当前任务最相关的那部分信息。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "Agent Skills 的核心机制是渐进式披露，只在需要时暴露与当前任务最相关的那部分信息。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.65
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": true,
+        "taxonomy": "Unclear"
+      }
+    },
+    {
+      "caseId": "harness-fixed-12",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_b9e8a816d0125e8250ec8a59",
+        "statement": "Agent Skills 将技能信息分为元数据层、指令层、资源层三层，实现按需加载。",
+        "type": "method",
+        "topic": "Agent Skills",
+        "scope": [
+          "Agent Skills"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_c5c26d990ff7ffbc95631cc4",
+          "statement": "根据 Agent Skills '26 研讨会，写好 Skill 需要回答三个核心问题。",
+          "type": "fact",
+          "topic": "Skill 设计核心问题",
+          "scope": [
+            "Agent Skills '26 研讨会"
+          ],
+          "score": 0.268238
+        },
+        {
+          "id": "claim_2e29c970efd8c65ce8102b47",
+          "statement": "Skill 是当前 Agent 范式中最实用的知识载体形态。",
+          "type": "opinion",
+          "topic": "Agent Skill",
+          "score": 0.147343
+        },
+        {
+          "id": "claim_7c645754da39d39ff261e8c3",
+          "statement": "Skill 自进化流程在 Reflection 识别到某 Skill 调用成功率连续 10 次低于 70% 时自动触发。",
+          "type": "method",
+          "topic": "Skill",
+          "scope": [
+            "Skill 自进化"
+          ],
+          "qualifiers": [
+            "连续 10 次低于 70%"
+          ],
+          "score": 0.14428
+        },
+        {
+          "id": "claim_90bf1ae2b0370d741f5debee",
+          "statement": "在加载阶段，系统读取 SKILL.md 内容。",
+          "type": "method",
+          "topic": "Skill 应用阶段",
+          "scope": [
+            "Stage 3"
+          ],
+          "score": 0.1315
+        },
+        {
+          "id": "claim_46701f19358bfc05270d98cb",
+          "statement": "在注入阶段，Skill 的指令层内容被追加到当前对话上下文。",
+          "type": "method",
+          "topic": "Skill 应用阶段",
+          "scope": [
+            "Stage 4"
+          ],
+          "score": 0.129614
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "Agent Skills 将技能信息分为元数据层、指令层、资源层三层，实现按需加载。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "Agent Skills 将技能信息分为元数据层、指令层、资源层三层，实现按需加载。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.65
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": true,
+        "taxonomy": "Unclear"
+      }
+    },
+    {
+      "caseId": "harness-fixed-13",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_5d2aa6883457a444e57cf822",
+        "statement": "Agent Skills 的元数据层约 50 Token，仅包含技能名称、触发条件、功能概述，启动时全局加载。",
+        "type": "quantitative",
+        "topic": "Agent Skills",
+        "scope": [
+          "Agent Skills 元数据层"
+        ],
+        "qualifiers": [
+          "约 50 Token",
+          "启动时"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_c5c26d990ff7ffbc95631cc4",
+          "statement": "根据 Agent Skills '26 研讨会，写好 Skill 需要回答三个核心问题。",
+          "type": "fact",
+          "topic": "Skill 设计核心问题",
+          "scope": [
+            "Agent Skills '26 研讨会"
+          ],
+          "score": 0.255829
+        },
+        {
+          "id": "claim_a7c0ba4c31fae079507dcca6",
+          "statement": "在 7 个 SkillsBench 任务里，agent 平均每次执行加载的 9.1K tokens（51.21%）与真实执行过程无关。",
+          "type": "quantitative",
+          "topic": "Skill 运行时加载",
+          "scope": [
+            "7 个 SkillsBench 任务"
+          ],
+          "score": 0.174371
+        },
+        {
+          "id": "claim_9ac0e4a971075c54a27af04f",
+          "statement": "在 7 个 SkillsBench 任务里，agent 平均每次执行加载约 17.8K source tokens。",
+          "type": "quantitative",
+          "topic": "Skill 运行时加载",
+          "scope": [
+            "7 个 SkillsBench 任务"
+          ],
+          "score": 0.164836
+        },
+        {
+          "id": "claim_2e29c970efd8c65ce8102b47",
+          "statement": "Skill 是当前 Agent 范式中最实用的知识载体形态。",
+          "type": "opinion",
+          "topic": "Agent Skill",
+          "score": 0.155289
+        },
+        {
+          "id": "claim_e61ea483a07cf5de0a27123b",
+          "statement": "基于 138K SKILL.md 分析，91.8% 的 Skill 至少有一个可检测缺陷。",
+          "type": "quantitative",
+          "topic": "Skill 复用",
+          "scope": [
+            "138K SKILL.md 分析"
+          ],
+          "score": 0.148801
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "Agent Skills 的元数据层约 50 Token，仅包含技能名称、触发条件、功能概述，启动时全局加载。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "Agent Skills 的元数据层约 50 Token，仅包含技能名称、触发条件、功能概述，启动时全局加载。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.85
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD"
+      }
+    },
+    {
+      "caseId": "harness-fixed-14",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_49845a53926391568fd3d315",
+        "statement": "Agent Skills 的指令层约 500 Token，包含标准作业流程与输入输出规范，仅在任务触发时加载。",
+        "type": "quantitative",
+        "topic": "Agent Skills",
+        "scope": [
+          "Agent Skills 指令层"
+        ],
+        "qualifiers": [
+          "约 500 Token",
+          "仅在任务触发时"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_c5c26d990ff7ffbc95631cc4",
+          "statement": "根据 Agent Skills '26 研讨会，写好 Skill 需要回答三个核心问题。",
+          "type": "fact",
+          "topic": "Skill 设计核心问题",
+          "scope": [
+            "Agent Skills '26 研讨会"
+          ],
+          "score": 0.246882
+        },
+        {
+          "id": "claim_a7c0ba4c31fae079507dcca6",
+          "statement": "在 7 个 SkillsBench 任务里，agent 平均每次执行加载的 9.1K tokens（51.21%）与真实执行过程无关。",
+          "type": "quantitative",
+          "topic": "Skill 运行时加载",
+          "scope": [
+            "7 个 SkillsBench 任务"
+          ],
+          "score": 0.169063
+        },
+        {
+          "id": "claim_9ac0e4a971075c54a27af04f",
+          "statement": "在 7 个 SkillsBench 任务里，agent 平均每次执行加载约 17.8K source tokens。",
+          "type": "quantitative",
+          "topic": "Skill 运行时加载",
+          "scope": [
+            "7 个 SkillsBench 任务"
+          ],
+          "score": 0.161133
+        },
+        {
+          "id": "claim_2e29c970efd8c65ce8102b47",
+          "statement": "Skill 是当前 Agent 范式中最实用的知识载体形态。",
+          "type": "opinion",
+          "topic": "Agent Skill",
+          "score": 0.146346
+        },
+        {
+          "id": "claim_e61ea483a07cf5de0a27123b",
+          "statement": "基于 138K SKILL.md 分析，91.8% 的 Skill 至少有一个可检测缺陷。",
+          "type": "quantitative",
+          "topic": "Skill 复用",
+          "scope": [
+            "138K SKILL.md 分析"
+          ],
+          "score": 0.139832
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "Agent Skills 的指令层约 500 Token，包含标准作业流程与输入输出规范，仅在任务触发时加载。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "Agent Skills 的指令层约 500 Token，包含标准作业流程与输入输出规范，仅在任务触发时加载。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.85
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD"
+      }
+    },
+    {
+      "caseId": "harness-fixed-17",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_82ce6bc12270cf036974f4e6",
+        "statement": "模型的能力上限由 OpenAI、Anthropic 等公司决定，而 Harness 由工程师决定。",
+        "type": "opinion",
+        "topic": "Harness 定义",
+        "scope": [
+          "AI 产品"
+        ],
+        "confidence": 0.8
+      },
+      "existingClaims": [
+        {
+          "id": "claim_63075c252d5dc74fe54a080d",
+          "statement": "A2A 协议由 Google、Microsoft、OpenAI、Anthropic 等 16 家企业联合制定，2025 年 3 月正式发布规范。",
+          "type": "fact",
+          "topic": "A2A",
+          "scope": [
+            "2025-03"
+          ],
+          "score": 0.122358
+        },
+        {
+          "id": "claim_1f0030c43af54a833378a09f",
+          "statement": "Harness 工作流是规则驱动的概率程序，输出由 Prompt、Rules、Skills、Model 共同决定，任何一项微调都可能引起行为变化。",
+          "type": "definition",
+          "topic": "Harness 评测",
+          "scope": [
+            "Harness 工作流"
+          ],
+          "qualifiers": [
+            "可能"
+          ],
+          "score": 0.096554
+        },
+        {
+          "id": "claim_59e363b92d4f847b2d860d1d",
+          "statement": "Agent 等于 Model 加 Harness，模型提供推理能力，Harness 把概率能力放进可执行、可观测、可校验、可恢复的工程环境。",
+          "type": "definition",
+          "topic": "Harness Engineering",
+          "scope": [
+            "Agent 架构"
+          ],
+          "score": 0.092808
+        },
+        {
+          "id": "claim_3d899ecfa634c76d422f4ab4",
+          "statement": "同一个模型在不同产品中表现差异巨大，通常不是 Prompt 的小差异，而是系统是否持续回答上下文、工具、编排、状态、校验、恢复六个问题。",
+          "type": "causal",
+          "topic": "Harness Engineering",
+          "scope": [
+            "多产品对比"
+          ],
+          "qualifiers": [
+            "通常"
+          ],
+          "score": 0.092178
+        },
+        {
+          "id": "claim_2869bfee3a45998f0b801ecc",
+          "statement": "Harness 评测的三个不可妥协原则是可重复优于精确、可归因优于高分、闭环优于单向。",
+          "type": "method",
+          "topic": "Harness 评测",
+          "scope": [
+            "评测原则"
+          ],
+          "score": 0.082443
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "partial",
+        "coreAspects": [
+          "模型的能力上限由 OpenAI、Anthropic 等公司决定，而 Harness 由工程师决定。"
+        ],
+        "coveredBy": [
+          "claim_63075c252d5dc74fe54a080d"
+        ],
+        "coveredAspects": [
+          "已有核心机制"
+        ],
+        "uncoveredAspects": [
+          "新增边界或精确表述"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [
+          {
+            "claimId": "claim_63075c252d5dc74fe54a080d",
+            "relation": "candidate_broader",
+            "coveredAspects": [
+              "已有核心机制"
+            ],
+            "conflictingAspects": [],
+            "reasoning": "Existing knowledge covers the core mechanism; the Candidate adds a boundary or precision."
+          }
+        ],
+        "reasoning": "Existing Claims cover the core idea but the Candidate adds a boundary or precision.",
+        "confidence": 0.85
+      },
+      "expected": {
+        "allowedRelations": [
+          "refine"
+        ],
+        "allowedCoverage": [
+          "partial"
+        ],
+        "mustNotBe": [
+          "add"
+        ],
+        "knownClaim": true,
+        "excludeFromGate": false,
+        "taxonomy": "C2 Existing Broader Missed"
+      }
+    },
+    {
+      "caseId": "harness-fixed-19",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_a9e220a17a275a92e7e25bc4",
+        "statement": "Harness 的第一职责是让模型在正确的信息边界内思考。",
+        "type": "definition",
+        "topic": "上下文管理",
+        "scope": [
+          "Harness 上下文管理"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_ab1376b2fe1c9cd7e3bd252a",
+          "statement": "Compaction 压缩历史并保留同一任务上下文，适合信息过多但方向仍正确的情况。",
+          "type": "definition",
+          "topic": "长任务上下文交接",
+          "scope": [
+            "Compaction"
+          ],
+          "qualifiers": [
+            "only"
+          ],
+          "score": 0.108395
+        },
+        {
+          "id": "claim_c2bbe6b7c7ae93e33fa92e32",
+          "statement": "Prompt 是 Context 的一部分，Context 是 Harness 的一部分，三者是由内向外的包含关系而非替代关系。",
+          "type": "definition",
+          "topic": "工程层次边界",
+          "scope": [
+            "Prompt/Context/Harness"
+          ],
+          "score": 0.1061
+        },
+        {
+          "id": "claim_59e363b92d4f847b2d860d1d",
+          "statement": "Agent 等于 Model 加 Harness，模型提供推理能力，Harness 把概率能力放进可执行、可观测、可校验、可恢复的工程环境。",
+          "type": "definition",
+          "topic": "Harness Engineering",
+          "scope": [
+            "Agent 架构"
+          ],
+          "score": 0.101971
+        },
+        {
+          "id": "claim_fa434c15fcd57d34ed18a84b",
+          "statement": "Reset 启动干净上下文并通过结构化交接物恢复任务，适合错误假设累积、约束遗失或行为开始偏航的情况。",
+          "type": "definition",
+          "topic": "长任务上下文交接",
+          "scope": [
+            "Reset"
+          ],
+          "qualifiers": [
+            "only"
+          ],
+          "score": 0.093931
+        },
+        {
+          "id": "claim_b14e6f10ada3211eb9c66d46",
+          "statement": "Skill 是上下文的注入单元，改变的是模型在当前情境下的身份、知识与思考方式，而非模型能调用什么。",
+          "type": "definition",
+          "topic": "Skill 本质价值",
+          "score": 0.087541
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "partial",
+        "coreAspects": [
+          "Harness 的第一职责是让模型在正确的信息边界内思考。"
+        ],
+        "coveredBy": [
+          "claim_ab1376b2fe1c9cd7e3bd252a"
+        ],
+        "coveredAspects": [
+          "已有核心机制"
+        ],
+        "uncoveredAspects": [
+          "新增边界或精确表述"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [
+          {
+            "claimId": "claim_ab1376b2fe1c9cd7e3bd252a",
+            "relation": "candidate_broader",
+            "coveredAspects": [
+              "已有核心机制"
+            ],
+            "conflictingAspects": [],
+            "reasoning": "Existing knowledge covers the core mechanism; the Candidate adds a boundary or precision."
+          }
+        ],
+        "reasoning": "Existing Claims cover the core idea but the Candidate adds a boundary or precision.",
+        "confidence": 0.85
+      },
+      "expected": {
+        "allowedRelations": [
+          "refine"
+        ],
+        "allowedCoverage": [
+          "partial"
+        ],
+        "mustNotBe": [
+          "add"
+        ],
+        "knownClaim": true,
+        "excludeFromGate": false,
+        "taxonomy": "C3 Multi-Claim Coverage Missed"
+      }
+    },
+    {
+      "caseId": "harness-fixed-20",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_6dc3d012f92be70f76acc44d",
+        "statement": "上下文不是越多越好，大模型常见问题不是知道太少，而是信息太杂。",
+        "type": "fact",
+        "topic": "上下文管理",
+        "scope": [
+          "上下文管理"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_4c09267378b295f43f11930f",
+          "statement": "热层（上下文内）只放本轮最相关的记忆和用户画像摘要，优点是模型立即可见，代价是昂贵且有硬容量上限。",
+          "type": "fact",
+          "topic": "三层存储",
+          "scope": [
+            "hot layer"
+          ],
+          "qualifiers": [
+            "只"
+          ],
+          "score": 0.109036
+        },
+        {
+          "id": "claim_4525419bfe56ff03b1ae07c2",
+          "statement": "随机抽样的 Benchmark 通常普通样本太多、关键节点太少、简单问题太多、边界风险太少。",
+          "type": "fact",
+          "topic": "Benchmark 设计",
+          "qualifiers": [
+            "通常"
+          ],
+          "score": 0.107204
+        },
+        {
+          "id": "claim_3e4b3ea504acbc65f0d43ddb",
+          "statement": "很多系统匹配到 Skill 后仍会把完整 Skill 包塞进上下文。",
+          "type": "fact",
+          "topic": "Skill 运行时加载",
+          "qualifiers": [
+            "很多系统"
+          ],
+          "score": 0.103999
+        },
+        {
+          "id": "claim_3fad0b0b49cf256e8fae9551",
+          "statement": "工作记忆的常见载体是 Context Window，主要风险是容量有限、早期信息被挤出。",
+          "type": "fact",
+          "topic": "四类记忆",
+          "scope": [
+            "working memory"
+          ],
+          "score": 0.094987
+        },
+        {
+          "id": "claim_e623f24691474611a26dc69f",
+          "statement": "语义记忆的常见载体是用户画像、项目事实与知识图谱，主要风险是冲突事实并存、过期信息未失效。",
+          "type": "fact",
+          "topic": "四类记忆",
+          "scope": [
+            "semantic memory"
+          ],
+          "score": 0.094678
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "上下文不是越多越好，大模型常见问题不是知道太少，而是信息太杂。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "上下文不是越多越好，大模型常见问题不是知道太少，而是信息太杂。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.85
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD"
+      }
+    },
+    {
+      "caseId": "harness-fixed-21",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_f1b9494c4c456237ea2a9742",
+        "statement": "工具设计不是越全越好，而应围绕任务场景配置，写作 Agent 与安全分析 Agent 应拥有不同工具集。",
+        "type": "method",
+        "topic": "工具系统",
+        "scope": [
+          "Harness 工具系统"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_fdb19690ac704f7ebf6a56ad",
+          "statement": "SPEC-First 原则要求先定义需求、边界、验收和人工介入点，再接工具或拆 Agent。",
+          "type": "method",
+          "topic": "团队落地原则",
+          "scope": [
+            "AI Coding 落地"
+          ],
+          "score": 0.102191
+        },
+        {
+          "id": "claim_f08ef621a8ee5dbadc668cb6",
+          "statement": "Trace 是 Agent 评测的地基，记录完整执行过程。",
+          "type": "fact",
+          "topic": "Trace 系统",
+          "scope": [
+            "Agent 评测"
+          ],
+          "score": 0.093046
+        },
+        {
+          "id": "claim_42b21213c23a2b3291c125d1",
+          "statement": "同一个场景下，Agent 可以先追问，也可以基于已有信息给初步建议，两者都可能合理。",
+          "type": "fact",
+          "topic": "标准答案 vs 标准判断",
+          "qualifiers": [
+            "可能"
+          ],
+          "score": 0.071541
+        },
+        {
+          "id": "claim_1492b148b972407249e44ada",
+          "statement": "配置存在不代表 Agent 会遵守，单次成功也不代表治理完整。",
+          "type": "fact",
+          "topic": "三层治理",
+          "scope": [
+            "Harness 治理"
+          ],
+          "score": 0.068193
+        },
+        {
+          "id": "claim_c1770b3eaad2642e883761c2",
+          "statement": "Agent Memory 的标准分类方式是 episodic memory 和 semantic memory。",
+          "type": "definition",
+          "topic": "Agent Memory 分类",
+          "scope": [
+            "Agent Memory"
+          ],
+          "qualifiers": [
+            "标准"
+          ],
+          "score": 0.067594
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "工具设计不是越全越好，而应围绕任务场景配置，写作 Agent 与安全分析 Agent 应拥有不同工具集。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "工具设计不是越全越好，而应围绕任务场景配置，写作 Agent 与安全分析 Agent 应拥有不同工具集。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.85
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD"
+      }
+    },
+    {
+      "caseId": "harness-fixed-23",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_81796b6522b4ecc57a8c864d",
+        "statement": "记忆应区分临时状态、会话记忆和长期偏好三类，混在一起会使系统越来越乱。",
+        "type": "method",
+        "topic": "状态与记忆",
+        "scope": [
+          "Harness 状态与记忆"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_e795443d71c08f046bf52928",
+          "statement": "临时状态默认不写入长期语义记忆。",
+          "type": "method",
+          "topic": "记忆写入门控",
+          "scope": [
+            "long-term semantic memory"
+          ],
+          "qualifiers": [
+            "默认"
+          ],
+          "score": 0.144744
+        },
+        {
+          "id": "claim_6c9812bbb6d2b9e4743c1d26",
+          "statement": "记忆的重要性与时间衰减需要分开处理，低频不等于无价值。",
+          "type": "method",
+          "topic": "记忆衰减",
+          "scope": [
+            "memory decay"
+          ],
+          "score": 0.119451
+        },
+        {
+          "id": "claim_454011cd02e371ff4ba5ee54",
+          "statement": "记忆完整度与记忆运用意愿应分别评估，系统可以拥有一条记忆但在无关场景中不引用、不主动暴露。",
+          "type": "method",
+          "topic": "记忆评测维度",
+          "scope": [
+            "memory evaluation"
+          ],
+          "qualifiers": [
+            "应"
+          ],
+          "score": 0.118469
+        },
+        {
+          "id": "claim_694bfae1f2c4457024a481f5",
+          "statement": "中期任务状态（最近几天在推进什么、卡在哪里、下一步）不应写入长期用户画像，也不应只靠检索全部聊天记录恢复。",
+          "type": "method",
+          "topic": "中期任务状态",
+          "scope": [
+            "mid-term task state"
+          ],
+          "qualifiers": [
+            "不应"
+          ],
+          "score": 0.112967
+        },
+        {
+          "id": "claim_f20df4a53dadcd0016da6bdf",
+          "statement": "记忆应用可采用三种策略：直接使用、只作背景但不主动提及、再经过当前相关性和敏感性过滤。",
+          "type": "method",
+          "topic": "记忆应用策略",
+          "scope": [
+            "memory application"
+          ],
+          "score": 0.10923
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "partial",
+        "coreAspects": [
+          "记忆应区分临时状态、会话记忆和长期偏好三类，混在一起会使系统越来越乱。"
+        ],
+        "coveredBy": [
+          "claim_e795443d71c08f046bf52928"
+        ],
+        "coveredAspects": [
+          "已有核心机制"
+        ],
+        "uncoveredAspects": [
+          "新增边界或精确表述"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [
+          {
+            "claimId": "claim_e795443d71c08f046bf52928",
+            "relation": "candidate_broader",
+            "coveredAspects": [
+              "已有核心机制"
+            ],
+            "conflictingAspects": [],
+            "reasoning": "Existing knowledge covers the core mechanism; the Candidate adds a boundary or precision."
+          }
+        ],
+        "reasoning": "Existing Claims cover the core idea but the Candidate adds a boundary or precision.",
+        "confidence": 0.85
+      },
+      "expected": {
+        "allowedRelations": [
+          "refine"
+        ],
+        "allowedCoverage": [
+          "partial"
+        ],
+        "mustNotBe": [
+          "add"
+        ],
+        "knownClaim": true,
+        "excludeFromGate": false,
+        "taxonomy": "C4 Scope Difference Misread"
+      }
+    },
+    {
+      "caseId": "harness-fixed-24",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_98d3751f7fb0e1844753e598",
+        "statement": "如果没有独立的评估与观测能力，Agent 容易停留在自我感觉良好的阶段。",
+        "type": "causal",
+        "topic": "评估与观测",
+        "scope": [
+          "Harness 评估与观测"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_454011cd02e371ff4ba5ee54",
+          "statement": "记忆完整度与记忆运用意愿应分别评估，系统可以拥有一条记忆但在无关场景中不引用、不主动暴露。",
+          "type": "method",
+          "topic": "记忆评测维度",
+          "scope": [
+            "memory evaluation"
+          ],
+          "qualifiers": [
+            "应"
+          ],
+          "score": 0.436567
+        },
+        {
+          "id": "claim_b7d0dcb82e650ae301bdb9f1",
+          "statement": "Bad Case 闭环流程为线上发现问题 → 抽取完整 Trace → 人工复盘 → 判断是 Agent 错还是评估器错 → 归因失败类型 → 修复 → 加入能力测评集 → 稳定通过后进回归集。",
+          "type": "method",
+          "topic": "Bad Case 闭环",
+          "scope": [
+            "Agent 评测"
+          ],
+          "score": 0.34747
+        },
+        {
+          "id": "claim_d6200d79f94ae5322952c570",
+          "statement": "Harness 的六大支柱是上下文管理、工具系统、执行编排、状态与记忆、评估与观测、约束与恢复。",
+          "type": "definition",
+          "topic": "六大支柱",
+          "scope": [
+            "Harness 架构"
+          ],
+          "score": 0.337289
+        },
+        {
+          "id": "claim_2ecef2448b6a060dae9f1750",
+          "statement": "有价值的 Benchmark 会不断吸收线上 bad case、灰度失败样本、人工争议样本、评估器误判样本以及业务指标和离线指标不一致的样本。",
+          "type": "method",
+          "topic": "Benchmark 维护",
+          "score": 0.305937
+        },
+        {
+          "id": "claim_2869bfee3a45998f0b801ecc",
+          "statement": "Harness 评测的三个不可妥协原则是可重复优于精确、可归因优于高分、闭环优于单向。",
+          "type": "method",
+          "topic": "Harness 评测",
+          "scope": [
+            "评测原则"
+          ],
+          "score": 0.292
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "partial",
+        "coreAspects": [
+          "如果没有独立的评估与观测能力，Agent 容易停留在自我感觉良好的阶段。"
+        ],
+        "coveredBy": [
+          "claim_454011cd02e371ff4ba5ee54"
+        ],
+        "coveredAspects": [
+          "已有核心机制"
+        ],
+        "uncoveredAspects": [
+          "新增边界或精确表述"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [
+          {
+            "claimId": "claim_454011cd02e371ff4ba5ee54",
+            "relation": "candidate_broader",
+            "coveredAspects": [
+              "已有核心机制"
+            ],
+            "conflictingAspects": [],
+            "reasoning": "Existing knowledge covers the core mechanism; the Candidate adds a boundary or precision."
+          }
+        ],
+        "reasoning": "Existing Claims cover the core idea but the Candidate adds a boundary or precision.",
+        "confidence": 0.85
+      },
+      "expected": {
+        "allowedRelations": [
+          "refine"
+        ],
+        "allowedCoverage": [
+          "partial"
+        ],
+        "mustNotBe": [
+          "add"
+        ],
+        "knownClaim": true,
+        "excludeFromGate": false,
+        "taxonomy": "C2 Existing Broader Missed"
+      }
+    },
+    {
+      "caseId": "harness-fixed-25",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_e58ba669ccc487d7e4d76aa8",
+        "statement": "在真实环境中失败是常态，包括搜索结果不准、API 超时、文档格式混乱、模型误解指令、输出不符合约束、工具权限不足。",
+        "type": "fact",
+        "topic": "失败恢复",
+        "scope": [
+          "真实环境"
+        ],
+        "qualifiers": [
+          "在真实环境里"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_1ee1a621970182521c3b5518",
+          "statement": "AgentBench 主要测多环境中的规划、工具使用和多轮交互。",
+          "type": "fact",
+          "topic": "公开基准地图",
+          "scope": [
+            "AgentBench"
+          ],
+          "score": 0.098043
+        },
+        {
+          "id": "claim_60fd9c05dde868aed59a5d03",
+          "statement": "WebArena 评测真实感网页环境中的多步骤浏览器任务。",
+          "type": "fact",
+          "topic": "公开基准地图",
+          "scope": [
+            "WebArena"
+          ],
+          "score": 0.091928
+        },
+        {
+          "id": "claim_61848d52082615ef58bbcbae",
+          "statement": "OSWorld 在操作系统 GUI 环境中执行任务，屏幕理解、点击路径和应用状态引入新失败面。",
+          "type": "fact",
+          "topic": "公开基准地图",
+          "scope": [
+            "OSWorld"
+          ],
+          "score": 0.085775
+        },
+        {
+          "id": "claim_72977bc629aca09e606c306b",
+          "statement": "SWE-bench 在真实 GitHub issue 上改代码并通过测试。",
+          "type": "fact",
+          "topic": "公开基准地图",
+          "scope": [
+            "SWE-bench"
+          ],
+          "score": 0.084303
+        },
+        {
+          "id": "claim_051c143f34908e9188377e60",
+          "statement": "四类数据来源包括专家设计用例、扩展用例、线上真实数据和 Badcase 回流。",
+          "type": "fact",
+          "topic": "数据来源",
+          "scope": [
+            "Benchmark 建设"
+          ],
+          "score": 0.079091
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "在真实环境中失败是常态，包括搜索结果不准、API 超时、文档格式混乱、模型误解指令、输出不符合约束、工具权限不足。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "在真实环境中失败是常态，包括搜索结果不准、API 超时、文档格式混乱、模型误解指令、输出不符合约束、工具权限不足。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.85
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD"
+      }
+    },
+    {
+      "caseId": "harness-fixed-26",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_f6b092d64aeae4d2d4d18d82",
+        "statement": "Anthropic 总结出两个典型失败模式：上下文焦虑和自评失真。",
+        "type": "fact",
+        "topic": "Anthropic 实践",
+        "scope": [
+          "Anthropic 实践"
+        ],
+        "confidence": 0.9
+      },
+      "existingClaims": [
+        {
+          "id": "claim_97d64a8dbfda4b879bf05e09",
+          "statement": "MCP 由 Anthropic 在 2024 年 11 月首次开源发布，统一了 Agent 与外部工具交互的标准。",
+          "type": "fact",
+          "topic": "MCP",
+          "scope": [
+            "2024-11"
+          ],
+          "score": 0.103139
+        },
+        {
+          "id": "claim_63075c252d5dc74fe54a080d",
+          "statement": "A2A 协议由 Google、Microsoft、OpenAI、Anthropic 等 16 家企业联合制定，2025 年 3 月正式发布规范。",
+          "type": "fact",
+          "topic": "A2A",
+          "scope": [
+            "2025-03"
+          ],
+          "score": 0.099264
+        },
+        {
+          "id": "claim_4c9402eaeabe9ef6de7f659d",
+          "statement": "LangGraph 支持 ReAct 和 Plan-and-Execute 双模式，并可在同一工作流中无缝切换。",
+          "type": "fact",
+          "topic": "LangGraph",
+          "scope": [
+            "LangGraph"
+          ],
+          "score": 0.092949
+        },
+        {
+          "id": "claim_4c09267378b295f43f11930f",
+          "statement": "热层（上下文内）只放本轮最相关的记忆和用户画像摘要，优点是模型立即可见，代价是昂贵且有硬容量上限。",
+          "type": "fact",
+          "topic": "三层存储",
+          "scope": [
+            "hot layer"
+          ],
+          "qualifiers": [
+            "只"
+          ],
+          "score": 0.091645
+        },
+        {
+          "id": "claim_3e4b3ea504acbc65f0d43ddb",
+          "statement": "很多系统匹配到 Skill 后仍会把完整 Skill 包塞进上下文。",
+          "type": "fact",
+          "topic": "Skill 运行时加载",
+          "qualifiers": [
+            "很多系统"
+          ],
+          "score": 0.089137
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "Anthropic 总结出两个典型失败模式：上下文焦虑和自评失真。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "Anthropic 总结出两个典型失败模式：上下文焦虑和自评失真。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.85
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD"
+      }
+    },
+    {
+      "caseId": "harness-fixed-27",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_e24a0e039481c30871b602a2",
+        "statement": "当模型接近上下文窗口极限时，它会焦虑地想赶紧收尾。",
+        "type": "experiential",
+        "topic": "上下文焦虑",
+        "scope": [
+          "Anthropic 实践"
+        ],
+        "qualifiers": [
+          "当模型接近上下文窗口极限时"
+        ],
+        "confidence": 0.8
+      },
+      "existingClaims": [
+        {
+          "id": "claim_3fad0b0b49cf256e8fae9551",
+          "statement": "工作记忆的常见载体是 Context Window，主要风险是容量有限、早期信息被挤出。",
+          "type": "fact",
+          "topic": "四类记忆",
+          "scope": [
+            "working memory"
+          ],
+          "score": 0.193
+        },
+        {
+          "id": "claim_3d899ecfa634c76d422f4ab4",
+          "statement": "同一个模型在不同产品中表现差异巨大，通常不是 Prompt 的小差异，而是系统是否持续回答上下文、工具、编排、状态、校验、恢复六个问题。",
+          "type": "causal",
+          "topic": "Harness Engineering",
+          "scope": [
+            "多产品对比"
+          ],
+          "qualifiers": [
+            "通常"
+          ],
+          "score": 0.073907
+        },
+        {
+          "id": "claim_ab1376b2fe1c9cd7e3bd252a",
+          "statement": "Compaction 压缩历史并保留同一任务上下文，适合信息过多但方向仍正确的情况。",
+          "type": "definition",
+          "topic": "长任务上下文交接",
+          "scope": [
+            "Compaction"
+          ],
+          "qualifiers": [
+            "only"
+          ],
+          "score": 0.070753
+        },
+        {
+          "id": "claim_fa434c15fcd57d34ed18a84b",
+          "statement": "Reset 启动干净上下文并通过结构化交接物恢复任务，适合错误假设累积、约束遗失或行为开始偏航的情况。",
+          "type": "definition",
+          "topic": "长任务上下文交接",
+          "scope": [
+            "Reset"
+          ],
+          "qualifiers": [
+            "only"
+          ],
+          "score": 0.070362
+        },
+        {
+          "id": "claim_a419ff99a1954a035012b70a",
+          "statement": "失败时应先问缺少哪项结构能力（上下文、工具、反馈、门禁还是恢复路径），而不是劝模型更努力。",
+          "type": "method",
+          "topic": "团队落地原则",
+          "scope": [
+            "AI Coding 落地"
+          ],
+          "score": 0.065239
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "当模型接近上下文窗口极限时，它会焦虑地想赶紧收尾。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "当模型接近上下文窗口极限时，它会焦虑地想赶紧收尾。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.85
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD"
+      }
+    },
+    {
+      "caseId": "harness-fixed-28",
+      "category": "harness-fixed",
+      "candidate": {
+        "id": "candidate_0701bfda64266e7694cf3153",
+        "statement": "模型自评往往偏乐观，尤其在设计、体验、产品完整度这类没有绝对二元答案的问题上偏差更明显。",
+        "type": "fact",
+        "topic": "自评失真",
+        "scope": [
+          "Anthropic 实践"
+        ],
+        "qualifiers": [
+          "往往",
+          "尤其"
+        ],
+        "confidence": 0.85
+      },
+      "existingClaims": [
+        {
+          "id": "claim_c5c26d990ff7ffbc95631cc4",
+          "statement": "根据 Agent Skills '26 研讨会，写好 Skill 需要回答三个核心问题。",
+          "type": "fact",
+          "topic": "Skill 设计核心问题",
+          "scope": [
+            "Agent Skills '26 研讨会"
+          ],
+          "score": 0.104086
+        },
+        {
+          "id": "claim_f08ef621a8ee5dbadc668cb6",
+          "statement": "Trace 是 Agent 评测的地基，记录完整执行过程。",
+          "type": "fact",
+          "topic": "Trace 系统",
+          "scope": [
+            "Agent 评测"
+          ],
+          "score": 0.103515
+        },
+        {
+          "id": "claim_2179e9beed28547d724e39b7",
+          "statement": "现代 Agent（2023-2024）采用模型驱动、ReAct 循环的执行模式。",
+          "type": "fact",
+          "topic": "Agent 范式演进",
+          "scope": [
+            "2023-2024"
+          ],
+          "score": 0.102661
+        },
+        {
+          "id": "claim_1492b148b972407249e44ada",
+          "statement": "配置存在不代表 Agent 会遵守，单次成功也不代表治理完整。",
+          "type": "fact",
+          "topic": "三层治理",
+          "scope": [
+            "Harness 治理"
+          ],
+          "score": 0.101365
+        },
+        {
+          "id": "claim_3e4b3ea504acbc65f0d43ddb",
+          "statement": "很多系统匹配到 Skill 后仍会把完整 Skill 包塞进上下文。",
+          "type": "fact",
+          "topic": "Skill 运行时加载",
+          "qualifiers": [
+            "很多系统"
+          ],
+          "score": 0.100767
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Phase 5.1 direct comparison baseline classified this fixed Candidate as ADD.",
+        "confidence": 0.75
+      },
+      "coverageV2": {
+        "coverage": "none",
+        "coreAspects": [
+          "模型自评往往偏乐观，尤其在设计、体验、产品完整度这类没有绝对二元答案的问题上偏差更明显。"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "模型自评往往偏乐观，尤其在设计、体验、产品完整度这类没有绝对二元答案的问题上偏差更明显。"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [],
+        "reasoning": "No supplied Existing Claim covers the Candidate core knowledge.",
+        "confidence": 0.85
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "excludeFromGate": false,
+        "taxonomy": "C8 True ADD"
+      }
+    }
+  ]
+}

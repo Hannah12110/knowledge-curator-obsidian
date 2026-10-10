@@ -1,0 +1,5 @@
+{
+  "caseId": "claim-numerical-conflict-01",
+  "actual": {},
+  "providerComparison": { "relation": "reinforce", "existingClaimId": "claim-benchmark-pass-rate", "existingStatement": "Benchmark pass rate is 80% under Model A on Dataset Alpha.", "similarity": 0.9, "reasoning": "Provider overlooked numerical conditions.", "confidence": 0.8 }
+}

@@ -1,0 +1,867 @@
+{
+  "description": "Deterministic Phase 5.2 fixed Candidate/Top-K comparison dataset. Candidate extraction and retrieval are not executed.",
+  "cases": [
+    {
+      "caseId": "comparison-equivalent-01",
+      "category": "equivalent",
+      "candidate": {
+        "confidence": 0.9,
+        "id": "c-equivalent",
+        "statement": "Long-term memory persists information across sessions.",
+        "type": "fact"
+      },
+      "existingClaims": [
+        {
+          "id": "e-equivalent",
+          "statement": "Agent long-term memory stores information beyond a single session.",
+          "type": "fact",
+          "score": 0.9
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Wording differs.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "confidence": 0.9,
+        "reasoning": "Fixed human-labelled coverage fixture.",
+        "coverage": "full",
+        "coreAspects": [
+          "cross-session persistence"
+        ],
+        "coveredBy": [
+          "e-equivalent"
+        ],
+        "coveredAspects": [
+          "cross-session persistence"
+        ],
+        "uncoveredAspects": [],
+        "conflictingAspects": [],
+        "pairwise": [
+          {
+            "claimId": "e-equivalent",
+            "relation": "equivalent",
+            "coveredAspects": [
+              "cross-session persistence"
+            ],
+            "conflictingAspects": [],
+            "reasoning": "Fixed human-labelled coverage fixture."
+          }
+        ]
+      },
+      "expected": {
+        "allowedRelations": [
+          "reinforce"
+        ],
+        "allowedCoverage": [
+          "full"
+        ],
+        "mustNotBe": [
+          "add"
+        ],
+        "knownClaim": true,
+        "taxonomy": "C1 Semantic Equivalent Missed"
+      }
+    },
+    {
+      "caseId": "comparison-paraphrase-01",
+      "category": "paraphrase",
+      "candidate": {
+        "confidence": 0.9,
+        "id": "c-paraphrase",
+        "statement": "A good evaluation run must be repeatable under the same configuration.",
+        "type": "fact"
+      },
+      "existingClaims": [
+        {
+          "id": "e-paraphrase",
+          "statement": "Agent evaluation should produce reproducible results when configuration is fixed.",
+          "type": "fact",
+          "score": 0.9
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Different phrasing.",
+        "confidence": 0.78
+      },
+      "coverageV2": {
+        "confidence": 0.9,
+        "reasoning": "Fixed human-labelled coverage fixture.",
+        "coverage": "full",
+        "coreAspects": [
+          "repeatable evaluation",
+          "same configuration"
+        ],
+        "coveredBy": [
+          "e-paraphrase"
+        ],
+        "coveredAspects": [
+          "repeatable evaluation",
+          "same configuration"
+        ],
+        "uncoveredAspects": [],
+        "conflictingAspects": [],
+        "pairwise": [
+          {
+            "claimId": "e-paraphrase",
+            "relation": "equivalent",
+            "coveredAspects": [
+              "repeatable evaluation",
+              "same configuration"
+            ],
+            "conflictingAspects": [],
+            "reasoning": "Fixed human-labelled coverage fixture."
+          }
+        ]
+      },
+      "expected": {
+        "allowedRelations": [
+          "reinforce"
+        ],
+        "allowedCoverage": [
+          "full"
+        ],
+        "mustNotBe": [
+          "add"
+        ],
+        "knownClaim": true,
+        "taxonomy": "C1 Semantic Equivalent Missed"
+      }
+    },
+    {
+      "caseId": "comparison-existing-broader-01",
+      "category": "existing-broader",
+      "candidate": {
+        "confidence": 0.9,
+        "id": "c-existing-broader",
+        "statement": "Harness manages tool execution.",
+        "type": "fact"
+      },
+      "existingClaims": [
+        {
+          "id": "e-existing-broader",
+          "statement": "Harness manages context, tool execution, state, validation, and failure recovery.",
+          "type": "fact",
+          "score": 0.9
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "No exact tool-only claim.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "confidence": 0.9,
+        "reasoning": "Fixed human-labelled coverage fixture.",
+        "coverage": "full",
+        "coreAspects": [
+          "tool execution"
+        ],
+        "coveredBy": [
+          "e-existing-broader"
+        ],
+        "coveredAspects": [
+          "tool execution"
+        ],
+        "uncoveredAspects": [],
+        "conflictingAspects": [],
+        "pairwise": [
+          {
+            "claimId": "e-existing-broader",
+            "relation": "existing_broader",
+            "coveredAspects": [
+              "tool execution"
+            ],
+            "conflictingAspects": [],
+            "reasoning": "Fixed human-labelled coverage fixture."
+          }
+        ]
+      },
+      "expected": {
+        "allowedRelations": [
+          "reinforce"
+        ],
+        "allowedCoverage": [
+          "full"
+        ],
+        "mustNotBe": [
+          "add"
+        ],
+        "knownClaim": true,
+        "taxonomy": "C2 Existing Broader Missed"
+      }
+    },
+    {
+      "caseId": "comparison-candidate-broader-01",
+      "category": "candidate-broader",
+      "candidate": {
+        "confidence": 0.9,
+        "id": "c-candidate-broader",
+        "statement": "Harness manages tools, context, and failure recovery.",
+        "type": "fact"
+      },
+      "existingClaims": [
+        {
+          "id": "e-candidate-broader",
+          "statement": "Harness manages tool execution.",
+          "type": "fact",
+          "score": 0.9
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Candidate contains extra content.",
+        "confidence": 0.82
+      },
+      "coverageV2": {
+        "confidence": 0.9,
+        "reasoning": "Fixed human-labelled coverage fixture.",
+        "coverage": "partial",
+        "coreAspects": [
+          "tools",
+          "context",
+          "failure recovery"
+        ],
+        "coveredBy": [
+          "e-candidate-broader"
+        ],
+        "coveredAspects": [
+          "tools"
+        ],
+        "uncoveredAspects": [
+          "context",
+          "failure recovery"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [
+          {
+            "claimId": "e-candidate-broader",
+            "relation": "candidate_broader",
+            "coveredAspects": [
+              "tools"
+            ],
+            "conflictingAspects": [],
+            "reasoning": "Fixed human-labelled coverage fixture."
+          }
+        ]
+      },
+      "expected": {
+        "allowedRelations": [
+          "refine"
+        ],
+        "allowedCoverage": [
+          "partial"
+        ],
+        "mustNotBe": [
+          "add",
+          "reinforce"
+        ],
+        "knownClaim": true,
+        "taxonomy": "C2 Existing Broader Missed"
+      }
+    },
+    {
+      "caseId": "comparison-multi-full-01",
+      "category": "multi-full",
+      "candidate": {
+        "confidence": 0.9,
+        "id": "c-multi-full",
+        "statement": "Harness manages context, tool execution, and failure recovery.",
+        "type": "fact"
+      },
+      "existingClaims": [
+        {
+          "id": "e-context",
+          "statement": "Harness manages context.",
+          "type": "fact",
+          "score": 0.9
+        },
+        {
+          "id": "e-tools",
+          "statement": "Harness organizes tool execution.",
+          "type": "fact",
+          "score": 0.8200000000000001
+        },
+        {
+          "id": "e-recovery",
+          "statement": "Harness includes retry and failure recovery.",
+          "type": "fact",
+          "score": 0.74
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "No single claim covers every aspect.",
+        "confidence": 0.83
+      },
+      "coverageV2": {
+        "confidence": 0.9,
+        "reasoning": "Fixed human-labelled coverage fixture.",
+        "coverage": "full",
+        "coreAspects": [
+          "context",
+          "tool execution",
+          "failure recovery"
+        ],
+        "coveredBy": [
+          "e-context",
+          "e-tools",
+          "e-recovery"
+        ],
+        "coveredAspects": [
+          "context",
+          "tool execution",
+          "failure recovery"
+        ],
+        "uncoveredAspects": [],
+        "conflictingAspects": [],
+        "pairwise": [
+          {
+            "claimId": "e-context",
+            "relation": "overlap",
+            "coveredAspects": [
+              "context"
+            ],
+            "conflictingAspects": [],
+            "reasoning": "Fixed human-labelled coverage fixture."
+          },
+          {
+            "claimId": "e-tools",
+            "relation": "overlap",
+            "coveredAspects": [
+              "tool execution"
+            ],
+            "conflictingAspects": [],
+            "reasoning": "Fixed human-labelled coverage fixture."
+          },
+          {
+            "claimId": "e-recovery",
+            "relation": "overlap",
+            "coveredAspects": [
+              "failure recovery"
+            ],
+            "conflictingAspects": [],
+            "reasoning": "Fixed human-labelled coverage fixture."
+          }
+        ]
+      },
+      "expected": {
+        "allowedRelations": [
+          "reinforce"
+        ],
+        "allowedCoverage": [
+          "full"
+        ],
+        "mustNotBe": [
+          "add",
+          "refine"
+        ],
+        "knownClaim": true,
+        "taxonomy": "C3 Multi-Claim Coverage Missed"
+      }
+    },
+    {
+      "caseId": "comparison-multi-partial-01",
+      "category": "multi-partial",
+      "candidate": {
+        "confidence": 0.9,
+        "id": "c-multi-partial",
+        "statement": "Harness manages context, tools, recovery, and cost budgets.",
+        "type": "fact"
+      },
+      "existingClaims": [
+        {
+          "id": "e-context-p",
+          "statement": "Harness manages context.",
+          "type": "fact",
+          "score": 0.9
+        },
+        {
+          "id": "e-tools-p",
+          "statement": "Harness organizes tool execution.",
+          "type": "fact",
+          "score": 0.8200000000000001
+        },
+        {
+          "id": "e-recovery-p",
+          "statement": "Harness includes failure recovery.",
+          "type": "fact",
+          "score": 0.74
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Cost budget is new.",
+        "confidence": 0.83
+      },
+      "coverageV2": {
+        "confidence": 0.9,
+        "reasoning": "Fixed human-labelled coverage fixture.",
+        "coverage": "partial",
+        "coreAspects": [
+          "context",
+          "tools",
+          "recovery",
+          "cost budgets"
+        ],
+        "coveredBy": [
+          "e-context-p",
+          "e-tools-p",
+          "e-recovery-p"
+        ],
+        "coveredAspects": [
+          "context",
+          "tools",
+          "recovery"
+        ],
+        "uncoveredAspects": [
+          "cost budgets"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [
+          {
+            "claimId": "e-context-p",
+            "relation": "overlap",
+            "coveredAspects": [
+              "context"
+            ],
+            "conflictingAspects": [],
+            "reasoning": "Fixed human-labelled coverage fixture."
+          },
+          {
+            "claimId": "e-tools-p",
+            "relation": "overlap",
+            "coveredAspects": [
+              "tools"
+            ],
+            "conflictingAspects": [],
+            "reasoning": "Fixed human-labelled coverage fixture."
+          },
+          {
+            "claimId": "e-recovery-p",
+            "relation": "overlap",
+            "coveredAspects": [
+              "recovery"
+            ],
+            "conflictingAspects": [],
+            "reasoning": "Fixed human-labelled coverage fixture."
+          }
+        ]
+      },
+      "expected": {
+        "allowedRelations": [
+          "refine"
+        ],
+        "allowedCoverage": [
+          "partial"
+        ],
+        "mustNotBe": [
+          "add",
+          "reinforce"
+        ],
+        "knownClaim": true,
+        "taxonomy": "C3 Multi-Claim Coverage Missed"
+      }
+    },
+    {
+      "caseId": "comparison-qualifier-conflict-01",
+      "category": "qualifier-conflict",
+      "candidate": {
+        "confidence": 0.9,
+        "id": "c-qualifier",
+        "statement": "RAG always improves factual accuracy.",
+        "type": "fact"
+      },
+      "existingClaims": [
+        {
+          "id": "e-qualifier",
+          "statement": "RAG may improve factual accuracy when retrieval quality is high.",
+          "type": "fact",
+          "score": 0.9
+        }
+      ],
+      "comparisonV1": {
+        "relation": "reinforce",
+        "existingClaimId": "e-qualifier",
+        "reasoning": "Same topic.",
+        "confidence": 0.9
+      },
+      "coverageV2": {
+        "confidence": 0.9,
+        "reasoning": "Fixed human-labelled coverage fixture.",
+        "coverage": "conflicting",
+        "coreAspects": [
+          "RAG effect on accuracy",
+          "absolute guarantee"
+        ],
+        "coveredBy": [
+          "e-qualifier"
+        ],
+        "coveredAspects": [
+          "RAG effect on accuracy"
+        ],
+        "uncoveredAspects": [],
+        "conflictingAspects": [
+          "always versus may"
+        ],
+        "pairwise": [
+          {
+            "claimId": "e-qualifier",
+            "relation": "conflict",
+            "coveredAspects": [
+              "RAG effect on accuracy"
+            ],
+            "conflictingAspects": [
+              "always versus may"
+            ],
+            "reasoning": "Fixed human-labelled coverage fixture."
+          }
+        ]
+      },
+      "expected": {
+        "allowedRelations": [
+          "challenge"
+        ],
+        "allowedCoverage": [
+          "conflicting"
+        ],
+        "mustNotBe": [
+          "reinforce",
+          "add"
+        ],
+        "knownClaim": true,
+        "taxonomy": "C5 Qualifier Misread"
+      }
+    },
+    {
+      "caseId": "comparison-negation-conflict-01",
+      "category": "negation-conflict",
+      "candidate": {
+        "confidence": 0.9,
+        "id": "c-negation",
+        "statement": "Episodic memory is no longer useful in modern agents.",
+        "type": "fact"
+      },
+      "existingClaims": [
+        {
+          "id": "e-negation",
+          "statement": "Episodic memory remains useful in modern agents.",
+          "type": "fact",
+          "score": 0.9
+        }
+      ],
+      "comparisonV1": {
+        "relation": "reinforce",
+        "existingClaimId": "e-negation",
+        "reasoning": "Same topic.",
+        "confidence": 0.9
+      },
+      "coverageV2": {
+        "confidence": 0.9,
+        "reasoning": "Fixed human-labelled coverage fixture.",
+        "coverage": "conflicting",
+        "coreAspects": [
+          "episodic memory usefulness"
+        ],
+        "coveredBy": [
+          "e-negation"
+        ],
+        "coveredAspects": [],
+        "uncoveredAspects": [],
+        "conflictingAspects": [
+          "useful versus no longer useful"
+        ],
+        "pairwise": [
+          {
+            "claimId": "e-negation",
+            "relation": "conflict",
+            "coveredAspects": [],
+            "conflictingAspects": [
+              "useful versus no longer useful"
+            ],
+            "reasoning": "Fixed human-labelled coverage fixture."
+          }
+        ]
+      },
+      "expected": {
+        "allowedRelations": [
+          "challenge"
+        ],
+        "allowedCoverage": [
+          "conflicting"
+        ],
+        "mustNotBe": [
+          "reinforce",
+          "add"
+        ],
+        "knownClaim": true,
+        "taxonomy": "C5 Qualifier Misread"
+      }
+    },
+    {
+      "caseId": "comparison-numerical-conflict-01",
+      "category": "numerical-conflict",
+      "candidate": {
+        "confidence": 0.9,
+        "id": "c-number",
+        "statement": "Model A reaches 92% on Benchmark X.",
+        "type": "quantitative"
+      },
+      "existingClaims": [
+        {
+          "id": "e-number",
+          "statement": "Model A reaches 80% on Benchmark X.",
+          "type": "quantitative",
+          "score": 0.9
+        }
+      ],
+      "comparisonV1": {
+        "relation": "reinforce",
+        "existingClaimId": "e-number",
+        "reasoning": "Same benchmark.",
+        "confidence": 0.9
+      },
+      "coverageV2": {
+        "confidence": 0.9,
+        "reasoning": "Fixed human-labelled coverage fixture.",
+        "coverage": "conflicting",
+        "coreAspects": [
+          "Model A Benchmark X pass rate"
+        ],
+        "coveredBy": [
+          "e-number"
+        ],
+        "coveredAspects": [
+          "model and benchmark"
+        ],
+        "uncoveredAspects": [],
+        "conflictingAspects": [
+          "92% versus 80%"
+        ],
+        "pairwise": [
+          {
+            "claimId": "e-number",
+            "relation": "conflict",
+            "coveredAspects": [
+              "model and benchmark"
+            ],
+            "conflictingAspects": [
+              "92% versus 80%"
+            ],
+            "reasoning": "Fixed human-labelled coverage fixture."
+          }
+        ]
+      },
+      "expected": {
+        "allowedRelations": [
+          "challenge"
+        ],
+        "allowedCoverage": [
+          "conflicting"
+        ],
+        "mustNotBe": [
+          "reinforce",
+          "add"
+        ],
+        "knownClaim": true,
+        "taxonomy": "C6 Numerical Misread"
+      }
+    },
+    {
+      "caseId": "comparison-scope-difference-01",
+      "category": "scope-difference",
+      "candidate": {
+        "confidence": 0.9,
+        "id": "c-scope",
+        "statement": "Production agent systems often use short-term and long-term memory categories.",
+        "type": "fact",
+        "scope": [
+          "production"
+        ]
+      },
+      "existingClaims": [
+        {
+          "id": "e-scope",
+          "statement": "Research memory taxonomies often use episodic and semantic categories.",
+          "type": "fact",
+          "scope": [
+            "research"
+          ],
+          "score": 0.9
+        }
+      ],
+      "comparisonV1": {
+        "relation": "challenge",
+        "existingClaimId": "e-scope",
+        "reasoning": "Different taxonomies conflict.",
+        "confidence": 0.8
+      },
+      "coverageV2": {
+        "confidence": 0.9,
+        "reasoning": "Fixed human-labelled coverage fixture.",
+        "coverage": "partial",
+        "coreAspects": [
+          "memory taxonomy",
+          "production scope"
+        ],
+        "coveredBy": [
+          "e-scope"
+        ],
+        "coveredAspects": [
+          "memory taxonomy"
+        ],
+        "uncoveredAspects": [
+          "production implementation dimension"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [
+          {
+            "claimId": "e-scope",
+            "relation": "overlap",
+            "coveredAspects": [
+              "memory taxonomy"
+            ],
+            "conflictingAspects": [],
+            "reasoning": "Fixed human-labelled coverage fixture."
+          }
+        ]
+      },
+      "expected": {
+        "allowedRelations": [
+          "refine"
+        ],
+        "allowedCoverage": [
+          "partial"
+        ],
+        "mustNotBe": [
+          "challenge",
+          "add"
+        ],
+        "knownClaim": true,
+        "taxonomy": "C4 Scope Difference Misread"
+      }
+    },
+    {
+      "caseId": "comparison-concrete-example-01",
+      "category": "concrete-example",
+      "candidate": {
+        "confidence": 0.9,
+        "id": "c-example",
+        "statement": "A production system uses Milvus to persist Agent long-term memory.",
+        "type": "fact",
+        "scope": [
+          "production"
+        ]
+      },
+      "existingClaims": [
+        {
+          "id": "e-example",
+          "statement": "Agent long-term memory can be persisted in a vector database.",
+          "type": "method",
+          "score": 0.9
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "Milvus is not mentioned.",
+        "confidence": 0.82
+      },
+      "coverageV2": {
+        "confidence": 0.9,
+        "reasoning": "Fixed human-labelled coverage fixture.",
+        "coverage": "partial",
+        "coreAspects": [
+          "long-term memory persistence",
+          "Milvus implementation"
+        ],
+        "coveredBy": [
+          "e-example"
+        ],
+        "coveredAspects": [
+          "vector database persistence"
+        ],
+        "uncoveredAspects": [
+          "Milvus implementation detail"
+        ],
+        "conflictingAspects": [],
+        "pairwise": [
+          {
+            "claimId": "e-example",
+            "relation": "candidate_broader",
+            "coveredAspects": [
+              "vector database persistence"
+            ],
+            "conflictingAspects": [],
+            "reasoning": "Fixed human-labelled coverage fixture."
+          }
+        ]
+      },
+      "expected": {
+        "allowedRelations": [
+          "refine"
+        ],
+        "allowedCoverage": [
+          "partial"
+        ],
+        "mustNotBe": [
+          "add"
+        ],
+        "knownClaim": true,
+        "taxonomy": "C7 Example vs General Misread"
+      }
+    },
+    {
+      "caseId": "comparison-genuine-add-01",
+      "category": "genuine-add",
+      "candidate": {
+        "confidence": 0.9,
+        "id": "c-add",
+        "statement": "Harness should run staged experiments for Prompt versions.",
+        "type": "method"
+      },
+      "existingClaims": [
+        {
+          "id": "e-add",
+          "statement": "Harness manages execution state and tool recovery.",
+          "type": "method",
+          "score": 0.9
+        }
+      ],
+      "comparisonV1": {
+        "relation": "add",
+        "reasoning": "No existing claim covers staged Prompt experiments.",
+        "confidence": 0.9
+      },
+      "coverageV2": {
+        "confidence": 0.9,
+        "reasoning": "Fixed human-labelled coverage fixture.",
+        "coverage": "none",
+        "coreAspects": [
+          "staged Prompt experiments"
+        ],
+        "coveredBy": [],
+        "coveredAspects": [],
+        "uncoveredAspects": [
+          "staged Prompt experiments"
+        ],
+        "conflictingAspects": [],
+        "pairwise": []
+      },
+      "expected": {
+        "allowedRelations": [
+          "add"
+        ],
+        "allowedCoverage": [
+          "none"
+        ],
+        "mustNotBe": [
+          "reinforce"
+        ],
+        "knownClaim": false,
+        "taxonomy": "C8 True ADD"
+      }
+    }
+  ]
+}

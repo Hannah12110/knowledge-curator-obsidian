@@ -1,0 +1,5 @@
+{
+  "caseId": "retrieval-negation-conflict-01",
+  "actual": {},
+  "providerComparison": { "relation": "challenge", "existingClaimId": "claim-episodic-useful", "existingStatement": "Episodic memory remains useful in modern agents.", "similarity": 0.92, "reasoning": "The claims have opposite polarity about continued usefulness.", "confidence": 0.94 }
+}

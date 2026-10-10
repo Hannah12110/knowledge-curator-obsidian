@@ -1,0 +1,9 @@
+{
+  "id": "knowledge-curator",
+  "name": "Knowledge Curator",
+  "version": "0.1.0",
+  "minAppVersion": "1.5.0",
+  "description": "通过明确的审核流程管理进入 Obsidian 的知识。",
+  "author": "Knowledge Curator contributors",
+  "isDesktopOnly": true
+}

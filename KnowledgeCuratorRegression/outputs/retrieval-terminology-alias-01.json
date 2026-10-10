@@ -1,0 +1,5 @@
+{
+  "caseId": "retrieval-terminology-alias-01",
+  "actual": {},
+  "providerComparison": { "relation": "reinforce", "existingClaimId": "z-benchmark-repeatable", "existingStatement": "Repeatable agent evaluation requires fixed benchmark conditions.", "similarity": 0.89, "reasoning": "评测 and evaluation plus 基准测试 and benchmark map to the same method.", "confidence": 0.92 }
+}

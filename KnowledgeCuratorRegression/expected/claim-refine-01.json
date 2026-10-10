@@ -1,0 +1,19 @@
+{
+  "caseId": "claim-refine-01",
+  "type": "claim-refine",
+  "expected": {
+    "claimExpected": {
+      "existingClaimId": "claim-agent-memory-taxonomy",
+      "allowedRelations": ["refine"],
+      "knownClaim": true
+    },
+    "claimInput": {
+      "candidate": { "id": "candidate-refine", "statement": "Short-term and long-term describe persistence duration, while episodic and semantic describe content type.", "type": "definition", "topic": "Agent Memory" },
+      "existingClaims": [
+        { "id": "claim-agent-memory-taxonomy", "statement": "Agent memory can be divided into short-term and long-term memory.", "type": "definition", "topic": "Agent Memory" },
+        { "id": "claim-agent-memory-persistence", "statement": "Long-term memory persists information across sessions.", "type": "fact", "topic": "Agent Memory" },
+        { "id": "claim-rag-qualified-accuracy", "statement": "RAG may improve factual accuracy when retrieval quality is high.", "type": "fact", "topic": "RAG" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{"caseId":"evaluation-duplicate-01","type":"duplicate","expected":{"relatedWikiTop1":"KnowledgeCuratorRegression/wiki/Agent Evaluation.md","knowledgeGain":["low","none"],"allowedRecommendation":["reject","extract_only"],"expectedConflict":false}}

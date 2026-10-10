@@ -1,0 +1,5 @@
+{
+  "caseId": "claim-refine-01",
+  "actual": {},
+  "providerComparison": { "relation": "refine", "existingClaimId": "claim-agent-memory-taxonomy", "existingStatement": "Agent memory can be divided into short-term and long-term memory.", "similarity": 0.88, "reasoning": "Adds a second compatible classification dimension.", "confidence": 0.93 }
+}

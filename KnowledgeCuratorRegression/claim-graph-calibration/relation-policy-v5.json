@@ -1,0 +1,15 @@
+{
+  "version": "claim-graph-relations-v5-existence-held-out-v1",
+  "cases": [
+    { "id": "v5-evidence-supports-principle", "left": "日志显示缺少校验的写入更容易失败。", "right": "关键写入应执行输入校验。", "relation": "supports", "direction": "a_to_b" },
+    { "id": "v5-failure-supports-mitigation", "left": "夜间任务常因临时限流而失败。", "right": "夜间任务应配置有界重试。", "relation": "supports", "direction": "a_to_b" },
+    { "id": "v5-mechanism-supports-abstraction", "left": "系统通过失败样本回放发现回归。", "right": "持续评测能够降低发布回归风险。", "relation": "supports", "direction": "a_to_b" },
+    { "id": "v5-partial-evidence-support", "left": "一次试验中缓存命中率提高后延迟下降。", "right": "缓存可能改善服务延迟。", "relation": "supports", "direction": "a_to_b" },
+    { "id": "v5-semantic-detail-refinement", "left": "审计系统记录关键变更。", "right": "审计系统记录操作者、时间和变更前后值。", "relation": "refines", "direction": "b_to_a" },
+    { "id": "v5-parallel-facts-unrelated", "left": "服务使用蓝绿发布。", "right": "服务每周生成成本报告。", "relation": "unrelated", "direction": "not_applicable" },
+    { "id": "v5-same-topic-unrelated", "left": "MCP 支持能力协商。", "right": "MCP 社区维护公开路线图。", "relation": "unrelated", "direction": "not_applicable" },
+    { "id": "v5-sibling-metrics-unrelated", "left": "检索服务 P95 延迟为 80ms。", "right": "检索服务月度成本为 500 元。", "relation": "unrelated", "direction": "not_applicable" },
+    { "id": "v5-evaluative-comment-unrelated", "left": "该界面看起来很简洁。", "right": "该界面通过 OAuth 获取授权。", "relation": "unrelated", "direction": "not_applicable" },
+    { "id": "v5-ambiguous-relation", "left": "部分团队采用事件驱动架构。", "right": "事件驱动架构适合复杂系统。", "relation": "uncertain", "direction": "uncertain" }
+  ]
+}

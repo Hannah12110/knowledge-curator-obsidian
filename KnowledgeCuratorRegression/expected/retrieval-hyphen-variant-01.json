@@ -1,0 +1,21 @@
+{
+  "caseId": "retrieval-hyphen-variant-01",
+  "type": "retrieval-hyphen-variant",
+  "expected": {
+    "claimExpected": {
+      "existingClaimId": "claim-long-term-hyphen",
+      "allowedRelations": ["reinforce"],
+      "knownClaim": true,
+      "retrievalCategory": "general"
+    },
+    "claimInput": {
+      "candidate": { "id": "candidate-long-term", "statement": "Long term memories persist across sessions.", "type": "fact", "topic": "Agent Memory" },
+      "existingClaims": [
+        { "id": "claim-long-term-hyphen", "statement": "Long-term memory persists across a session boundary.", "type": "fact", "topic": "Agent Memory" },
+        { "id": "claim-memory-cache", "statement": "Memory caches reduce lookup latency.", "type": "fact", "topic": "Agent Memory" },
+        { "id": "claim-memory-policy", "statement": "Memory policies control retention.", "type": "fact", "topic": "Agent Memory" },
+        { "id": "claim-memory-tool", "statement": "Agent tools can access memory.", "type": "fact", "topic": "Agent Memory" }
+      ]
+    }
+  }
+}

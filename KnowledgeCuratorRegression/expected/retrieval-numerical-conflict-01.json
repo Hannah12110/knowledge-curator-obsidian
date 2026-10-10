@@ -1,0 +1,21 @@
+{
+  "caseId": "retrieval-numerical-conflict-01",
+  "type": "retrieval-numerical-conflict",
+  "expected": {
+    "claimExpected": {
+      "existingClaimId": "claim-model-a-80",
+      "allowedRelations": ["challenge", "refine"],
+      "knownClaim": true,
+      "retrievalCategory": "conflict"
+    },
+    "claimInput": {
+      "candidate": { "id": "candidate-model-a-92", "statement": "Model A reaches a 92% pass rate on Benchmark X.", "type": "quantitative", "topic": "Agent Evaluation" },
+      "existingClaims": [
+        { "id": "claim-model-a-80", "statement": "Model A reaches an 80% pass rate on Benchmark X.", "type": "quantitative", "topic": "Agent Evaluation" },
+        { "id": "claim-model-b-92", "statement": "Model B reaches a 92% pass rate on Benchmark Y.", "type": "quantitative", "topic": "Agent Evaluation" },
+        { "id": "claim-latency-92", "statement": "Evaluation latency is 92 milliseconds.", "type": "quantitative", "topic": "Agent Evaluation" },
+        { "id": "claim-cost-80", "statement": "Evaluation cost is 80 dollars.", "type": "quantitative", "topic": "Agent Evaluation" }
+      ]
+    }
+  }
+}

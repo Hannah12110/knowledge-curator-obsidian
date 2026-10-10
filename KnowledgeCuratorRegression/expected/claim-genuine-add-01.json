@@ -1,0 +1,18 @@
+{
+  "caseId": "claim-genuine-add-01",
+  "type": "claim-genuine-add",
+  "expected": {
+    "claimExpected": {
+      "allowedRelations": ["add"],
+      "knownClaim": false
+    },
+    "claimInput": {
+      "candidate": { "id": "candidate-new", "statement": "Memory expiration policy should be dynamically adjusted by task importance and recovery cost.", "type": "method", "topic": "Agent Memory" },
+      "existingClaims": [
+        { "id": "claim-agent-memory-persistence", "statement": "Long-term memory persists information across sessions.", "type": "fact", "topic": "Agent Memory" },
+        { "id": "claim-agent-memory-taxonomy", "statement": "Agent memory has multiple classification dimensions.", "type": "definition", "topic": "Agent Memory" },
+        { "id": "claim-evaluation-scope", "statement": "Offline and online evaluation answer different questions.", "type": "fact", "topic": "Evaluation" }
+      ]
+    }
+  }
+}

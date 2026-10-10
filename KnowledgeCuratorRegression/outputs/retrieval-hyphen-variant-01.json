@@ -1,0 +1,5 @@
+{
+  "caseId": "retrieval-hyphen-variant-01",
+  "actual": {},
+  "providerComparison": { "relation": "reinforce", "existingClaimId": "claim-long-term-hyphen", "existingStatement": "Long-term memory persists across a session boundary.", "similarity": 0.94, "reasoning": "Plural and hyphen differences do not change the claim.", "confidence": 0.96 }
+}

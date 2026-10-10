@@ -1,0 +1,5 @@
+{
+  "caseId": "claim-scope-difference-01",
+  "actual": {},
+  "providerComparison": { "relation": "refine", "existingClaimId": "claim-evaluation-scope", "existingStatement": "Offline benchmarks measure controlled task performance, while online evaluation measures production behavior.", "similarity": 0.95, "reasoning": "Adds an explicit requirement without denying the existing scope distinction.", "confidence": 0.9 }
+}

@@ -1,0 +1,5 @@
+{
+  "caseId": "retrieval-english-paraphrase-01",
+  "actual": {},
+  "providerComparison": { "relation": "reinforce", "existingClaimId": "claim-eval-repeatable", "existingStatement": "Reproducible agent assessment requires fixed benchmark conditions.", "similarity": 0.86, "reasoning": "Repeatable evaluation and reproducible assessment express the same method constraint.", "confidence": 0.89 }
+}

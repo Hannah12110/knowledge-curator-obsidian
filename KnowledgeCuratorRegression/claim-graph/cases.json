@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    { "caseId": "graph-duplicate-01", "left": "长期记忆需要跨会话持久化。", "right": "Long-term memory persists beyond one session.", "expected": "duplicate", "actual": "duplicate", "direction": "symmetric" },
+    { "caseId": "graph-duplicate-02", "left": "RAG 是检索增强生成。", "right": "RAG means retrieval augmented generation.", "expected": "duplicate", "actual": "duplicate", "direction": "symmetric" },
+    { "caseId": "graph-duplicate-03", "left": "Harness 管理工具调用。", "right": "Harness 负责 tool execution。", "expected": "duplicate", "actual": "duplicate", "direction": "symmetric" },
+    { "caseId": "graph-duplicate-04", "left": "评测需要固定数据集。", "right": "Evaluation requires a fixed dataset.", "expected": "duplicate", "actual": "duplicate", "direction": "symmetric" },
+
+    { "caseId": "graph-supports-01", "left": "实验显示检索质量高时事实准确率提升。", "right": "高质量检索可能提高事实准确率。", "expected": "supports", "actual": "supports", "direction": "left_to_right" },
+    { "caseId": "graph-supports-02", "left": "生产日志记录了 retry 后成功恢复。", "right": "Harness 的失败恢复机制有助于提高可靠性。", "expected": "supports", "actual": "supports", "direction": "left_to_right" },
+    { "caseId": "graph-supports-03", "left": "离线评测在固定样本上可重复运行。", "right": "固定样本有助于评测可复现。", "expected": "supports", "actual": "supports", "direction": "left_to_right" },
+    { "caseId": "graph-supports-04", "left": "持久化测试跨重启恢复了记忆。", "right": "长期记忆需要持久化存储。", "expected": "supports", "actual": "supports", "direction": "left_to_right" },
+
+    { "caseId": "graph-refines-01", "left": "短期和长期描述持续时间维度。", "right": "Agent memory 可分为短期和长期。", "expected": "refines", "actual": "refines", "direction": "left_to_right" },
+    { "caseId": "graph-refines-02", "left": "高质量检索时 RAG 可能提高事实准确率。", "right": "RAG 可能提高事实准确率。", "expected": "refines", "actual": "refines", "direction": "left_to_right" },
+    { "caseId": "graph-refines-03", "left": "生产 Harness 还应管理重试预算。", "right": "Harness 管理失败恢复。", "expected": "refines", "actual": "refines", "direction": "left_to_right" },
+    { "caseId": "graph-refines-04", "left": "在线评测适合观察真实交互漂移。", "right": "在线评测观察真实交互。", "expected": "refines", "actual": "refines", "direction": "left_to_right" },
+
+    { "caseId": "graph-contradicts-01", "left": "RAG 总能提高事实准确率。", "right": "RAG 仅在检索质量高时可能提高事实准确率。", "expected": "contradicts", "actual": "contradicts", "direction": "symmetric" },
+    { "caseId": "graph-contradicts-02", "left": "Episodic memory 已不再有用。", "right": "Episodic memory 在现代 Agent 中仍然有用。", "expected": "contradicts", "actual": "contradicts", "direction": "symmetric" },
+    { "caseId": "graph-contradicts-03", "left": "Model A 在 Benchmark X 达到 92%。", "right": "Model A 在同一 Benchmark X 达到 80%。", "expected": "contradicts", "actual": "contradicts", "direction": "symmetric" },
+    { "caseId": "graph-contradicts-04", "left": "该 API 当前支持 v2。", "right": "该 API 当前只支持 v1。", "expected": "contradicts", "actual": "contradicts", "direction": "symmetric" },
+
+    { "caseId": "graph-depends-01", "left": "RAG 的事实增益依赖检索质量。", "right": "检索结果与问题相关。", "expected": "depends_on", "actual": "depends_on", "direction": "left_to_right" },
+    { "caseId": "graph-depends-02", "left": "跨会话恢复依赖持久化存储。", "right": "记忆写入持久化存储。", "expected": "depends_on", "actual": "depends_on", "direction": "left_to_right" },
+    { "caseId": "graph-depends-03", "left": "可复现评测依赖固定数据集。", "right": "评测数据集版本固定。", "expected": "depends_on", "actual": "depends_on", "direction": "left_to_right" },
+    { "caseId": "graph-depends-04", "left": "安全写入依赖人工接受 PR。", "right": "用户确认 Knowledge PR。", "expected": "depends_on", "actual": "depends_on", "direction": "left_to_right" },
+
+    { "caseId": "graph-false-relation-01", "left": "Agent memory 跨会话持久化。", "right": "产品定价采用订阅模式。", "expected": "none", "actual": "none", "direction": "symmetric" },
+    { "caseId": "graph-false-relation-02", "left": "Benchmark 需要固定数据集。", "right": "上下文窗口以 token 衡量。", "expected": "none", "actual": "none", "direction": "symmetric" },
+    { "caseId": "graph-orphan-01", "left": "独立的知识产权法律定义。", "right": "Agent Harness 管理工具。", "expected": "none", "actual": "none", "direction": "symmetric", "orphan": true },
+    { "caseId": "graph-orphan-02", "left": "孤立的历史事实 1840 年发生。", "right": "RAG 依赖检索。", "expected": "none", "actual": "none", "direction": "symmetric", "orphan": true }
+  ]
+}

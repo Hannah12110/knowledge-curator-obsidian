@@ -1,0 +1,21 @@
+{
+  "caseId": "retrieval-negation-conflict-01",
+  "type": "retrieval-negation-conflict",
+  "expected": {
+    "claimExpected": {
+      "existingClaimId": "claim-episodic-useful",
+      "allowedRelations": ["challenge", "refine"],
+      "knownClaim": true,
+      "retrievalCategory": "conflict"
+    },
+    "claimInput": {
+      "candidate": { "id": "candidate-episodic-obsolete", "statement": "Episodic memory is no longer useful in modern agents.", "type": "fact", "topic": "Agent Memory", "qualifiers": ["no longer"] },
+      "existingClaims": [
+        { "id": "claim-episodic-useful", "statement": "Episodic memory remains useful in modern agents.", "type": "fact", "topic": "Agent Memory" },
+        { "id": "claim-memory-storage", "statement": "Agent memory uses persistent storage.", "type": "fact", "topic": "Agent Memory" },
+        { "id": "claim-memory-cost", "statement": "Memory retrieval consumes tokens.", "type": "fact", "topic": "Agent Memory" },
+        { "id": "claim-memory-access", "statement": "Memory access should be scoped.", "type": "fact", "topic": "Agent Memory" }
+      ]
+    }
+  }
+}

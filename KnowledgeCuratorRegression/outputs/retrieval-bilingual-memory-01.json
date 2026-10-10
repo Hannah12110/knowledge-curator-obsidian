@@ -1,0 +1,5 @@
+{
+  "caseId": "retrieval-bilingual-memory-01",
+  "actual": {},
+  "providerComparison": { "relation": "reinforce", "existingClaimId": "z-memory-persistence", "existingStatement": "长期记忆通常需要跨 Session 持久化。", "similarity": 0.91, "reasoning": "The bilingual statements express the same persistence claim.", "confidence": 0.94 }
+}

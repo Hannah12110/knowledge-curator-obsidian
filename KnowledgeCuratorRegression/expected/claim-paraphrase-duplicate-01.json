@@ -1,0 +1,19 @@
+{
+  "caseId": "claim-paraphrase-duplicate-01",
+  "type": "claim-paraphrase-duplicate",
+  "expected": {
+    "claimExpected": {
+      "existingClaimId": "claim-agent-memory-persistence",
+      "allowedRelations": ["reinforce", "refine"],
+      "knownClaim": true
+    },
+    "claimInput": {
+      "candidate": { "id": "candidate-paraphrase", "statement": "Agent long-term memory stores information beyond a single session.", "type": "fact", "topic": "Agent Memory" },
+      "existingClaims": [
+        { "id": "claim-agent-memory-persistence", "statement": "Long-term memory persists information across sessions.", "type": "fact", "topic": "Agent Memory" },
+        { "id": "claim-agent-memory-taxonomy", "statement": "Agent memory has multiple classification dimensions.", "type": "definition", "topic": "Agent Memory" },
+        { "id": "claim-evaluation-scope", "statement": "Offline and online evaluation answer different questions.", "type": "fact", "topic": "Evaluation" }
+      ]
+    }
+  }
+}

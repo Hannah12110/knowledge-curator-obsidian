@@ -1,0 +1,1 @@
+{"caseId":"harness-partial-01","actual":{"relatedWiki":["KnowledgeCuratorRegression/wiki/Harness Engineering.md","KnowledgeCuratorRegression/wiki/Agent Evaluation.md"],"knowledgeGain":"medium","recommendation":"merge","conflictCount":0,"pr":{"target":"KnowledgeCuratorRegression/wiki/Harness Engineering.md","changeTypes":["add"],"changeCount":1}}}
