@@ -921,11 +921,12 @@ Search queries and conflict claims may be sent to the configured Web Search prov
 
 ```text
 README.md
-LICENSE
 manifest.json
 main.js
 styles.css
 ```
+
+LICENSE 根据发布策略选择；本 v0.1.0 未声明开源许可证。
 
 MVP 建议 Desktop-first，避免 Mobile 兼容拖慢第一版。
 

@@ -35,7 +35,6 @@
     "obsidian",
     "knowledge-management"
   ],
-  "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.10.2",
     "builtin-modules": "^4.0.0",
