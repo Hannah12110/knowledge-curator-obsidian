@@ -11,7 +11,7 @@ Document-level knowledge management
 → Claim-level knowledge governance
 ```
 
-当前版本：`0.1.0`  
+当前版本：`0.1.1`
 MVP 状态：`COMPLETE`  
 Claim Graph：`HUMAN_IN_THE_LOOP`  
 自主知识压缩：`BLOCKED_BY_QUALITY_GATE`
@@ -134,10 +134,53 @@ Claim A → Model-suggested relation → Claim B → Human Review
 
 ```text
 Vault → Local Retrieval → Selected Context Only → LLM Provider
-Conflict Claim → Search Query Only → Search Provider
+Conflict / Freshness Claim → Refined Search Query Only → Tavily
 ```
 
-不会默认上传整个 Vault、整个 Claim Store、完整 History、无关笔记或 API Key。API Key 保存在当前 Vault 的插件数据中，输入框默认隐藏，不写入报告或 History。
+Knowledge Curator 只在用户主动执行对应功能时联网：
+
+- OpenAI-compatible LLM Provider：用于 Source analysis、Claim extraction、Claim comparison、Knowledge PR generation、verification 和 relation suggestion。根据当前操作，可能发送当前 Source 的相关文本、召回的 Wiki / Raw 片段、Top K Claims、必要 provenance、目标 Wiki 的局部上下文、筛选后的外部证据或候选 Claim relation pairs。
+- Tavily：仅在用户主动执行 Conflict Verification 或 Freshness Verification 时调用，只接收为当前 Claim 精简生成的 Search Query。
+
+不会默认上传整个 Vault、整个 Claim Store、完整 History 或无关笔记。API Key 由用户自行提供，通过 Obsidian `saveData()` 保存在当前 Vault 的插件 `data.json` 中，只发送给对应 Provider，不写入报告或 History。Knowledge Curator 没有自有后端，也不包含 client-side telemetry、server-side telemetry、analytics 或 crash reporting。
+
+## Installation
+
+Community Directory submission is pending. 收录后可在 Obsidian 中依次打开：
+
+```text
+Settings → Community plugins → Browse → Knowledge Curator → Install → Enable
+```
+
+在正式收录前，测试人员可以将当前 release 的 `main.js`、`manifest.json` 和 `styles.css` 放入：
+
+```text
+<Vault>/.obsidian/plugins/knowledge-curator/
+```
+
+然后在 Community plugins 中启用 Knowledge Curator。
+
+## Configuration
+
+首次使用需要在插件设置中配置：
+
+- LLM Base URL：兼容 OpenAI Chat Completions API 的服务地址。
+- LLM Model：对应 Provider 的模型标识。
+- LLM API Key：用户自行申请并保存在当前 Vault 的插件数据中。
+- Tavily API Key：仅 Conflict / Freshness Verification 需要。
+- 文件夹路径：Inbox、Wiki 与一个或多个 Raw Folder。
+- Test Mode：只有固定隔离测试 Wiki 可以通过显式 Accept 写入。
+- Production Preview：可以分析、验证和预览 Knowledge PR，但不能 Accept 或写入正式 Wiki。
+
+API Key 未配置时，依赖该 Provider 的操作会显示可重试错误，不会静默执行或修改 Markdown。
+
+## Desktop Only
+
+`isDesktopOnly` 设置为 `true`。插件依赖 Obsidian 桌面端的本地 Vault adapter、派生状态存储及文件系统相关行为，当前不声明移动端兼容性。
+
+## License
+
+Knowledge Curator is distributed under a [proprietary license](LICENSE). The source code is publicly visible for transparency and Community review, but public visibility does not make the project open source or grant permission to modify or redistribute it.
 
 ## Local Development
 

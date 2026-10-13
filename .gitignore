@@ -32,6 +32,7 @@ KnowledgeCuratorValidation/reports/*
 !KnowledgeCuratorValidation/reports/interview-story.md
 !KnowledgeCuratorValidation/reports/demo-script-v0.1.0.md
 !KnowledgeCuratorValidation/reports/architecture-summary-v0.1.0.md
+!KnowledgeCuratorValidation/reports/community-gui-test-0.1.1.md
 
 # Generated local reports, benchmarks and logs.
 regression-report.json

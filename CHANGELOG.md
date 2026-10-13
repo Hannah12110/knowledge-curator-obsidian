@@ -2,6 +2,19 @@
 
 All notable changes to Knowledge Curator are documented here.
 
+## 0.1.1
+
+### Community Release Preparation
+
+- Add the proprietary license and public-source licensing disclosure.
+- Add Community installation, configuration, network, privacy, safety and desktop-only documentation.
+- Align package, manifest and compatibility metadata for the Community candidate.
+
+### Safety
+
+- Keep Production Preview read-only and Test Mode restricted by the existing Write Guard.
+- Keep autonomous merge, delete, relation-driven rewrite and compression disabled.
+
 ## 0.1.0
 
 ### Added
