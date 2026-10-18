@@ -2,11 +2,11 @@
 
 **Draft for user and legal review only. This is not legal advice and is not the final `LICENSE`.**
 
-Copyright (c) 2026 <COPYRIGHT HOLDER>. All rights reserved.
+Copyright (c) 2026 linyuhan. All rights reserved.
 
 ## 1. Ownership
 
-Knowledge Curator, including its original source code, compiled code, documentation, user interface, and other original materials (collectively, the “Software”), is owned by <COPYRIGHT HOLDER> (the “Licensor”) and is protected by applicable copyright and other intellectual-property laws. Making the source code publicly viewable does not place the Software in the public domain and does not grant an open-source license.
+Knowledge Curator, including its original source code, compiled code, documentation, user interface, and other original materials (collectively, the “Software”), is owned by linyuhan (the “Licensor”) and is protected by applicable copyright and other intellectual-property laws. Making the source code publicly viewable does not place the Software in the public domain and does not grant an open-source license.
 
 ## 2. Limited license to install and use
 
@@ -59,6 +59,6 @@ Any permission beyond this license, including modification, external redistribut
 
 ## Items requiring decision before adoption
 
-- Replace `<COPYRIGHT HOLDER>` with the copyright holder's legal name or confirmed licensing entity.
+- Copyright holder confirmed as `linyuhan` for the 0.1.1 Community release candidate.
 - Confirm the termination and deletion requirements with counsel.
 - Complete the third-party notice determination for the exact release artifacts.

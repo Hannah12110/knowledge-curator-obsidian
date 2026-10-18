@@ -2,7 +2,7 @@
   "id": "knowledge-curator",
   "name": "Knowledge Curator",
   "version": "0.1.1",
-  "minAppVersion": "1.5.0",
+  "minAppVersion": "1.14.4",
   "description": "Evaluate incoming sources, verify conflicts, and propose reviewable updates to your Obsidian knowledge base.",
   "author": "Hannah12110",
   "authorUrl": "https://github.com/Hannah12110",
