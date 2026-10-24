@@ -280,7 +280,6 @@ export default class KnowledgeCuratorPlugin extends Plugin {
     if (!stateRecorded) {
       console.warn("Knowledge Curator could not remember Sidebar state for reload.");
     }
-    this.app.workspace.detachLeavesOfType(KNOWLEDGE_CURATOR_VIEW_TYPE);
     this.curatorController = null;
     this.analysisCacheService = null;
     this.knowledgePRCacheService = null;

@@ -14,9 +14,13 @@ export class KnowledgeCuratorSettingTab extends PluginSettingTab {
   display(): void {
     const { containerEl } = this;
     containerEl.empty();
-    containerEl.createEl("h2", { text: "Knowledge Curator 设置" });
+    new Setting(containerEl)
+      .setName("Knowledge Curator 设置")
+      .setHeading();
 
-    containerEl.createEl("h3", { text: "知识范围" });
+    new Setting(containerEl)
+      .setName("知识范围")
+      .setHeading();
     new Setting(containerEl)
       .setName("运行模式")
       .setDesc("测试模式仅允许写入隔离测试 Wiki；正式知识库预览允许分析、验证和生成建议，但禁止接受写入。")
@@ -53,7 +57,9 @@ export class KnowledgeCuratorSettingTab extends PluginSettingTab {
       this.plugin.settings.wikiFolder = value;
     });
 
-    containerEl.createEl("h3", { text: "LLM" });
+    new Setting(containerEl)
+      .setName("LLM")
+      .setHeading();
     containerEl.createEl("p", {
       cls: "setting-item-description",
       text: "分析时仅向配置的 LLM 服务发送当前文章和召回到的少量相关 Wiki / Raw，不会上传整个 Vault。"
@@ -68,7 +74,9 @@ export class KnowledgeCuratorSettingTab extends PluginSettingTab {
       this.plugin.settings.llmModel = value;
     });
 
-    containerEl.createEl("h3", { text: "检索" });
+    new Setting(containerEl)
+      .setName("检索")
+      .setHeading();
     new Setting(containerEl)
       .setName("Claim Comparison")
       .setDesc("Claim Mode 使用本地 Claim Store 做知识点级比较；Legacy Document Mode 保留原 Phase 2 流程用于回退。")
@@ -118,7 +126,9 @@ export class KnowledgeCuratorSettingTab extends PluginSettingTab {
         text.inputEl.max = "20";
       });
 
-    containerEl.createEl("h3", { text: "搜索" });
+    new Setting(containerEl)
+      .setName("搜索")
+      .setHeading();
     containerEl.createEl("p", {
       cls: "setting-item-description",
       text: "仅在 Phase 2 检测到冲突并由你点击验证时调用 Tavily，不会为普通文章自动联网。"
@@ -166,7 +176,9 @@ export class KnowledgeCuratorSettingTab extends PluginSettingTab {
         text.inputEl.max = "10";
       });
 
-    containerEl.createEl("h3", { text: "隐私" });
+    new Setting(containerEl)
+      .setName("隐私")
+      .setHeading();
     containerEl.createEl("p", {
       cls: "setting-item-description",
       text: "LLM Provider 会收到当前文章的选定内容、召回的相关 Wiki / Raw 片段，以及分析或 Knowledge PR 所需上下文。Search Provider 只会收到冲突搜索 Query。默认不会发送整个 Vault、无关笔记、API Key、History 全量或未召回文件。"
@@ -188,7 +200,9 @@ export class KnowledgeCuratorSettingTab extends PluginSettingTab {
       text: "API Key 保存在当前 Vault 的插件 data.json 中，输入框默认隐藏；日志、History 与回归报告不会输出密钥。"
     });
 
-    containerEl.createEl("h3", { text: "维护" });
+    new Setting(containerEl)
+      .setName("维护")
+      .setHeading();
     this.renderClaimStoreMaintenance();
     this.renderClaimGraphMaintenance();
     const maintenanceStats = this.plugin.getMaintenanceStats();
