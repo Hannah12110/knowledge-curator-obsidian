@@ -15,10 +15,6 @@ export class KnowledgeCuratorSettingTab extends PluginSettingTab {
     const { containerEl } = this;
     containerEl.empty();
     new Setting(containerEl)
-      .setName("Knowledge Curator 设置")
-      .setHeading();
-
-    new Setting(containerEl)
       .setName("知识范围")
       .setHeading();
     new Setting(containerEl)
