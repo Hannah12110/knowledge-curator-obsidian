@@ -16,6 +16,12 @@ try {
   }
   await build({
     entryPoints: [
+      "tests/one-click-workflow.test.ts",
+      "tests/one-click-services-integration.test.ts",
+      "tests/workflow-view.test.ts",
+      "tests/workflow-controller.test.ts",
+      "tests/v013-product-compatibility.test.ts",
+      "tests/workflow-presenter.test.ts",
       "tests/source-analysis-validator.test.ts",
       "tests/analysis-cache-service.test.ts",
       "tests/retrieval-scoring.test.ts",
@@ -73,7 +79,8 @@ try {
           namespace: "obsidian-test-stub"
         }));
         buildApi.onLoad({ filter: /.*/u, namespace: "obsidian-test-stub" }, () => ({
-          contents: "export async function requestUrl() { throw new Error('Unexpected real requestUrl call in tests.'); }",
+          contents: `export * from ${JSON.stringify(join(process.cwd(), "tests/obsidian-ui-stub.ts"))};`,
+          resolveDir: process.cwd(),
           loader: "js"
         }));
       }

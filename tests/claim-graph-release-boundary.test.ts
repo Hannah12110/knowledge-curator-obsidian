@@ -25,5 +25,5 @@ test("Claim Graph UI does not load or render compression proposals", async () =>
   assert.doesNotMatch(source, /this\.actions\.getCompressionProposals\(\)/u);
   assert.doesNotMatch(source, /知识压缩预览/u);
   assert.match(source, /AI 建议关系/u);
-  assert.match(source, /COMPRESSION_RELEASE_NOTICE/u);
+  assert.match(source, /不会自动合并或删除文档/u);
 });

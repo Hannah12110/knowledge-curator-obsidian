@@ -3,6 +3,7 @@ import type { KnowledgePRCache } from "../types/knowledge-pr";
 import type { ConflictVerificationCache } from "../types/verification";
 import type { ComparisonCache } from "../types/comparison-cache";
 import {
+  DEFAULT_ANALYSIS_PREFERENCES,
   DEFAULT_SETTINGS
 } from "../types/settings";
 import type {
@@ -28,8 +29,13 @@ export function migrateSettings(storedData: unknown): KnowledgeCuratorSettings {
     : DEFAULT_SETTINGS.claimRetrievalTopK;
 
   return {
-    mode: legacy.mode === "production-preview" ? "production-preview" : "test",
-    claimComparisonMode: legacy.claimComparisonMode === "legacy" ? "legacy" : "claim",
+    // Old modes remain valid backend inputs; the product entry always uses normal.
+    mode: "normal",
+    analysisPreferences: Object.fromEntries(Object.entries(DEFAULT_ANALYSIS_PREFERENCES).map(([key, fallback]) => [
+      key, isRecord(legacy.analysisPreferences) && typeof legacy.analysisPreferences[key] === "boolean"
+        ? legacy.analysisPreferences[key] : fallback
+    ])) as unknown as KnowledgeCuratorSettings["analysisPreferences"],
+    claimComparisonMode: "claim",
     claimRetrievalTopK,
     inboxFolder: readString(legacy.inboxFolder, DEFAULT_SETTINGS.inboxFolder),
     rawFolders,

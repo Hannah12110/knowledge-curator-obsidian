@@ -45,3 +45,10 @@ test("builds a sanitized path inside the fixed writable root", () => {
   );
   assert.throws(() => buildWritableWikiPath("../"));
 });
+
+test("normal Wiki scope is explicit and rejects hidden files, traversal and prefix siblings", () => {
+  assert.equal(isInsideWritableWikiScope("wiki/Topic.md", "wiki"), true);
+  for (const path of ["raw/Test.md", "wiki-old/Test.md", "wiki/../raw/Test.md", "wiki/.hidden/Test.md", "wiki/.obsidian/Test.md", "/wiki/Test.md"]) assert.equal(isInsideWritableWikiScope(path, "wiki"), false, path);
+  assert.equal(isInsideWritableWikiScope("wiki/Test.md", ""), false);
+  assert.equal(buildWritableWikiPath("Safe: title", "wiki"), "wiki/Safe title.md");
+});

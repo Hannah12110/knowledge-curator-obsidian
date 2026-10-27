@@ -1,0 +1,111 @@
+{
+  "baselineCommit": "99c035c18006886645214694610186bd411aaed7",
+  "settings": {
+    "mode": "production-preview",
+    "claimComparisonMode": "legacy",
+    "inboxFolder": "raw",
+    "rawFolders": [
+      "raw"
+    ],
+    "wikiFolder": "wiki",
+    "llmBaseUrl": "https://example.test/v1",
+    "llmModel": "fixture-model",
+    "llmApiKey": "fixture-only"
+  },
+  "claimStore": {
+    "schemaVersion": 1,
+    "generatedAt": "2026-10-25T00:00:00.000Z",
+    "claims": {
+      "claim_baseline": {
+        "id": "claim_baseline",
+        "statement": "知识整理应保留来源。",
+        "normalizedStatement": "知识整理应保留来源",
+        "type": "fact",
+        "status": "active",
+        "confidence": 0.9,
+        "provenance": [
+          {
+            "filePath": "wiki/Baseline.md",
+            "fileHash": "baseline-hash",
+            "sourceKind": "wiki",
+            "accepted": true
+          }
+        ],
+        "createdAt": "2026-10-25T00:00:00.000Z",
+        "updatedAt": "2026-10-25T00:00:00.000Z"
+      }
+    },
+    "files": {
+      "wiki/Baseline.md": {
+        "fileHash": "baseline-hash",
+        "claimIds": [
+          "claim_baseline"
+        ],
+        "indexedAt": "2026-10-25T00:00:00.000Z"
+      }
+    },
+    "failedFiles": {}
+  },
+  "graphStore": {
+    "metadata": {
+      "schemaVersion": 2,
+      "graphVersion": "claim-graph-v1",
+      "relationPolicyVersion": "claim-graph-relations-v2",
+      "candidatePolicyVersion": "claim-graph-candidates-v1",
+      "claimStoreRevision": "wiki/Baseline.md:baseline-hash",
+      "claimStoreFingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+      "generatedAt": "2026-10-27T06:13:52.210Z",
+      "builtAt": "2026-10-27T06:13:52.210Z",
+      "nodeCount": 1,
+      "edgeCount": 0,
+      "relationStats": {
+        "duplicate": 0,
+        "supports": 0,
+        "refines": 0,
+        "contradicts": 0,
+        "depends_on": 0
+      },
+      "candidatePairs": 0,
+      "classifiedPairs": 0,
+      "failedPairs": [],
+      "buildMetadata": {
+        "claimCount": 1,
+        "rawScoredPairs": 0,
+        "candidatePairs": 0,
+        "candidatePairRatio": 0,
+        "relationClassifications": 0,
+        "persistedEdges": 0,
+        "unrelatedCount": 0,
+        "orphanClaimIds": [
+          "claim_baseline"
+        ],
+        "providerCalls": 0,
+        "successfulCalls": 0,
+        "batchCount": 0,
+        "retryCount": 0,
+        "retryReasons": [],
+        "schemaInvalidCount": 0,
+        "recoveredPairs": 0,
+        "failedPairs": [],
+        "candidateGenerationMs": 0,
+        "relationClassificationMs": 0,
+        "totalDurationMs": 0,
+        "externalSearchCalls": 0,
+        "autoConflictResolutions": 0,
+        "autoCompressionWrites": 0
+      }
+    },
+    "nodes": {
+      "claim_baseline": {
+        "claimId": "claim_baseline",
+        "statement": "知识整理应保留来源。",
+        "sourcePath": "wiki/Baseline.md",
+        "createdAt": "2026-10-25T00:00:00.000Z",
+        "claimFingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "status": "active"
+      }
+    },
+    "edges": {},
+    "evolution": []
+  }
+}

@@ -22,9 +22,9 @@ import { KnowledgePRService } from "./services/knowledge-pr-service";
 import { KnowledgeWriteService } from "./services/knowledge-write-service";
 import { FreshnessRiskService } from "./services/freshness-risk-service";
 import { FreshnessVerificationService } from "./services/freshness-verification-service";
-import { MaintenancePRService } from "./services/maintenance-pr-service";
 import { MaintenanceService } from "./services/maintenance-service";
 import { MaintenanceStoreRepository } from "./services/maintenance-store-repository";
+import { configuredWritableWikiRoot } from "./services/write-scope-guard";
 import { LlmService } from "./services/llm-service";
 import { RetrievalService } from "./services/retrieval-service";
 import { TavilySearchProvider } from "./services/search-provider";
@@ -161,7 +161,8 @@ export default class KnowledgeCuratorPlugin extends Plugin {
     const knowledgePRService = new KnowledgePRService(
       vaultService,
       llmService,
-      knowledgePRCacheService
+      knowledgePRCacheService,
+      () => configuredWritableWikiRoot(this.settings)
     );
     const searchProvider = new TavilySearchProvider(() => this.settings);
     const conflictVerificationService = new ConflictVerificationService(
@@ -191,11 +192,6 @@ export default class KnowledgeCuratorPlugin extends Plugin {
       () => this.settings.llmModel,
       () => this.settings.maxSearchResults
     );
-    const maintenancePRService = new MaintenancePRService(
-      vaultService,
-      llmService,
-      knowledgePRCacheService
-    );
     const knowledgeFileStore = new ObsidianKnowledgeFileStore(this.app.vault);
     const historyService = new HistoryService(knowledgeFileStore);
     this.historyService = historyService;
@@ -206,7 +202,8 @@ export default class KnowledgeCuratorPlugin extends Plugin {
       () => this.settings.mode,
       {
         reindexWiki: async (path) => claimStoreService.reindexWiki(path)
-      }
+      },
+      () => configuredWritableWikiRoot(this.settings)
     );
     const curatorController = new CuratorController(
       this.app,
@@ -217,15 +214,20 @@ export default class KnowledgeCuratorPlugin extends Plugin {
       knowledgeWriteService,
       knowledgePRCacheService,
       conflictVerificationService,
-      verificationCacheService,
       () => this.settings,
       claimStoreService,
       maintenanceService,
       freshnessVerificationService,
-      maintenancePRService,
-      claimGraphService
+      claimGraphService,
+      verificationCacheService
     );
     this.curatorController = curatorController;
+    this.register(() => curatorController.dispose());
+    this.registerEvent(this.app.workspace.on("file-open", () => curatorController.refreshSidebarState()));
+    this.registerEvent(this.app.vault.on("create", () => curatorController.refreshSidebarState()));
+    this.registerEvent(this.app.vault.on("delete", () => curatorController.refreshSidebarState()));
+    this.registerEvent(this.app.vault.on("rename", () => curatorController.refreshSidebarState()));
+    this.registerEvent(this.app.vault.on("modify", () => curatorController.refreshSidebarState()));
     this.sidebarRestoreStorageKey = getSidebarRestoreStorageKey(
       this.app.vault.getName()
     );
@@ -249,7 +251,7 @@ export default class KnowledgeCuratorPlugin extends Plugin {
 
     this.addCommand({
       id: "inspect-markdown-file",
-      name: "检查 Markdown 文件",
+      name: "选择当前文章",
       callback: () => this.curatorController?.openMarkdownFilePicker()
     });
 
@@ -375,7 +377,10 @@ export default class KnowledgeCuratorPlugin extends Plugin {
     return result;
   }
 
+  isWorkflowBusy(): boolean { return this.curatorController?.isBusy() ?? false; }
+
   async buildClaimStore(rebuild: boolean, retryFailedOnly = false) {
+    if (this.isWorkflowBusy()) throw new Error("请等待文章分析完成后更新索引。");
     const result = await this.requireService(this.claimStoreService, "Claim Store")
       .build({ rebuild, retryFailedOnly });
     this.curatorController?.refreshSidebarState();

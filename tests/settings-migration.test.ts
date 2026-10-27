@@ -39,15 +39,15 @@ test("migrates Phase 4 search settings with safe bounds", () => {
   assert.equal(migrated.maxSearchResults, 10);
 });
 
-test("defaults to test mode and restores production preview explicitly", () => {
-  assert.equal(migrateSettings({}).mode, "test");
-  assert.equal(migrateSettings({ mode: "production-preview" }).mode, "production-preview");
-  assert.equal(migrateSettings({ mode: "unsafe-production-write" }).mode, "test");
+test("product defaults to normal mode and reads old runtime settings safely", () => {
+  assert.equal(migrateSettings({}).mode, "normal");
+  assert.equal(migrateSettings({ mode: "production-preview" }).mode, "normal");
+  assert.equal(migrateSettings({ mode: "unsafe-production-write" }).mode, "normal");
 });
 
 test("migrates Claim Mode settings with a safe Top K range", () => {
   assert.equal(migrateSettings({}).claimComparisonMode, "claim");
-  assert.equal(migrateSettings({ claimComparisonMode: "legacy" }).claimComparisonMode, "legacy");
+  assert.equal(migrateSettings({ claimComparisonMode: "legacy" }).claimComparisonMode, "claim");
   assert.equal(migrateSettings({ claimComparisonMode: "unknown" }).claimComparisonMode, "claim");
   assert.equal(migrateSettings({ claimRetrievalTopK: 1 }).claimRetrievalTopK, 3);
   assert.equal(migrateSettings({ claimRetrievalTopK: 99 }).claimRetrievalTopK, 10);

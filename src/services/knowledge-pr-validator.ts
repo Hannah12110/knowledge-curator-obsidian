@@ -24,6 +24,7 @@ const RAW_RECOMMENDATIONS = new Set([
 const PR_STATUSES = new Set(["draft", "accepted", "rejected", "stale"]);
 
 export interface KnowledgePRValidationContext {
+  writableWikiRoot?: string;
   sourcePath: string;
   targetPath: string;
   targetOperation: "create" | "update";
@@ -139,7 +140,7 @@ function validateImmutableFields(
   if (pr.sourcePath !== context.sourcePath) {
     throw new KnowledgePRValidationError("sourcePath 与当前文章不一致。");
   }
-  if (pr.target.path !== context.targetPath || !isInsideWritableWikiScope(pr.target.path)) {
+  if (pr.target.path !== context.targetPath || !isInsideWritableWikiScope(pr.target.path, context.writableWikiRoot)) {
     throw new KnowledgePRValidationError("target.path 不在允许的测试 Wiki 范围内。");
   }
   if (pr.target.operation !== context.targetOperation) {

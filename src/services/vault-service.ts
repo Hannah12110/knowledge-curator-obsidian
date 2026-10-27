@@ -30,23 +30,26 @@ export class VaultService {
     const configuredPath = this.normalizeFolderPath(
       this.getSettings().inboxFolder
     );
-    const folder = this.getFolder(configuredPath);
+    const folders = this.getSettings().mode === "normal"
+      ? [...new Set([configuredPath, ...this.getSettings().rawFolders])] : [configuredPath];
 
-    if (folder === null) {
+    if (folders.every((path) => this.getFolder(path) === null)) {
       return {
         state: "missing",
         configuredPath
       };
     }
 
-    const files = await this.listMarkdownFiles(configuredPath);
+    const files = [...new Map((await Promise.all(folders.map((path) => this.listMarkdownFiles(path)))).flat()
+      .filter((file) => !this.isInWikiScope(file.path)).map((file) => [file.path, file])).values()];
     const items: InboxItem[] = [];
 
     for (const file of files) {
       let status: InboxItem["status"] = "pending";
 
       try {
-        await this.readMarkdown(file);
+        // Discovery needs metadata only. Read cloud-backed content on explicit analysis.
+        if (this.getSettings().mode !== "normal") await this.readMarkdown(file);
       } catch (error: unknown) {
         status = "failed";
         console.error(`Knowledge Curator could not read ${file.path}.`, error);
@@ -107,7 +110,8 @@ export class VaultService {
 
   isInInboxScope(path: string): boolean {
     const scope = this.getConfiguredRetrievalScope();
-    return isPathInsideFolder(path, scope.inboxFolder);
+    return isPathInsideFolder(path, scope.inboxFolder) ||
+      (this.getSettings().mode === "normal" && scope.rawFolders.some((folder) => isPathInsideFolder(path, folder)));
   }
 
   isInWikiScope(path: string): boolean {

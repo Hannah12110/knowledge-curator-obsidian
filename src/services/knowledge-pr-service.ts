@@ -48,7 +48,8 @@ export class KnowledgePRService {
   constructor(
     private readonly vaultService: VaultService,
     private readonly llmService: LlmService,
-    private readonly cacheService: KnowledgePRCacheService
+    private readonly cacheService: KnowledgePRCacheService,
+    private readonly getWritableWikiRoot?: () => string
   ) {}
 
   async generate(
@@ -166,7 +167,7 @@ export class KnowledgePRService {
   private selectTarget(analysis: SourceAnalysis): KnowledgePR["target"] {
     const existingTargets = [...analysis.relatedNotes]
       .sort((left, right) => right.relevance - left.relevance)
-      .filter((note) => isInsideWritableWikiScope(note.path))
+      .filter((note) => isInsideWritableWikiScope(note.path, this.getWritableWikiRoot?.()))
       .map((note) => ({ note, file: this.vaultService.getMarkdownFile(note.path) }))
       .filter((entry) => entry.file !== null);
     const preferred = existingTargets[0];
@@ -178,7 +179,7 @@ export class KnowledgePRService {
       };
     }
 
-    const path = buildWritableWikiPath(analysis.topic);
+    const path = buildWritableWikiPath(analysis.topic, this.getWritableWikiRoot?.());
     const existing = this.vaultService.getMarkdownFile(path);
     return existing === null
       ? { path, title: analysis.topic, operation: "create" }
@@ -267,6 +268,7 @@ export class KnowledgePRService {
       createdAt
     };
     return validateKnowledgePR(pr, {
+      writableWikiRoot: this.getWritableWikiRoot?.(),
       sourcePath: input.sourceFile.path,
       targetPath: input.target.path,
       targetOperation: input.target.operation,

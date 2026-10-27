@@ -44,7 +44,7 @@ export class AnalysisService {
     private readonly getSettings: () => KnowledgeCuratorSettings
   ) {}
 
-  async analyzeSource(sourceFile: TFile): Promise<AnalysisResult> {
+  async analyzeSource(sourceFile: TFile, options: { allowEmptyStore?: boolean; extractKnowledge?: boolean; onProgress?: (stage: "extract" | "compare") => void } = {}): Promise<AnalysisResult> {
     if (!this.vaultService.isInInboxScope(sourceFile.path)) {
       throw new Error(
         `Knowledge Curator refused to analyze a source outside the configured Inbox: ${sourceFile.path}`
@@ -79,7 +79,7 @@ export class AnalysisService {
       }
     };
 
-    if (settings.claimComparisonMode === "claim" && this.claimStoreService.getClaims().length === 0) {
+    if (settings.claimComparisonMode === "claim" && !options.allowEmptyStore && this.claimStoreService.getClaims().length === 0) {
       throw new ClaimAnalysisUnavailableError();
     }
     const legacyAnalysis = await this.llmService.analyzeSource({
@@ -89,17 +89,19 @@ export class AnalysisService {
       relatedCandidates: limited.candidates
     });
 
-    if (settings.claimComparisonMode === "legacy") {
+    if (settings.claimComparisonMode === "legacy" || options.extractKnowledge === false) {
       return {
         analysis: { ...legacyAnalysis, analysisMode: "legacy" },
         context,
         candidates: limited.candidates
       };
     }
+    options.onProgress?.("extract");
     const candidateClaims = await this.claimExtractionService.extractCandidateClaims({
       sourcePath: sourceFile.path,
       content: sourceContent
     });
+    options.onProgress?.("compare");
     const candidatesWithMatches = candidateClaims.map((candidate) => ({
       candidate,
       matches: this.claimRetrievalService.retrieve(

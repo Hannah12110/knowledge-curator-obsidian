@@ -45,7 +45,8 @@ export class KnowledgeWriteService {
     private readonly historyService: HistoryService,
     private readonly cacheService: KnowledgePRCacheService,
     private readonly getMode: () => KnowledgeCuratorMode = () => "test",
-    private readonly acceptedWikiIndexer?: AcceptedWikiIndexer
+    private readonly acceptedWikiIndexer?: AcceptedWikiIndexer,
+    private readonly getWritableWikiRoot?: () => string
   ) {}
 
   async accept(
@@ -260,7 +261,7 @@ export class KnowledgeWriteService {
   }
 
   private assertTestMode(): void {
-    if (this.getMode() !== "test") {
+    if (this.getMode() !== "test" && this.getMode() !== "normal") {
       throw new KnowledgeWriteError(
         "正式知识库写入尚未开放。请切换到测试模式后，仅对隔离测试 Wiki 执行接受操作。",
         "production_preview_read_only"
@@ -279,6 +280,7 @@ export class KnowledgeWriteService {
   ): void {
     const analysis = analysisEntry.analysis;
     validateKnowledgePR(pr, {
+      writableWikiRoot: this.writableWikiRoot(),
       sourcePath: analysisEntry.sourcePath,
       targetPath: pr.target.path,
       targetOperation: pr.target.operation,
@@ -361,12 +363,20 @@ export class KnowledgeWriteService {
   }
 
   private assertWritableTarget(path: string): void {
-    if (!isInsideWritableWikiScope(path)) {
+    if (!isInsideWritableWikiScope(path, this.writableWikiRoot())) {
       throw new KnowledgeWriteError(
         "目标路径不在 Phase 3 允许的测试 Wiki 写入范围内。",
         "write_scope_violation"
       );
     }
+  }
+
+  private writableWikiRoot(): string | undefined {
+    if (this.getMode() !== "normal") return undefined;
+    if (this.getWritableWikiRoot === undefined) {
+      throw new KnowledgeWriteError("请先配置独立的 Wiki 目录。", "write_scope_violation");
+    }
+    return this.getWritableWikiRoot();
   }
 
   private staleTargetError(): KnowledgeWriteError {

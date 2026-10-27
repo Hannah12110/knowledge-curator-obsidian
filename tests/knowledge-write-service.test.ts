@@ -503,3 +503,34 @@ async function createMaintenancePR() {
   };
   return { pr, verification };
 }
+
+test("normal mode safely updates a configured Wiki using the same fingerprints, history and readback", async () => {
+  const store = new FakeKnowledgeFileStore(), pr = await createUpdatePR();
+  pr.target.path = "wiki/Test.md";
+  store.put(SOURCE_PATH, SOURCE_CONTENT, 100); store.put(pr.target.path, TARGET_CONTENT, 200);
+  const cache = new KnowledgePRCacheService({}, async () => undefined);
+  const writer = new KnowledgeWriteService(store, new HistoryService(store), cache, () => "normal", undefined, () => "wiki");
+  const result = await writer.accept(pr, createAnalysisEntry());
+  assert.equal(result.pr.status, "accepted"); assert.equal(store.historyPaths.length, 1);
+  assert.match((await store.read(pr.target.path))!.content, /记忆写入策略/u);
+});
+
+test("normal mode without an explicit scope fails closed", async () => {
+  const store = new FakeKnowledgeFileStore(), cache = new KnowledgePRCacheService({}, async () => undefined);
+  const writer = new KnowledgeWriteService(store, new HistoryService(store), cache, () => "normal");
+  await assert.rejects(writer.accept(await createUpdatePR(), createAnalysisEntry()), (error: any) => error.code === "write_scope_violation");
+  assert.equal(store.wikiWrites.length, 0);
+});
+
+test("normal mode retains target fingerprint and history-failure rollback", async () => {
+  const store = new FakeKnowledgeFileStore(), pr = await createUpdatePR(); pr.target.path = "wiki/Test.md";
+  store.put(SOURCE_PATH, SOURCE_CONTENT, 100); store.put(pr.target.path, TARGET_CONTENT, 200);
+  const cache = new KnowledgePRCacheService({}, async () => undefined);
+  const writer = new KnowledgeWriteService(store, new HistoryService(store), cache, () => "normal", undefined, () => "wiki");
+  store.put(pr.target.path, TARGET_CONTENT + "edited", 201);
+  await assert.rejects(writer.accept(pr, createAnalysisEntry()), (error: any) => error.code === "stale_target");
+  assert.equal(store.wikiWrites.length, 0);
+  store.put(pr.target.path, TARGET_CONTENT, 200); store.failHistoryWrite = true;
+  await assert.rejects(writer.accept(pr, createAnalysisEntry()), (error: any) => error.code === "decision_persistence_failed_rolled_back");
+  assert.equal((await store.read(pr.target.path))!.content, TARGET_CONTENT);
+});

@@ -155,3 +155,16 @@ test("Claim Mode derives newClaims from relations and performs no Markdown write
   assert.equal(result.context.claimContext.retrievalVersion, "claim-retrieval-v2");
   assert.equal(result.context.claimContext.comparisonVersion, "claim-comparison-v2");
 });
+
+test("product workflow explicitly permits first article in an empty knowledge base without switching to legacy backend", async () => {
+  const harness = createService("claim", false);
+  const result = await harness.service.analyzeSource(SOURCE, { allowEmptyStore: true });
+  assert.equal(result.analysis.analysisMode, "claim");
+  assert.equal(harness.counts().extractionCalls, 1);
+});
+
+test("disabling extraction avoids extraction and comparison calls while retaining the shared source analysis", async () => {
+  const harness = createService("claim", false);
+  await harness.service.analyzeSource(SOURCE, { allowEmptyStore: true, extractKnowledge: false });
+  assert.deepEqual(harness.counts(), { llmCalls: 1, extractionCalls: 0, comparisonCalls: 0 });
+});
