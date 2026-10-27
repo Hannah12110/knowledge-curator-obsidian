@@ -16,6 +16,10 @@ try {
   }
   await build({
     entryPoints: [
+      "tests/batch-analysis.test.ts",
+      "tests/batch-view.test.ts",
+      "tests/global-workspace.test.ts",
+      "tests/performance-metrics.test.ts",
       "tests/one-click-workflow.test.ts",
       "tests/one-click-services-integration.test.ts",
       "tests/workflow-view.test.ts",

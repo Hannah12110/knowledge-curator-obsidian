@@ -196,3 +196,19 @@ test("schema-invalid batch recovers candidates individually without silent ADD f
   assert.equal(compare.getLastMetrics()?.llmCalls, 8);
   assert.equal(compare.getLastMetrics()?.retries, 2);
 });
+
+test("instrumentation counts unique LLM pairs separately from retrieval duplicates, cache hits and retry attempts", async () => {
+  const existing = { id: "existing-1", statement: "An unrelated historical statement.", normalizedStatement: normalizeClaim("An unrelated historical statement."), type: "fact", status: "active", confidence: .9,
+    provenance: [{ sourceKind: "wiki", filePath: "wiki/Existing.md", fileHash: "hash", accepted: true }], createdAt: "2026-10-01T00:00:00Z", updatedAt: "2026-10-01T00:00:00Z" } as any;
+  let attempts = 0;
+  const cache = new ComparisonCacheService({}, async () => undefined);
+  const compare = new ClaimComparisonService({ requestJsonObject: async (messages: LlmMessage[]) => {
+    attempts++; return attempts === 1 ? '{"invalid":true}' : validCoverage(messages);
+  } } as any, () => existing, { cache, fastPath: { evaluate: () => null } as any, sleep: async () => undefined });
+  const input = candidates(2).map((item) => ({ ...item, matches: [1, 2].map(() => ({ claimId: existing.id, score: .4, reasons: ["fixture"] })) }));
+  await compare.compare(input);
+  const cold = compare.getLastMetrics()!;
+  assert.equal(cold.candidatePairCount, 4); assert.equal(cold.deduplicatedPairCount, 2); assert.equal(cold.llmComparisonPairCount, 2); assert.equal(cold.llmComparisonPairAttempts, 4);
+  await compare.compare(input);
+  const warm = compare.getLastMetrics()!; assert.equal(warm.cacheHits, 2); assert.equal(warm.candidatePairCount, 4); assert.equal(warm.llmComparisonPairCount, 0); assert.equal(warm.llmComparisonPairAttempts, 0);
+});

@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { OneClickAnalysisOrchestrator } from "../src/product/one-click-analysis-orchestrator";
+import { ArticlePerformanceRecorder } from "../src/services/performance-metrics";
 import { LlmService } from "../src/services/llm-service";
 import { AnalysisService } from "../src/services/analysis-service";
 import { ClaimExtractionService } from "../src/services/claim-extraction-service";
@@ -42,6 +43,7 @@ test("real services complete first-article creation, persist history/index/graph
     mkdir: async (path: string) => { directories.add(path); },
     read: async (path: string) => derived.get(path)!, write: async (path: string, value: string) => { derived.set(path, value); }
   } } as any;
+  const recorder = new ArticlePerformanceRecorder();
   const llm = new LlmService(() => settings, async (_url, _headers, body) => {
     providerCalls++;
     const messages = JSON.parse(body).messages, system = messages[0].content;
@@ -61,7 +63,7 @@ test("real services complete first-article creation, persist history/index/graph
     };
     else response = { ...VALID_ANALYSIS, topic: "Fixture", relatedNotes: [], newClaims: [], conflicts: [], duplicateWith: [] };
     return { status: 200, json: { choices: [{ message: { content: JSON.stringify(response) }, finish_reason: "stop" }] } };
-  });
+  }, recorder.observe);
   const extraction = new ClaimExtractionService(llm);
   const index = new ClaimStoreService(vault, extraction, new ClaimStoreRepository(adapterVault));
   await index.initialize();
@@ -81,7 +83,7 @@ test("real services complete first-article creation, persist history/index/graph
   await graph.initialize();
   const ports = {
     prepareIndex: async () => { await index.build({ rebuild: false }); },
-    analyze: async () => { const result = await analysis.analyzeSource(file(sourcePath) as any, { allowEmptyStore: true }); return { schemaVersion: 6, sourcePath, sourceModified: 100, analyzedAt: new Date().toISOString(), analysis: result.analysis, context: result.context } as CachedSourceAnalysis; },
+    analyze: async () => { const result = await analysis.analyzeSource(file(sourcePath) as any, { allowEmptyStore: true, performance: recorder }); return { schemaVersion: 6, sourcePath, sourceModified: 100, analyzedAt: new Date().toISOString(), analysis: result.analysis, context: result.context } as CachedSourceAnalysis; },
     verifyConflicts: async () => [], assessFreshness: async () => ({ text: "本地判断", detail: "未外部核验" }),
     previousUpdate: async () => { const pr = cache.get(sourcePath); return pr?.status === "accepted" ? pr : null; },
     generateUpdate: async (entry: CachedSourceAnalysis, verifications: any) => (await proposals.generate(file(sourcePath) as any, entry, verifications)).pr,
@@ -90,11 +92,17 @@ test("real services complete first-article creation, persist history/index/graph
     log: (error: unknown) => { throw error; }
   };
   const orchestrator = new OneClickAnalysisOrchestrator();
+  recorder.begin(sourcePath, "Fixture", "fixture.invalid", "fixture", "synthetic");
   const result = await orchestrator.run(ports, settings.analysisPreferences, () => undefined);
+  const measured = recorder.finish("completed");
+  assert.equal(measured.sampleKind, "synthetic"); assert.equal(measured.claimExtractionCount, 1); assert.equal(measured.llmComparisonPairCount, 0);
+  assert.ok(measured.claimComparisonLatencyMs >= 0); assert.equal(measured.tokenUsageSource, "estimated"); assert.ok(measured.llmInputTokens! > 0);
   assert.equal(result.wikiPath, "wiki/Fixture.md"); assert.equal(wikiWrites, 1);
   assert.equal(index.getClaims()[0]?.statement, statement); assert.equal(graph.getSnapshot().nodes.length, 1);
   assert.equal([...derived.keys()].filter((path) => path.startsWith(".knowledge-agent/history/")).length, 1);
   assert.ok(providerCalls >= 4); assert.equal(result.warnings.length, 0);
+  recorder.begin(sourcePath, "Fixture", "fixture.invalid", "fixture", "synthetic");
   const repeated = await orchestrator.run(ports, settings.analysisPreferences, () => undefined);
+  recorder.finish("completed");
   assert.equal(wikiWrites, 1); assert.match(repeated.updateMessage, /未重复写入/u);
 });

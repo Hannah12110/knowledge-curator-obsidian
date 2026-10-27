@@ -1,3 +1,4 @@
+import { observeTokens, type LlmRequestObservation } from "./performance-metrics";
 import { requestUrl } from "obsidian";
 import type { RetrievalCandidate } from "../types/analysis";
 import type { KnowledgeCuratorSettings } from "../types/settings";
@@ -54,7 +55,8 @@ export class LlmServiceError extends Error {
 export class LlmService {
   constructor(
     private readonly getSettings: () => KnowledgeCuratorSettings,
-    private readonly transport: LlmTransport = defaultTransport
+    private readonly transport: LlmTransport = defaultTransport,
+    private readonly onObservation?: (observation: LlmRequestObservation) => void
   ) {}
 
   async analyzeSource(input: LlmAnalysisInput): Promise<SourceAnalysis> {
@@ -193,7 +195,14 @@ export class LlmService {
     messages: Array<{ role: string; content: string }>,
     retryCount: number
   ): Promise<CompletionResult> {
+    const requestStarted = performance.now();
     const url = this.buildChatCompletionsUrl(settings.llmBaseUrl);
+    const requestProvider = new URL(url).hostname, requestModel = settings.llmModel;
+    const observe = (usage: unknown, output: string | null, success: boolean): void => {
+      try { this.onObservation?.({ ...observeTokens(usage, messages.map((message) => message.content).join("\n"), output),
+        latencyMs: Math.max(0, performance.now() - requestStarted), provider: requestProvider, model: requestModel, success, retry: retryCount }); }
+      catch { console.warn("Knowledge Curator could not record local request metrics."); }
+    };
     const deepSeekCompatibility = this.isOfficialDeepSeekEndpoint(url)
       ? { thinking: { type: "disabled" } }
       : {};
@@ -221,6 +230,7 @@ export class LlmService {
         REQUEST_TIMEOUT_MS
       );
     } catch (error: unknown) {
+      observe(undefined, null, false);
       if (error instanceof LlmServiceError) {
         throw error;
       }
@@ -242,6 +252,8 @@ export class LlmService {
     const message = asRecord(firstChoice?.message);
     const rawContent = message?.content;
     const content = typeof rawContent === "string" ? rawContent : null;
+
+    observe(root?.usage, response.status >= 200 && response.status < 300 ? content : null, response.status >= 200 && response.status < 300 && hasContent(content) && finishReason !== "length");
 
     console.debug("[Knowledge Curator] LLM response", JSON.stringify({
       httpStatus: response.status,

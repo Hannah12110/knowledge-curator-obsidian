@@ -63,6 +63,11 @@ export interface ComparisonRunMetrics {
   latencyMs: number;
   durationMs: number;
   batchDurationsMs: number[];
+  candidatePairCount?: number;
+  deduplicatedPairCount?: number;
+  llmComparisonPairCount?: number;
+  llmComparisonPairAttempts?: number;
+  llmComparedCandidates?: number;
   tokenUsage?: { prompt: number; completion: number; total: number };
 }
 
@@ -98,6 +103,11 @@ class ComparisonBatchExecutionError extends Error {
 
 export class ClaimComparisonService {
   private lastMetrics: ComparisonRunMetrics | null = null;
+  private observedPairs = new Set<string>();
+  private observedCandidates = new Set<string>();
+  private pairAttempts = 0;
+  private candidatePairCount = 0;
+  private deduplicatedPairCount = 0;
   private readonly fastPath: ClaimComparisonFastPath;
   private readonly scheduler: ComparisonExecutionScheduler;
   private readonly sleep: (milliseconds: number) => Promise<void>;
@@ -121,6 +131,9 @@ export class ClaimComparisonService {
     version: ClaimComparisonVersion = CLAIM_COMPARISON_VERSION
   ): Promise<ClaimComparison[]> {
     this.lastMetrics = null;
+    this.observedPairs.clear(); this.observedCandidates.clear(); this.pairAttempts = 0;
+    this.candidatePairCount = input.reduce((total, item) => total + item.matches.length, 0);
+    this.deduplicatedPairCount = new Set(input.flatMap((item) => item.matches.map((match) => `${item.candidate.id}::${match.claimId}`))).size;
     if (input.length === 0) {
       this.lastMetrics = emptyMetrics(version);
       return [];
@@ -131,7 +144,17 @@ export class ClaimComparisonService {
   }
 
   getLastMetrics(): ComparisonRunMetrics | null {
-    return this.lastMetrics === null ? null : { ...this.lastMetrics };
+    return this.lastMetrics === null ? null : { ...this.lastMetrics, candidatePairCount: this.candidatePairCount, deduplicatedPairCount: this.deduplicatedPairCount,
+      llmComparisonPairCount: this.observedPairs.size, llmComparisonPairAttempts: this.pairAttempts, llmComparedCandidates: this.observedCandidates.size };
+  }
+
+  private noteComparisonRequest(input: CandidateWithMatches[]): void {
+    for (const item of input) {
+      this.observedCandidates.add(item.candidate.id);
+      for (const id of new Set(item.matches.map((match) => match.claimId))) {
+        this.observedPairs.add(`${item.candidate.id}::${id}`); this.pairAttempts++;
+      }
+    }
   }
 
   private async compareV2(input: CandidateWithMatches[]): Promise<ClaimComparison[]> {
@@ -279,6 +302,7 @@ export class ClaimComparisonService {
           }
         ];
         calls += 1;
+        this.noteComparisonRequest(input);
         const response = await this.llmService.requestJsonObject(attemptMessages, attempt);
         const comparisons = parseClaimComparisons(response, candidates, allowedIds)
           .map((comparison) => this.applyV1DeterministicSafety(comparison, input));
@@ -331,6 +355,7 @@ export class ClaimComparisonService {
           }
         ];
         calls += 1;
+        this.noteComparisonRequest(batch);
         const response = await this.llmService.requestJsonObject(attemptMessages, retries);
         const coverages = parseClaimCoverageResults(response, candidates, allowedIds);
         return {

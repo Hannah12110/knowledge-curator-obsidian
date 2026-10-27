@@ -1,3 +1,5 @@
+import { ArticlePerformanceRecorder } from "./services/performance-metrics";
+import { PerformanceRepository } from "./services/performance-repository";
 import { Notice, Plugin } from "obsidian";
 import { CuratorController } from "./controllers/curator-controller";
 import { AnalysisCacheService } from "./services/analysis-cache-service";
@@ -82,7 +84,9 @@ export default class KnowledgeCuratorPlugin extends Plugin {
       vaultService,
       () => this.settings
     );
-    const llmService = new LlmService(() => this.settings);
+    const performanceRecorder = new ArticlePerformanceRecorder();
+    const performanceRepository = new PerformanceRepository(this.app.vault.adapter, () => this.settings.wikiFolder);
+    const llmService = new LlmService(() => this.settings, undefined, performanceRecorder.observe);
     const claimExtractionService = new ClaimExtractionService(llmService);
     const claimStoreService = new ClaimStoreService(
       vaultService,
@@ -219,7 +223,8 @@ export default class KnowledgeCuratorPlugin extends Plugin {
       maintenanceService,
       freshnessVerificationService,
       claimGraphService,
-      verificationCacheService
+      verificationCacheService,
+      { performance: performanceRecorder, performanceRepository, history: historyService }
     );
     this.curatorController = curatorController;
     this.register(() => curatorController.dispose());
@@ -254,6 +259,9 @@ export default class KnowledgeCuratorPlugin extends Plugin {
       name: "选择当前文章",
       callback: () => this.curatorController?.openMarkdownFilePicker()
     });
+
+    this.addCommand({ id: "open-global-knowledge-map", name: "打开知识关系图", callback: () => this.curatorController?.openGlobalGraph() });
+    this.addCommand({ id: "open-change-log", name: "打开变更记录", callback: () => this.curatorController?.openHistory() });
 
     this.addSettingTab(new KnowledgeCuratorSettingTab(this.app, this));
 

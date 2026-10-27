@@ -47,3 +47,9 @@ claim-comparison-calibration-report.md
 *.log
 tmp/
 .tmp/
+
+# Phase 2A developer instrumentation: never commit private performance samples.
+**/KnowledgeCuratorValidation/performance/
+**/KnowledgeCuratorValidation/reports/claim-comparison-performance.json
+**/KnowledgeCuratorValidation/reports/claim-comparison-performance.md
+!KnowledgeCuratorValidation/reports/v0.2-phase2a-gui-checklist.md

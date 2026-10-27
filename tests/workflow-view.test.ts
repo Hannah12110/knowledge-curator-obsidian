@@ -28,20 +28,21 @@ test("article card click selects the article through the real view action withou
   const h = harness(); const card = h.root.all().find((node) => node.classes.has("kc-article"))!;
   assert.equal(card.children.some((node) => node.tag === "button"), false);
   card.dispatch("click"); assert.deepEqual(h.selected, ["raw/Article.md"]); assert.equal(h.view.getSelectedArticle(), "raw/Article.md");
-  assert.equal(h.root.all().filter((node) => node.classes.has("mod-cta")).length, 1);
+  assert.equal(h.root.all().filter((node) => node.classes.has("mod-cta")).length, 0);
+  assert.match(h.root.textContent, /返回文章列表/u);
 });
 
-test("single CTA runs analysis and cards are disabled while a workflow is busy", () => {
+test("batch CTA starts work while checked selection is locked and details remain browsable", () => {
   const h = harness(); h.root.all().find((node) => node.classes.has("kc-primary"))!.dispatch("click");
   assert.equal(h.analyzes(), 1);
   h.view.showProgress("正在分析文章…");
   const card = h.root.all().find((node) => node.classes.has("kc-article"))!;
-  card.dispatch("click"); assert.equal(h.selected.length, 0); assert.equal(card.disabled, true);
-  assert.equal(h.root.attributes["aria-busy"], "true");
+  assert.equal(h.root.all().find((node) => node.attributes["aria-label"] === "选择文章：Article")!.disabled, true);
+  card.dispatch("click"); assert.equal(h.selected.length, 1); assert.equal(card.disabled, false);
 });
 
 test("tabs display knowledge point details and real source links without internal identifiers", () => {
-  const h = harness(); h.view.showResult(result());
+  const h = harness(); h.view.selectArticle("raw/Article.md"); h.view.showResult(result());
   h.root.all().find((node) => node.attributes.id === "kc-tab-points")!.dispatch("click");
   assert.match(h.root.textContent, /知识点（1）/u); assert.match(h.root.textContent, /来源文章/u);
   assert.doesNotMatch(h.root.textContent, /internal-id-secret|Claim Store|Claim Mode|confidence/u);
@@ -49,16 +50,18 @@ test("tabs display knowledge point details and real source links without interna
   assert.deepEqual(h.opened, ["raw/Article.md"]);
 });
 
-test("tab arrow keys move focus and relation empty state stays user-friendly", () => {
-  const h = harness(); h.view.showResult(result());
+test("detail tab arrow keys move focus between only article analysis and knowledge points", () => {
+  const h = harness(); h.view.selectArticle("raw/Article.md"); h.view.showResult(result());
   h.root.all().find((node) => node.attributes.id === "kc-tab-analysis")!.dispatch("keydown", { key: "End", preventDefault() {} });
-  assert.match(h.root.textContent, /知识关系思维导图/u); assert.match(h.root.textContent, /暂未发现知识关联/u);
-  assert.equal(h.root.all().find((node) => node.attributes.id === "kc-tab-relations")!.focused, true);
+  assert.match(h.root.textContent, /知识点（1）/u);
+  assert.equal(h.root.all().find((node) => node.attributes.id === "kc-tab-points")!.focused, true);
+  assert.equal(h.root.all().some((node) => node.attributes.id === "kc-tab-relations"), false);
 });
 
-test("error state offers retry through the same sole primary action", () => {
-  const h = harness(); h.view.showError("请检查 AI 服务配置。", true);
+test("failed detail returns to list for a one-article batch retry", () => {
+  const h = harness(); h.view.selectArticle("raw/Article.md"); h.view.showError("请检查 AI 服务配置。", true);
   assert.match(h.root.textContent, /分析失败/u);
+  h.root.all().find((node) => node.ownText === "← 返回文章列表")!.dispatch("click");
   const buttons = h.root.all().filter((node) => node.classes.has("mod-cta"));
-  assert.equal(buttons.length, 1); assert.equal(buttons[0]!.ownText, "重新分析");
+  assert.equal(buttons.length, 1); assert.equal(buttons[0]!.ownText, "分析全部未分析文章");
 });

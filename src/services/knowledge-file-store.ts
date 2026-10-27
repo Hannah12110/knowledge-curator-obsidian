@@ -13,6 +13,7 @@ export interface KnowledgeFileStore {
   delete(path: string): Promise<void>;
   createJson(path: string, content: string): Promise<void>;
   list(path: string): Promise<string[]>;
+  readJson?(path: string): Promise<unknown>;
 }
 
 export class ObsidianKnowledgeFileStore implements KnowledgeFileStore {
@@ -79,6 +80,10 @@ export class ObsidianKnowledgeFileStore implements KnowledgeFileStore {
       throw new Error(`History file already exists: ${normalizedPath}`);
     }
     await this.vault.adapter.write(normalizedPath, content);
+  }
+
+  async readJson(path: string): Promise<unknown> {
+    return JSON.parse(await this.vault.adapter.read(normalizePath(path))) as unknown;
   }
 
   async list(path: string): Promise<string[]> {

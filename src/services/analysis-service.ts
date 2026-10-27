@@ -1,3 +1,4 @@
+import type { ArticlePerformanceRecorder, PerformanceStage } from "./performance-metrics";
 import type { TFile } from "obsidian";
 import type {
   AnalysisContextMetadata,
@@ -44,7 +45,8 @@ export class AnalysisService {
     private readonly getSettings: () => KnowledgeCuratorSettings
   ) {}
 
-  async analyzeSource(sourceFile: TFile, options: { allowEmptyStore?: boolean; extractKnowledge?: boolean; onProgress?: (stage: "extract" | "compare") => void } = {}): Promise<AnalysisResult> {
+  async analyzeSource(sourceFile: TFile, options: { allowEmptyStore?: boolean; extractKnowledge?: boolean; onProgress?: (stage: "extract" | "compare") => void; performance?: ArticlePerformanceRecorder } = {}): Promise<AnalysisResult> {
+    const measured = <T>(stage: PerformanceStage, action: () => T | Promise<T>): Promise<T> => options.performance?.measure(stage, action) ?? Promise.resolve().then(action);
     if (!this.vaultService.isInInboxScope(sourceFile.path)) {
       throw new Error(
         `Knowledge Curator refused to analyze a source outside the configured Inbox: ${sourceFile.path}`
@@ -55,7 +57,8 @@ export class AnalysisService {
     const sourceContent = sourceTruncated
       ? fullSourceContent.slice(0, MAX_SOURCE_CHARS)
       : fullSourceContent;
-    const retrievedCandidates = await this.retrievalService.findRelatedNotes(sourceFile);
+    options.performance?.source(fullSourceContent);
+    const retrievedCandidates = await measured("retrieval", () => this.retrievalService.findRelatedNotes(sourceFile));
     const limited = limitTotalContext(sourceContent, retrievedCandidates);
     const settings = this.getSettings();
     const context: AnalysisContextMetadata = {
@@ -82,12 +85,12 @@ export class AnalysisService {
     if (settings.claimComparisonMode === "claim" && !options.allowEmptyStore && this.claimStoreService.getClaims().length === 0) {
       throw new ClaimAnalysisUnavailableError();
     }
-    const legacyAnalysis = await this.llmService.analyzeSource({
+    const legacyAnalysis = await measured("sourceAnalysis", () => this.llmService.analyzeSource({
       sourcePath: sourceFile.path,
       sourceTitle: this.vaultService.getDisplayTitle(sourceFile),
       sourceContent,
       relatedCandidates: limited.candidates
-    });
+    }));
 
     if (settings.claimComparisonMode === "legacy" || options.extractKnowledge === false) {
       return {
@@ -97,20 +100,31 @@ export class AnalysisService {
       };
     }
     options.onProgress?.("extract");
-    const candidateClaims = await this.claimExtractionService.extractCandidateClaims({
+    const candidateClaims = await measured("claimExtraction", () => this.claimExtractionService.extractCandidateClaims({
       sourcePath: sourceFile.path,
       content: sourceContent
-    });
+    }));
+    options.performance?.counts({ claimExtractionCount: candidateClaims.length });
     options.onProgress?.("compare");
-    const candidatesWithMatches = candidateClaims.map((candidate) => ({
+    const candidatesWithMatches = await measured("retrieval", () => candidateClaims.map((candidate) => ({
       candidate,
       matches: this.claimRetrievalService.retrieve(
         candidate,
         settings.claimRetrievalTopK,
         CLAIM_RETRIEVAL_VERSION
       )
-    }));
-    const comparisons = await this.claimComparisonService.compare(candidatesWithMatches);
+    })));
+    const pairCount = candidatesWithMatches.reduce((total, item) => total + item.matches.length, 0);
+    options.performance?.counts({ retrievalCandidateCount: pairCount, deduplicatedPairCount: new Set(candidatesWithMatches.flatMap((item) => item.matches.map((match) => `${item.candidate.id}::${match.claimId}`))).size });
+    const comparisons = await measured("claimComparison", async () => {
+      try { return await this.claimComparisonService.compare(candidatesWithMatches); }
+      finally {
+        const metrics = this.claimComparisonService.getLastMetrics?.();
+        options.performance?.counts({ comparisonPairCount: metrics?.llmComparisonPairCount ?? 0, llmComparisonPairCount: metrics?.llmComparisonPairCount ?? 0,
+          llmComparisonPairAttempts: metrics?.llmComparisonPairAttempts ?? 0, llmComparedCandidates: metrics?.llmComparedCandidates ?? 0,
+          filteredPairCount: Math.max(0, (metrics?.deduplicatedPairCount ?? pairCount) - (metrics?.llmComparisonPairCount ?? 0)) });
+      }
+    });
     console.debug("[Knowledge Curator] claim comparison metrics", {
       sourcePath: sourceFile.path,
       ...this.claimComparisonService.getLastMetrics?.()

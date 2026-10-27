@@ -99,3 +99,14 @@ export function userWorkflowError(error: unknown): string {
   };
   return messages[code ?? ""] ?? "本次分析未能完成，请检查 AI 服务配置和网络后重新分析。";
 }
+
+export function knowledgeDifferences(analysis: SourceAnalysis): Array<{ kind: "新增知识" | "补充知识"; text: string; detail?: string }> {
+  const comparisons = analysis.claimAnalysis?.comparisons;
+  if (comparisons === undefined) return analysis.newClaims.filter((claim) => claim.novelty !== "supporting").map((claim) => ({ kind: claim.novelty === "refinement" ? "补充知识" : "新增知识", text: claim.statement }));
+  return comparisons.flatMap<{ kind: "新增知识" | "补充知识"; text: string; detail?: string }>((item) => {
+    const uncovered = item.coverage?.uncoveredAspects ?? [];
+    if (item.relation === "add") return [{ kind: "新增知识" as const, text: item.candidateStatement }];
+    if (item.relation === "refine" || (item.relation === "reinforce" && uncovered.length > 0)) return [{ kind: "补充知识" as const, text: item.candidateStatement, detail: uncovered.length > 0 ? uncovered.join("；") : undefined }];
+    return [];
+  });
+}

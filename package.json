@@ -29,7 +29,8 @@
     "verify:final-closeout": "bash scripts/run-with-local-preflight.sh node scripts/verify-final-closeout.mjs",
     "verify:freshness:provider": "node scripts/verify-freshness-provider.mjs",
     "deploy": "npm run build && node scripts/deploy.mjs",
-    "dev:install": "npm run deploy"
+    "dev:install": "npm run deploy",
+    "benchmark:claim-comparison-performance": "node scripts/report-claim-comparison-performance.mjs"
   },
   "keywords": [
     "obsidian",

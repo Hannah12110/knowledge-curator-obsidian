@@ -19,16 +19,22 @@ import { sha256Text } from "../services/content-hash";
 import { configuredWritableWikiRoot, isInsideWritableWikiScope, isSafeVaultFolder } from "../services/write-scope-guard";
 import { OneClickAnalysisOrchestrator, WORKFLOW_PROGRESS } from "../product/one-click-analysis-orchestrator";
 import {
-  mapKnowledgePoints, selectAnalysisTarget, userWorkflowError,
+  mapKnowledgePoints, userWorkflowError,
   type ProductArticleResult, type FreshnessDisplay
 } from "../product/workflow-presenter";
+import { BatchAnalysisQueue } from "../product/batch-analysis";
+import { changeLogEntry } from "../product/global-workspace";
+import { ArticlePerformanceRecorder, type ArticlePerformanceRecord, type PerformanceStage } from "../services/performance-metrics";
+import type { PerformanceRepository } from "../services/performance-repository";
+import type { HistoryService } from "../services/history-service";
 import { KnowledgeCuratorView, KNOWLEDGE_CURATOR_VIEW_TYPE } from "../views/curator-view";
 
 export class CuratorController {
   private readonly orchestrator = new OneClickAnalysisOrchestrator();
   private readonly results = new Map<string, ProductArticleResult>();
   private readonly states = new Map<string, { status: "analyzing" | "analyzed" | "failed"; modified: number }>();
-  private selection = 0;
+  private readonly selections = new WeakMap<KnowledgeCuratorView, number>();
+  private readonly batch = new BatchAnalysisQueue();
   private readonly scans = new WeakMap<KnowledgeCuratorView, number>();
   private disposed = false;
   private running = false;
@@ -47,18 +53,30 @@ export class CuratorController {
     private readonly maintenanceService: MaintenanceService,
     private readonly freshnessVerificationService: FreshnessVerificationService,
     private readonly claimGraphService: ClaimGraphService,
-    private readonly verificationCacheService?: import("../services/verification-cache-service").VerificationCacheService
-  ) {}
+    private readonly verificationCacheService?: import("../services/verification-cache-service").VerificationCacheService,
+    private readonly developer?: { performance: ArticlePerformanceRecorder; performanceRepository: PerformanceRepository; history: HistoryService }
+  ) {
+    this.batch.subscribe((job) => {
+      for (const leaf of this.app.workspace.getLeavesOfType(KNOWLEDGE_CURATOR_VIEW_TYPE)) if (leaf.view instanceof KnowledgeCuratorView) leaf.view.showBatchJob(job);
+    });
+  }
 
-  dispose(): void { this.disposed = true; this.orchestrator.dispose(); }
-  isBusy(): boolean { return this.running || this.orchestrator.isBusy(); }
+  dispose(): void { this.disposed = true; this.batch.dispose(); this.orchestrator.dispose(); }
+  isBusy(): boolean { return this.running || this.batch.isRunning() || this.orchestrator.isBusy(); }
 
   createView(leaf: WorkspaceLeaf): KnowledgeCuratorView {
     let view: KnowledgeCuratorView;
     view = new KnowledgeCuratorView(leaf, {
       onRefresh: () => this.refreshInbox(view),
       onSelectArticle: (path) => this.selectArticle(path, view),
-      onAnalyze: () => { void this.analyze(view); },
+      onAnalyze: (ids) => { void this.startBatch(ids); },
+      onCancelBatch: () => this.batch.cancel(),
+      getGlobalGraph: () => this.claimGraphService.getSnapshot(),
+      getClaims: () => this.claimStoreService.getClaims(),
+      getHistory: async () => {
+        const history = await this.developer?.history.listRecords();
+        return { entries: history?.records.map(changeLogEntry) ?? [], unreadable: history?.unreadable ?? 0 };
+      },
       onOpenFile: (path) => { void this.openFile(path); },
       onOpenSettings: () => {
         // Obsidian's setting tab navigation is not part of its public type surface.
@@ -66,6 +84,7 @@ export class CuratorController {
         settings.setting.open(); settings.setting.openTabById("knowledge-curator");
       }
     });
+    const job = this.batch.snapshot(); if (job !== null) view.showBatchJob(job);
     return view;
   }
 
@@ -109,7 +128,7 @@ export class CuratorController {
   private selectArticle(path: string, view: KnowledgeCuratorView): void {
     view.selectArticle(path);
     void this.openFile(path);
-    const request = ++this.selection;
+    const request = (this.selections.get(view) ?? 0) + 1; this.selections.set(view, request);
     const file = this.vaultService.getMarkdownFile(path);
     if (file === null) { view.showError("文章已移动或不存在，请重新选择。"); return; }
     const cached = this.analysisCacheService.getValid(path, file.stat.mtime, this.vaultService.getConfiguredRetrievalScope());
@@ -120,36 +139,55 @@ export class CuratorController {
     void Promise.all([this.assessFreshness(cached, false), this.verificationCacheService?.listValidForSource({
       sourcePath: path, topic: cached.analysis.topic, conflicts: cached.analysis.conflicts, provider: settings.searchProvider, model: settings.llmModel
     }) ?? Promise.resolve([])]).then(([freshness, verifications]) => {
-      if (request !== this.selection || this.disposed) return;
+      if (request !== this.selections.get(view) || this.disposed) return;
       const pr = this.knowledgePRCacheService.get(path);
       const wikiPath = pr?.status === "accepted" && isInsideWritableWikiScope(pr.target.path, settings.wikiFolder) ? pr.target.path : undefined;
       view.showResult({ sourcePath: path, title: this.vaultService.getDisplayTitle(file), analysis: cached.analysis,
         preferences: { ...this.getSettings().analysisPreferences }, points: this.getSettings().analysisPreferences.extractKnowledge ? mapKnowledgePoints(cached.analysis, path, this.claimStoreService.getClaims(), wikiPath) : [],
         verifications, freshness, graph: this.claimGraphService.getSnapshot(), wikiPath,
         updateMessage: wikiPath === undefined ? "已载入上次文章分析。" : "已载入上次分析；这篇文章已有知识更新记录。", warnings: [] });
-    }).catch((error) => { console.error("Knowledge Curator restore failed", error); if (request === this.selection) view.showError("暂时无法读取上次结果，请重新分析。"); });
+    }).catch((error) => { console.error("Knowledge Curator restore failed", error); if (request === this.selections.get(view)) view.showError("暂时无法读取上次结果，请重新分析。"); });
   }
 
-  private async analyze(view: KnowledgeCuratorView): Promise<void> {
+  openGlobalGraph(): void { void this.activateView().then((view) => view.showGlobalGraph()); }
+  openHistory(): void { void this.activateView().then((view) => view.showHistoryPage()); }
+
+  private async startBatch(ids: string[]): Promise<void> {
     if (this.isBusy()) return;
-    const path = selectAnalysisTarget(this.app.workspace.getActiveFile(), view.getSelectedArticle(), (candidate) => this.isArticle(candidate));
-    if (path === null) { view.showError("请先选择一篇待分析文章"); return; }
+    const paths = [...new Set(ids)].filter((path) => this.isArticle(path));
+    if (paths.length === 0) { new Notice("请先勾选待分析文章。"); return; }
+    try {
+      await this.batch.start(paths, async (path, progress) => {
+        const completed = await this.analyzeArticle(path, progress);
+        for (const leaf of this.app.workspace.getLeavesOfType(KNOWLEDGE_CURATOR_VIEW_TYPE)) {
+          if (leaf.view instanceof KnowledgeCuratorView && leaf.view.getSelectedArticle() === path) leaf.view.showResult(completed.result);
+        }
+        this.refreshSidebarState(); return { metrics: completed.metrics };
+      });
+    } catch (error) { console.error("Knowledge Curator batch failed", error); new Notice("无法启动批量分析，请稍后重试。"); }
+    finally { this.refreshSidebarState(); }
+  }
+
+  private async analyzeArticle(path: string, progress: (stage: string) => void): Promise<{ result: ProductArticleResult; metrics: ArticlePerformanceRecord }> {
     this.running = true;
-    ++this.selection;
     const settings = structuredClone(this.getSettings());
     const preferences = settings.analysisPreferences;
-    const file = this.vaultService.getMarkdownFile(path)!;
-    const modified = file.stat.mtime;
-    view.selectArticle(path);
-    this.states.set(path, { status: "analyzing", modified });
-    view.showResult(null);
-    view.showProgress(WORKFLOW_PROGRESS.analysis);
+    const file = this.vaultService.getMarkdownFile(path);
+    const modified = file?.stat.mtime ?? 0;
+    const recorder = this.developer?.performance ?? new ArticlePerformanceRecorder();
+    let provider = "unconfigured"; try { provider = new URL(settings.llmBaseUrl).hostname; } catch { /* Preflight reports configuration. */ }
+    recorder.begin(path, file === null ? path.split("/").pop() ?? path : this.vaultService.getDisplayTitle(file), provider, settings.llmModel);
+    const cost = await this.developer?.performanceRepository.costConfig();
+    const measure = <T>(stage: PerformanceStage, action: () => T | Promise<T>) => recorder.measure(stage, action);
+    this.states.set(path, { status: "analyzing", modified }); this.refreshSidebarState(); progress(WORKFLOW_PROGRESS.analysis);
     try {
+      if (file === null || !this.isArticle(path)) throw Object.assign(new Error("Source missing or outside scope"), { code: "stale_source" });
       configuredWritableWikiRoot(settings);
       if (![settings.llmBaseUrl, settings.llmApiKey, settings.llmModel].every((value) => value.trim().length > 0)) {
         throw Object.assign(new Error("AI configuration incomplete"), { code: "missing_configuration" });
       }
-      const sourceHash = await sha256Text(await this.vaultService.readMarkdown(file));
+      const sourceContent = await this.vaultService.readMarkdown(file); recorder.source(sourceContent);
+      const sourceHash = await sha256Text(sourceContent);
       const assertUnchanged = async (): Promise<void> => {
         if (this.disposed) throw Object.assign(new Error("Plugin unloaded"), { code: "cancelled" });
         if (JSON.stringify(settings) !== JSON.stringify(this.getSettings())) throw Object.assign(new Error("Settings changed"), { code: "configuration_changed" });
@@ -160,13 +198,13 @@ export class CuratorController {
       };
       const outcome = await this.orchestrator.run({
         prepareIndex: async () => {
-          const result = await this.claimStoreService.build({ rebuild: this.claimStoreService.getStats().status === "corrupt" });
+          const result = await measure("index", () => this.claimStoreService.build({ rebuild: this.claimStoreService.getStats().status === "corrupt" }));
           if (result.stats.failedFiles > 0) throw Object.assign(new Error("Incomplete knowledge index"), { code: "index_incomplete" });
           await assertUnchanged();
         },
         analyze: async (progress) => {
           await assertUnchanged();
-          const result = await this.analysisService.analyzeSource(file, { allowEmptyStore: true, extractKnowledge: preferences.extractKnowledge,
+          const result = await this.analysisService.analyzeSource(file, { allowEmptyStore: true, extractKnowledge: preferences.extractKnowledge, performance: recorder,
             onProgress: (stage) => progress(stage === "extract" ? WORKFLOW_PROGRESS.points : WORKFLOW_PROGRESS.comparison) });
           await assertUnchanged();
           const entry: CachedSourceAnalysis = { schemaVersion: ANALYSIS_CACHE_SCHEMA_VERSION, sourcePath: path, sourceModified: modified,
@@ -174,8 +212,8 @@ export class CuratorController {
           await this.analysisCacheService.set(entry);
           return entry;
         },
-        verifyConflicts: async (entry) => settings.searchApiKey.trim().length === 0 ? [] : this.conflictVerificationService.verifyAll(file, entry),
-        assessFreshness: (entry) => this.assessFreshness(entry, true),
+        verifyConflicts: async (entry) => settings.searchApiKey.trim().length === 0 ? [] : measure("verification", () => this.conflictVerificationService.verifyAll(file, entry)),
+        assessFreshness: (entry) => measure("freshness", () => this.assessFreshness(entry, true)),
         previousUpdate: async () => {
           const pr = this.knowledgePRCacheService.get(path);
           if (pr?.status !== "accepted" || pr.sourceFingerprint.hash !== sourceHash || !isInsideWritableWikiScope(pr.target.path, configuredWritableWikiRoot(settings))) return null;
@@ -184,33 +222,38 @@ export class CuratorController {
         },
         generateUpdate: async (entry, verifications) => {
           await assertUnchanged();
-          return (await this.knowledgePRService.generate(file, entry, verifications)).pr;
+          return (await measure("proposal", () => this.knowledgePRService.generate(file, entry, verifications))).pr;
         },
         assertUnchanged,
-        write: (pr, entry, verifications) => this.knowledgeWriteService.accept(pr, entry, verifications),
-        refreshIndex: (wikiPath) => this.claimStoreService.reindexWiki(wikiPath),
+        write: (pr, entry, verifications) => measure("wikiWrite", () => this.knowledgeWriteService.accept(pr, entry, verifications)),
+        refreshIndex: (wikiPath) => measure("index", () => this.claimStoreService.reindexWiki(wikiPath)),
         buildRelations: async () => {
           await assertUnchanged();
           if (this.claimStoreService.getClaims().length === 0) return { failedPairs: 0 };
-          return (await this.claimGraphService.build()).stats;
+          return (await measure("relation", () => this.claimGraphService.build())).stats;
         },
         log: (error) => console.error("Knowledge Curator optional workflow stage failed", error)
-      }, preferences, (message) => { if (!this.disposed) view.showProgress(message); });
-      if (this.disposed) return;
+      }, preferences, (message) => { if (!this.disposed) progress(message); });
       const result: ProductArticleResult = { sourcePath: path, title: this.vaultService.getDisplayTitle(file), analysis: outcome.entry.analysis,
         preferences, points: preferences.extractKnowledge ? mapKnowledgePoints(outcome.entry.analysis, path, this.claimStoreService.getClaims(), outcome.wikiPath) : [],
         verifications: outcome.verifications, freshness: outcome.freshness, graph: this.claimGraphService.getSnapshot(),
         wikiPath: outcome.wikiPath, updateMessage: outcome.updateMessage, warnings: outcome.warnings };
       this.results.set(path, result);
       this.states.set(path, { status: "analyzed", modified });
-      view.showResult(result);
+      const metrics = recorder.finish("completed", undefined, cost);
+      try { await this.developer?.performanceRepository.save(metrics); }
+      catch (error) { console.error("Knowledge Curator local performance persistence failed", error); result.warnings.push("分析已完成，但本地性能记录保存失败。"); }
+      return { result, metrics };
     } catch (error) {
       console.error("Knowledge Curator one-click workflow failed", error);
       this.states.set(path, { status: "failed", modified });
-      if (!this.disposed) view.showError(userWorkflowError(error), true);
+      const metrics = recorder.finish("failed", typeof (error as { code?: unknown })?.code === "string" ? (error as { code: string }).code : "analysis_failed", cost);
+      try { await this.developer?.performanceRepository.save(metrics); } catch (saveError) { console.error("Knowledge Curator failed metrics persistence", saveError); }
+      for (const leaf of this.app.workspace.getLeavesOfType(KNOWLEDGE_CURATOR_VIEW_TYPE)) if (leaf.view instanceof KnowledgeCuratorView && leaf.view.getSelectedArticle() === path) leaf.view.showError(userWorkflowError(error), true);
+      throw Object.assign(new Error("Article analysis failed"), { userMessage: userWorkflowError(error), metrics });
     } finally {
       this.running = false;
-      if (!this.disposed) { view.finishProgress(); this.refreshInbox(view); }
+      if (!this.disposed) this.refreshSidebarState();
     }
   }
 
